@@ -74,7 +74,7 @@
 .\.venv\Scripts\python.exe run.py preflight
 .\.venv\Scripts\python.exe run.py plan
 ```
-Say: *"Preflight checks FFmpeg and committed inputs without keys. The dry run makes no model calls; it currently reports 31 cache hits and 7 regenerations — the four provisional voices plus outputs that only exist after tomorrow's fix."*
+Say: *"Preflight checks FFmpeg and committed inputs without keys. The dry run makes no model calls; it currently reports 34 cache hits and 4 regenerations — the four provisional voices. Everything else is a cache hit after the reference portraits were refreshed."*
 
 **1:15–2:00 — Show the source of truth.** Open `storyboard.json` shot_02 and say: *"Prompt, seed 102, motion prompt and duration live here, not in Python. Changing this one prompt would change only shot_02's keyframe, clip and the two finals."*
 
@@ -92,6 +92,15 @@ Get-Content runs.jsonl -Tail 1
 ```
 Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache flag and hash. The plan now calls shot_02 a cache hit, which proves the manifest agrees with the file."*
 
-**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz, measured -14.01 LUFS / -0.99 dBTP, with all ten voices audible after the mix fix."*
+**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz, measured -14.04 LUFS / -0.99 dBTP, with all ten voices audible after the mix fix and the room-tone polish."*
 
 **4:30–5:00 — Close.** Say: *"Tomorrow's scheduled job replaces only four voice files and rebuilds the finals; the Afaan Oromo version then spends one translation call and one TTS call. Nothing is published until I approve it."*
+
+### Recording checklist (keep the video under five minutes)
+- Record at 1280×720 or higher with **PowerShell + the repo folder** visible; never show `.env` or any key value.
+- Before recording: `git log -1 --oneline` (note the commit), `py run.py preflight`, `py run.py plan`. Both commands print no secrets.
+- Have these files open in tabs so switching is quick: `storyboard.json` (shot_02), `runs.jsonl`, `DESIGN.md`, `ARCHITECTURE.md`.
+- The live step deletes **only** `outputs\clips\shot_02.mp4`, a derived file. If anything goes wrong, `py run.py shots --shot shot_02` restores it; no model quota is used.
+- Pause the recording while the ~1.5 s render runs if you want, then show the single new `runs.jsonl` row and the `plan` cache hit.
+- If you speak the hard decision, use this one line: *"FFmpeg reported success while the last two shots were silent; I only caught it by measuring each slot, so slot-level measurement is now mandatory."*
+- Stop at 5:00. The walkthrough is graded on the architecture, one hard decision and one live regeneration — not on extra polish.

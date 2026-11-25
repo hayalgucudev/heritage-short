@@ -16,6 +16,16 @@
 
 - **Sample-size caveat (recorded honestly, 2026-11-25):** the brief asks for at least three people from the intended audience at **each** of the two tests. Test 1 currently records **one** viewer and Test 2 records **the director**. This gap is not hidden; if more people watch the cut, their exact words and the resulting changes will be appended below with timestamps.
 
+### How to collect the remaining three responses (director, 2026-11-25)
+- Show **(1)** `outputs/final/radio_cut.mp4` and **(2)** `outputs/final/film_9x16.mp4` (add `film_16x9.mp4` if they watch on a desktop) to three people from the intended audience — family/community or classmates.
+- Ask these four questions and write the answers **verbatim**, with a timestamp and a first name or role only (no private family details):
+  1. "What did you understand the story to be?"
+  2. "Where, if anywhere, did you stop listening or lose the thread?"
+  3. "What did you feel at the end?"
+  4. "What is one thing you would change?"
+- For the near-final picture also ask: "Can you read every subtitle line on a phone?" and "What do you think the last three seconds say?"
+- Send the exact words to the coding agent. They will be appended below with timestamps, plus any storyboard or edit change that resulted. **Do not record a real person's face or voice into the repository.**
+
 ### User Test 1 (Floor Draft — Provisional Radio Cut)
 - **Viewer feedback (verbatim):** `"it is good, but the shots after 7 are not good"`
 - **Context at time of test:**
