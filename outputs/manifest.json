@@ -60,25 +60,25 @@
       "file_name": "shot_01.wav",
       "stage": "narration",
       "shot_id": "shot_01",
-      "input_hash": "8855370ffb2668791e76c652ceba8ade603331c5965e0f77ccd9a370de7d9b2f",
+      "input_hash": "135d74632a1024e8fd730cf8dec29ac6ed03345d40be713a083c3f42f67cb4ad",
       "status": "ok",
-      "updated_at": "2026-11-25T08:08:58.888829+00:00"
+      "updated_at": "2026-11-25T08:10:45.609561+00:00"
     },
     "outputs/narration/shot_02.wav": {
       "file_name": "shot_02.wav",
       "stage": "narration",
       "shot_id": "shot_02",
-      "input_hash": "b682b5661c1db59c540a85822c16aaab26bf9f7bcb0f3991f74331092a682794",
+      "input_hash": "be83115f0da1ffb338757a5c87e76e37881d04c9cf72e63cebb27e082ff1cc93",
       "status": "ok",
-      "updated_at": "2026-11-25T08:09:02.310191+00:00"
+      "updated_at": "2026-11-25T08:11:28.370055+00:00"
     },
     "outputs/narration/shot_03.wav": {
       "file_name": "shot_03.wav",
       "stage": "narration",
       "shot_id": "shot_03",
-      "input_hash": "c9a09aa2c6d3a5d014040306f29442871aae909cce440e4fcfd705dc62b32b81",
+      "input_hash": "2dc996dcd3625c9f944549f93e201f44f3a1c9978004a2d262533182ccc69b56",
       "status": "ok",
-      "updated_at": "2026-11-25T08:09:05.595526+00:00"
+      "updated_at": "2026-11-25T08:11:44.802053+00:00"
     },
     "outputs/narration/shot_04.wav": {
       "file_name": "shot_04.wav",

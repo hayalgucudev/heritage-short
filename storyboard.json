@@ -55,8 +55,8 @@
     {
       "id": "shot_02",
       "duration_sec": 7.0,
-      "narration": "አያቴ በማለዳ ተነስታ፣ እሳቱን ታንድዳለች።",
-      "subtitle_en": "Grandmother rises early\nand lights the warm hearth.",
+      "narration": "አያቴ በማለዳ ተነስታ፣ እሳቱን ታነዳለች።",
+      "subtitle_en": "Grandmother rises early\nand lights the fire.",
       "tts_style": "Kore, no English wrapper in spoken text",
       "image_prompt": "an elderly Ethiopian highland grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim sitting gently beside a small clay hearth, tending glowing red embers, centered composition in a rustic earth-toned kitchen, warm golden morning light, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless Ethiopian highland village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
       "image_seed": 102,
@@ -120,8 +120,8 @@
     {
       "id": "shot_07",
       "duration_sec": 7.0,
-      "narration": "አያቴ ቡናውን በሲኒ፣ አጥልላ ታፈሳለች።",
-      "subtitle_en": "Grandmother carefully pours coffee\ninto small porcelain cups.",
+      "narration": "አያቴ ቡናውን በሲኒ፣ በቀስታ ትቀዳለች።",
+      "subtitle_en": "Grandmother slowly pours coffee\ninto small cups.",
       "tts_style": "Kore, no English wrapper in spoken text",
       "image_prompt": "an elderly Ethiopian highland grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim holding a clay coffee pot high and pouring a thin steady dark stream of coffee into small porcelain cups arranged on a woven tray scattered with fresh green grass, centered framing, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless Ethiopian highland village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
       "image_seed": 107,

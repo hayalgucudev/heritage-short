@@ -61,6 +61,7 @@ def generate_narration(
     *,
     voice: str | None = None,
     only_shot: str | None = None,
+    skip_shots: set[str] | None = None,
     pacing_delay_sec: float = 0.0,
 ) -> list[dict[str, Any]]:
     """Generate one WAV file per shot with deterministic per-shot hash caching."""
@@ -83,6 +84,8 @@ def generate_narration(
     for shot in sb["shots"]:
         sid = shot["id"]
         if only_shot and sid != only_shot:
+            continue
+        if skip_shots and sid in skip_shots:
             continue
 
         shot_voice = voice or _voice_from_tts_style(shot.get("tts_style", "Kore"))

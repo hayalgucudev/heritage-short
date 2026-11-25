@@ -40,7 +40,13 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 ## 008 — HTTP 429 quota exceeded on `gemini-3.8-flash-tts` at `shot_06`
 - **What broke:** While generating `Aoede` narration back-to-back (`shot_01`–`shot_05` succeeded in 17 seconds), `shot_06` failed with `HTTP 429` (`You exceeded your current quota`). Error truncation at `300` chars in `_post_with_retry` hid the exact quota metric name (`PerMinute` vs `PerDay`).
 - **What we tried:** Preserved `shot_01`–`shot_05` (`Aoede`) in `outputs/narration_aoede/`, expanded HTTP error capture in `pipeline/smoke.py` to `1,200` chars, and added pacing delay between TTS calls in `pipeline/narration.py`.
-- **Status:** Testing 1 `Kore` shot (`shot_01`) first to verify whether the 429 was a per-minute rate limit or a daily quota cap.
+- **What fixed it:** `shot_01` (`Kore`) succeeded after >1 minute pause (`3,131 ms`), confirming the 429 was a per-minute RPM limit (~5 RPM). Added `--delay-sec 13.0` default pacing between live TTS calls in `pipeline/narration.py`.
+
+## 009 — Language-quality finding: Gemini Amharic draft used unnatural verbs (`shot_02`, `shot_07`)
+- **What broke:** Native Amharic speaker review of `storyboard.json` (drafted by `gemini-3.6-flash`) caught unnatural verb choices in two lines: `shot_02` used `ታንድዳለች` instead of natural `ታነዳለች` ("lights the fire"), and `shot_07` used `አጥልላ ታፈሳለች` instead of natural `በቀስታ ትቀዳለች` ("slowly pours").
+- **What we tried:** Replaced those exact lines and updated their English subtitles in `storyboard.json`, while holding `shot_09` for a revised line matching the updated solo-Grandmother framing.
+- **What fixed it / Lesson:** Even fluent-looking low-resource script output from an LLM requires native-speaker verification before locking TTS audio; per-shot hash caching ensured only the modified shots regenerate.
+
 
 
 

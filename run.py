@@ -75,6 +75,7 @@ def cmd_draft_storyboard(args: argparse.Namespace) -> int:
 
 
 def cmd_narration(args: argparse.Namespace) -> int:
+    skip = {s.strip() for s in args.skip_shots.split(",") if s.strip()} if args.skip_shots else None
     rows = generate_narration(
         PROJECT_ROOT,
         STORYBOARD_PATH,
@@ -83,6 +84,7 @@ def cmd_narration(args: argparse.Namespace) -> int:
         MANIFEST_PATH,
         voice=args.voice,
         only_shot=args.shot,
+        skip_shots=skip,
         pacing_delay_sec=args.delay_sec,
     )
     print(json.dumps(rows, indent=2, ensure_ascii=False))
@@ -149,6 +151,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_narr = sub.add_parser("narration", help="Generate per-shot TTS narration WAVs.")
     p_narr.add_argument("--voice", default=None, help="Optional voice override (defaults to storyboard tts_style).")
     p_narr.add_argument("--shot", default=None, help="Optional single shot id (e.g. shot_03).")
+    p_narr.add_argument("--skip-shots", default="", help="Comma-separated shot ids to hold/skip (e.g. shot_09).")
     p_narr.add_argument("--delay-sec", type=float, default=13.0, help="Pause between live TTS calls to respect RPM limits.")
     p_narr.set_defaults(func=cmd_narration)
 
