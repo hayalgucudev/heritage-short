@@ -56,6 +56,11 @@
 2. **Did the pipeline publish anything?** No. The showcase command reads no keys and uploads nothing; YouTube and Hugging Face publication both wait for the director's explicit approval.
 3. **What is the agreed disclosure?** "AI-generated film" in the post and Space, plus the film's own "Made with AI" end card. No real person's face or voice appears.
 
+## Reproduction notebooks — be able to explain this
+1. **Why fix notebooks that `film` never calls?** Because a stranger cloning the repo may try the optional GPU stages. The director's real Kaggle/Colab errors showed two missing pins; `FAILURES.md` 024 and 025 quote the errors and the fixes. The one-command floor itself needs no GPU, no key and no notebook.
+2. **What exactly broke?** ACE-Step's model file imports `ResidualFSQ` from `vector_quantize_pytorch`, which we had not installed; Wan's `-U` install pulled transformers 5.x, whose `image_transforms` lacks `divide_to_patches`. In both cases later cells then threw `NameError`s because an earlier cell had aborted. Now all three notebooks pin the tested trio, assert the model actually loaded, and set safe flags before any model call.
+3. **How do I know the fix works?** Honestly: I validated JSON and compiled each code cell locally, and checked the pinned classes exist in upstream diffusers 0.35.2. I have **not** re-run a GPU session, so no new score or clip is claimed. The director must rerun from a fresh session; until then the notebooks are "patched, unverified on GPU".
+
 ## 5-minute walkthrough script (rehearsed 2026-11-25, shot_02)
 **0:00–0:30 — Intro.** Open the repo and say: *"This is The Heritage Short. The story is locked in `storyboard.json`. One command, `py run.py film`, rebuilds both films. Every stage checks a hash of its inputs, so only changed things regenerate."*
 

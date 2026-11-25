@@ -48,6 +48,9 @@ Both have burned-in English subtitles, the ACE-Step score ducked under Amharic n
 
 `film` also accepts `--skip-narration`, `--skip-keyframes`, `--skip-music`, `--skip-shots`, `--import-dir`, `--steps` and `--delay-sec`. Both `assemble` and `film` accept `--allow-stale-narration` for a director-approved provisional cut; without it, stale narration fails loudly.
 
+### Optional reproduction notebooks (not part of the one-command floor)
+`notebooks/acestep_music.ipynb`, `notebooks/acestep_music_colab.ipynb` and `notebooks/wan_clips_kaggle.ipynb` reproduce the GPU stages on Kaggle/Colab. They are **not called by `film`**: the committed WAVs and keyframes let a clean clone rebuild both MP4s with zero model calls. All three notebooks now pin `transformers==4.57.6`, `huggingface_hub==0.36.2` and `diffusers==0.35.2` (ACE-Step also needs `vector-quantize-pytorch>=1.27.15`), assert the loaded model, and fail with clear messages instead of cascading `NameError`s. Real Kaggle/Colab failures and their fixes are in `FAILURES.md` entries 024 and 025; the patched notebooks were validated as JSON and compiled locally, but were **not re-run on a GPU** in this session.
+
 ## Gates and heavy jobs
 The director must explicitly approve the story, storyboard, radio cut, reference sheet, keyframes, clips, score and final edit. The Wan 2.2 Kaggle notebook (`notebooks/wan_clips_kaggle.ipynb`) is prepared but is **not run automatically**; the floor works with local Ken Burns clips. No real person's face or voice is used — see `ETHICS.md`.
 

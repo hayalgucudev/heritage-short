@@ -35,8 +35,11 @@ flowchart LR
 | `shots.py` | keyframe, video prompt, video seed | `outputs/clips/shot_NN.mp4` | video params + keyframe hash + source | final |
 | `assemble.py` | clips, narration, score, end card | `outputs/final/film_*.mp4` | all clip/narration/music hashes + aspect + settings | deliverable |
 | `second_language.py` | `translations/afaan_oromo.json`, English subtitles, one TTS call | `outputs/narration_om/shot_*.wav`, `outputs/final/film_*_om.mp4` | translation prompt + lines + TTS hash + split method | alternate exports only; locked `storyboard.json` untouched |
+| Optional notebooks (`notebooks/*.ipynb`) | upstream ACE-Step/Wan repos, pinned dependency trio | Kaggle/Colab WAV or clip zips | explicit version pins + loaded-model assertions in the notebook | manual `music --import-dir` / `shots --import-dir`; **never called by `film`** |
 
 A cache hit means: the file exists, its `outputs/manifest.json` hash matches the current recipe, and its status is `ok`. Changing one shot's prompt or narration line changes only that shot's hash, so `plan` reports one clip/one WAV and the two finals — not all ten shots.
+
+The optional notebooks are outside the automatic DAG on purpose: a clean clone needs no GPU and no keys. Their dependency pins (`transformers==4.57.6`, `huggingface_hub==0.36.2`, `diffusers==0.35.2`, plus `vector-quantize-pytorch>=1.27.15` for ACE-Step) and their load assertions are the boundary contract with the external models. Real breakages from unpinned installs and missing packages are in `FAILURES.md` 017, 024 and 025.
 
 ## Assembly details
 - Subtitles are generated as per-aspect `.ass` files with `PlayResX/Y` equal to the export size, so font size and safe-area margins are real pixels.
