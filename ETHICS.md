@@ -19,4 +19,4 @@
 | Keyframes (Production) | Cloudflare Workers AI | `@cf/black-forest-labs/flux-2-klein-4b` | **Apache 2.0** (commercial / public-post safe) | Selected over `flux-2-klein-9b` (which is non-commercial) |
 | Keyframes (Experiment only) | Cloudflare Workers AI | `@cf/black-forest-labs/flux-2-klein-9b` / `@cf/black-forest-labs/flux-1-schnell` | `9b`: BFL Non-Commercial Licence; `1-schnell`: Apache 2.0 | `9b` kept strictly for non-public benchmark comparison if tested |
 | Video Clips | Kaggle GPU (Wan 2.2 TI2V-5B) | Wan 2.2 TI2V-5B | Apache 2.0 (verify model card at run) | Open weights |
-| Music Score | Kaggle GPU (ACE-Step 1.5) | ACE-Step 1.5 | Apache 2.0 / MIT (verify repo licence at run) | Open weights |
+| Music Score | Kaggle GPU (ACE-Step 1.5) | `ACE-Step/Ace-Step1.5` | **MIT** (commercial-safe, verified on HF repo) | Open weights |

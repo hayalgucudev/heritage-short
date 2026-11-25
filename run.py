@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from pipeline.music import run_music_stage
 from pipeline.narration import build_radio_cut, generate_narration
 from pipeline.script import draft_storyboard
 from pipeline.smoke import run_smoke_tests, run_tts_sample, verify_live_models
@@ -104,6 +105,19 @@ def cmd_radio_cut(_args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_music(args: argparse.Namespace) -> int:
+    info = run_music_stage(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        import_dir=Path(args.import_dir) if args.import_dir else None,
+    )
+    print(json.dumps(info, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_not_yet(name: str) -> int:
     print(
         f"Command '{name}' is scaffolded and will be implemented in its upcoming stage.",
@@ -159,6 +173,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_rc = sub.add_parser("radio-cut", help="Assemble narration over placeholder tone on black video.")
     p_rc.set_defaults(func=cmd_radio_cut)
+
+    p_mus = sub.add_parser("music", help="Export Kaggle ACE-Step job spec or register downloaded music candidates.")
+    p_mus.add_argument("--import-dir", default=None, help="Optional folder containing downloaded candidate_*.wav files.")
+    p_mus.set_defaults(func=cmd_music)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")
     p_plan.set_defaults(func=lambda _a: cmd_not_yet("plan"))
