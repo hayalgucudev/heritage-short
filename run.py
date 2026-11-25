@@ -83,6 +83,7 @@ def cmd_narration(args: argparse.Namespace) -> int:
         RUNS_PATH,
         MANIFEST_PATH,
         voice=args.voice,
+        tts_model_override=args.tts_model,
         only_shot=args.shot,
         skip_shots=skip,
         pacing_delay_sec=args.delay_sec,
@@ -150,6 +151,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_narr = sub.add_parser("narration", help="Generate per-shot TTS narration WAVs.")
     p_narr.add_argument("--voice", default=None, help="Optional voice override (defaults to storyboard tts_style).")
+    p_narr.add_argument("--tts-model", default=None, help="Optional TTS model override (defaults to storyboard models.tts).")
     p_narr.add_argument("--shot", default=None, help="Optional single shot id (e.g. shot_03).")
     p_narr.add_argument("--skip-shots", default="", help="Comma-separated shot ids to hold/skip (e.g. shot_09).")
     p_narr.add_argument("--delay-sec", type=float, default=13.0, help="Pause between live TTS calls to respect RPM limits.")

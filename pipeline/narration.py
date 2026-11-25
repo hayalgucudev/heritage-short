@@ -60,13 +60,14 @@ def generate_narration(
     manifest_path: Path,
     *,
     voice: str | None = None,
+    tts_model_override: str | None = None,
     only_shot: str | None = None,
     skip_shots: set[str] | None = None,
     pacing_delay_sec: float = 0.0,
 ) -> list[dict[str, Any]]:
     """Generate one WAV file per shot with deterministic per-shot hash caching."""
     sb = validate_storyboard(storyboard_path, schema_path)
-    tts_model = sb["models"]["tts"]
+    tts_model = tts_model_override or sb["models"]["tts"]
     out_dir = project_root / "outputs" / "narration"
     out_dir.mkdir(parents=True, exist_ok=True)
 

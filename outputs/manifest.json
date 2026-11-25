@@ -103,6 +103,14 @@
       "input_hash": "235b8b25bf2b3947556484f8c56d2c933e3ca9d373ddb9af8c4fcada123b5101",
       "status": "ok",
       "updated_at": "2026-11-25T08:13:17.251293+00:00"
+    },
+    "outputs/narration/shot_07.wav": {
+      "file_name": "shot_07.wav",
+      "stage": "narration",
+      "shot_id": "shot_07",
+      "input_hash": "f828fa3075593177917de321ff2cb6fbda05e571d1e4a028ee30e3ad4edf076d",
+      "status": "ok",
+      "updated_at": "2026-11-25T08:19:39.542008+00:00"
     }
   }
 }
