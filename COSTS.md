@@ -11,23 +11,23 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **77**
-- Non-cache model/FFmpeg calls: **71**
+- Real logged records: **80**
+- Non-cache model/FFmpeg calls: **74**
 - Failed calls: **7**
-- Total logged latency: **683,525 ms** (11.4 min)
+- Total logged latency: **701,727 ms** (11.7 min)
 
 ### By stage
 
 | Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
 | --- | --- | --- | --- | --- | --- |
-| assemble | 6 | 0 | 0 | 30,800 | 0_local_ffmpeg x6 |
+| assemble | 8 | 0 | 0 | 47,550 | 0_local_ffmpeg x8 |
 | keyframes | 15 | 0 | 0 | 148,599 | 1_cloudflare_flux_call x15 |
 | music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
 | narration | 18 | 5 | 2 | 68,368 | 0_cache_hit x5, 1_gemini_tts_call x16, 1_gemini_tts_call_failed x2 |
 | radio_cut | 1 | 0 | 0 | 2,967 | 0_local_ffmpeg x1 |
 | reference_sheet | 6 | 0 | 0 | 59,005 | 1_cloudflare_flux_call x6 |
 | script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
-| shots | 10 | 0 | 0 | 14,418 | 0_local_ffmpeg x10 |
+| shots | 11 | 0 | 0 | 15,870 | 0_local_ffmpeg x11 |
 | smoke_flux | 1 | 0 | 0 | 8,846 | 1_cloudflare_flux_call x1 |
 | smoke_text | 1 | 0 | 1 | 13,533 | 1_gemini_text_call_failed x1 |
 | smoke_tts | 1 | 0 | 0 | 5,093 | 1_gemini_tts_call x1 |
@@ -42,10 +42,10 @@
 | gemini-3.8-flash | 2 | 213,444 |
 | gemini-3.8-flash-tts | 18 | 73,788 |
 | gemini-3.5-flash | 1 | 60,356 |
+| ffmpeg-9.1 | 9 | 50,517 |
 | gemini-3.6-flash | 1 | 33,900 |
-| ffmpeg-9.1 | 7 | 33,767 |
 | gemini-3.7-flash | 1 | 21,871 |
-| Wan-AI/Wan2.2-TI2V-5B | 10 | 14,418 |
+| Wan-AI/Wan2.2-TI2V-5B | 11 | 15,870 |
 | gemini-3.8-flash-lite-tts | 5 | 14,179 |
 | cloudflare-models-search | 1 | 558 |
 | gemini-models-list | 1 | 408 |
@@ -56,8 +56,8 @@
 
 | Stage | Shot | Calls | Latency (ms) |
 | --- | --- | --- | --- |
-| assemble | 16:9 | 3 | 14,420 |
-| assemble | 9:16 | 3 | 16,380 |
+| assemble | 16:9 | 4 | 23,141 |
+| assemble | 9:16 | 4 | 24,409 |
 | keyframes | shot_01 | 1 | 10,233 |
 | keyframes | shot_02 | 5 | 48,359 |
 | keyframes | shot_03 | 2 | 22,779 |
@@ -88,7 +88,7 @@
 | reference_sheet | ref_real_seed_03 | 1 | 10,434 |
 | script | all | 5 | 316,424 |
 | shots | shot_01 | 1 | 1,417 |
-| shots | shot_02 | 1 | 1,449 |
+| shots | shot_02 | 2 | 2,901 |
 | shots | shot_03 | 1 | 1,428 |
 | shots | shot_04 | 1 | 1,456 |
 | shots | shot_05 | 1 | 1,434 |
