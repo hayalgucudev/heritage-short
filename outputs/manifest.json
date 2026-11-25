@@ -167,6 +167,30 @@
       "input_hash": "c73666ce05c7af187094646fae91d957f20018ab64dda2364b69197ad3c5242b",
       "status": "ok",
       "updated_at": "2026-11-25T10:39:20.852254+00:00"
+    },
+    "outputs/keyframes/ref_real_seed1024.png": {
+      "file_name": "ref_real_seed1024.png",
+      "stage": "reference_sheet",
+      "shot_id": "ref_real_seed_01",
+      "input_hash": "a6f2e4ab57ca5d2828129f026eae40b7e8703b649cca52425e3eeb14b1b1f6d0",
+      "status": "ok",
+      "updated_at": "2026-11-25T10:50:56.443565+00:00"
+    },
+    "outputs/keyframes/ref_real_seed1025.png": {
+      "file_name": "ref_real_seed1025.png",
+      "stage": "reference_sheet",
+      "shot_id": "ref_real_seed_02",
+      "input_hash": "a0711a1c4e24597c0d5aa5ea26452a42ef6ba19c600639166ab4ddcc90245c4e",
+      "status": "ok",
+      "updated_at": "2026-11-25T10:51:07.867092+00:00"
+    },
+    "outputs/keyframes/ref_real_seed1026.png": {
+      "file_name": "ref_real_seed1026.png",
+      "stage": "reference_sheet",
+      "shot_id": "ref_real_seed_03",
+      "input_hash": "3f1198599db888a48f86313b94940249de769762870cb7a9cd38a2a94119d4bc",
+      "status": "ok",
+      "updated_at": "2026-11-25T10:51:18.302476+00:00"
     }
   }
 }

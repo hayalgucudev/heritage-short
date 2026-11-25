@@ -70,15 +70,16 @@ def generate_reference_sheet(
     *,
     count: int = 3,
     steps: int = 4,
+    file_prefix: str = "ref_real_seed",
 ) -> list[dict[str, Any]]:
     """Generate candidate character reference portraits for director selection."""
     sb = validate_storyboard(storyboard_path, schema_path)
     flux_model = sb["models"]["keyframes"]
     base_seed = int(sb["character"]["reference_seed"])
     ref_prompt = (
-        f"Character reference portrait of {sb['character']['description']}, "
-        "gentle warm expression, looking toward viewer, upper body and both hands clearly visible, "
-        f"clean soft neutral clay-wall background, {sb['style_block']}"
+        f"Candid documentary portrait of {sb['character']['description']}, "
+        "gentle natural expression, relaxed posture, hands resting naturally holding a simple clay coffee cup near her lap, "
+        f"plain mud-plaster courtyard wall background, centered framing for 9:16 and 16:9 crops, {sb['style_block']}"
     )
 
     out_dir = project_root / "outputs" / "keyframes"
@@ -96,8 +97,8 @@ def generate_reference_sheet(
 
     for i in range(count):
         seed = base_seed + i
-        cand_id = f"ref_{i + 1:02d}"
-        img_path = out_dir / f"ref_seed{seed}.png"
+        cand_id = f"{file_prefix}_{i + 1:02d}"
+        img_path = out_dir / f"{file_prefix}{seed}.png"
         rel_img = img_path.relative_to(project_root).as_posix()
 
         input_hash = compute_stage_hash(

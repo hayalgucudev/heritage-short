@@ -128,6 +128,7 @@ def cmd_ref_sheet(args: argparse.Namespace) -> int:
         MANIFEST_PATH,
         count=args.count,
         steps=args.steps,
+        file_prefix=args.prefix,
     )
     print(json.dumps(rows, indent=2, ensure_ascii=False))
     return 0
@@ -211,6 +212,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_ref = sub.add_parser("ref-sheet", help="Generate character reference-sheet candidates via Cloudflare FLUX.")
     p_ref.add_argument("--count", type=int, default=3)
     p_ref.add_argument("--steps", type=int, default=4)
+    p_ref.add_argument("--prefix", default="ref_real_seed")
     p_ref.set_defaults(func=cmd_ref_sheet)
 
     p_kf = sub.add_parser("keyframes", help="Generate per-shot keyframes via Cloudflare FLUX.")
