@@ -107,6 +107,10 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** Slot mean dB for A/B/C respectively: shot 09 `-21.4 / -21.4 / -67.3`, shot 10 `-22.5 / -22.5 / -91.0`; all earlier slots normal in A and B. Production re-render: 10/10 slots audible (`-20.3` to `-16.2` dB), **-14.01 LUFS / -0.99 dBTP**, 73.0 s, 24 fps CFR.
 - **Decision:** Hypothesis confirmed; B is now the production graph. This changed my mind about a hidden risk: a successful FFmpeg exit is not proof of a correct mix, so slot-level measurement is now a mandatory verification step (logged in `FAILURES.md` 022).
 
+## Ceiling plans (chosen 2026-11-25, NOT started — floor first)
+- **EXP-017 (planned) — second-language remake.** Hypothesis: a stranger can understand the story without Amharic when the same 10 shots are narrated in a second language, but at least one model failure will need an honest workaround. Change: director chooses Afaan Oromo / Tigrinya / Somali first; native speaker checks names and places; no private family text is sent to a free endpoint without consent. Measurement: word-error spot check by a native speaker, per-shot TTS success/failure, extra quota from `runs.jsonl`, and a viewer comprehension question. **No result yet; no calls made.**
+- **EXP-018 (planned) — reusable CLI.** Hypothesis: a stranger can regenerate both MP4s from `storyboard.json` using documented commands without reading the Python source. Change: harden `run.py` argument help/errors and test from a clean-clone-style folder. Measurement: time to first successful `film` run, number of manual fixes needed, and cache-hit behaviour on a second run. **No result yet; no clean-clone test done.**
+
 
 
 
