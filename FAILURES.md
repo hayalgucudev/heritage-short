@@ -101,6 +101,11 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Director's verdict (2026-11-25):** EXP-009 (`shot_02_exp009_ref.png`) had a **different face**, so the pose-override + reference approach failed identity preservation; EXP-010 and EXP-011 were `"okay"`. The adopted production rule is verbatim description + `--no-ref` for action shots; `input_image_0` is not used to hold identity on `flux-2-klein-4b` on this evidence.
 - **Status:** Generation and latencies are logged in `runs.jsonl`. This assistant did not visually inspect the PNGs; finger counts and face comparisons above are the director's observations. Director also asked to "make it more realistic"; scope of that change is pending a decision (EXP-012).
 
+## 019 — ACE-Step download arrived without notebook run metadata
+- **What broke:** The downloaded score file (`outputs/music/download (1).wav`) had no `music_run_metadata.json` beside it, so seed, latency and candidate id could not be proven. The notebook had been updated in entry 017 but this earlier download predates that fix.
+- **What we did:** Did **not** guess a seed or latency. Wrote metadata with `seed=null`, `latency_ms=null` and an explicit `seed_note` explaining that `candidate_01_seed777.wav` uses the storyboard base seed as a filename label only. Registered the WAV through `py run.py music`, which logged a real 60.0 s duration from `ffprobe`.
+- **Status / Lesson:** Director approved this single candidate as the floor score (EXP-013). Future notebook runs must keep `music_run_metadata.json` in the exported zip so costs and latencies stay real.
+
 
 
 

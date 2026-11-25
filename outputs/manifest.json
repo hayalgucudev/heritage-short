@@ -311,6 +311,14 @@
       "input_hash": "b37b9475cd84109938c60260ecd14a7d46e58495d3264501fb888a87fdbf42a3",
       "status": "ok",
       "updated_at": "2026-11-25T12:15:47.448951+00:00"
+    },
+    "outputs/music/candidate_01_seed777.wav": {
+      "file_name": "candidate_01_seed777.wav",
+      "stage": "music",
+      "shot_id": "candidate_01",
+      "input_hash": "8a50c3522f1e48e614ceb20dc86c227e485ebee7a7e5e447a2d277e5d5f6c739",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:22:20.854783+00:00"
     }
   }
 }

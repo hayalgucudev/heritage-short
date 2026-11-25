@@ -1,0 +1,29 @@
+{
+  "source": "direct download from ACE-Step Kaggle run; notebook run metadata was not saved with the download",
+  "spec": {
+    "model": "ACE-Step/ACE-Step-v1.5",
+    "caption": "Warm acoustic Ethiopian-inspired folk instrumental with gentle krar strings, soft bamboo flute, and subtle felt piano, unhurried morning courtyard mood, organic warm texture, no vocals",
+    "bpm": 72,
+    "keyscale": "D major",
+    "duration": 60.0
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "file_name": "candidate_01_seed777.wav",
+      "model": "ACE-Step/ACE-Step-v1.5",
+      "dit_config": "unknown_not_recorded",
+      "seed": null,
+      "seed_note": "The download did not include a seed record. The filename follows the storyboard base seed 777 for ordering only; this is NOT a measured generation seed.",
+      "bpm": 72,
+      "keyscale": "D major",
+      "duration_sec": 60.0,
+      "latency_ms": null,
+      "status": "registered_download"
+    }
+  ],
+  "run_info": {
+    "latency_ms": null,
+    "note": "No notebook run_info was saved. Audio measured locally with ffprobe: 60.000000 s, pcm_s16le, 48000 Hz, 2 channels, 11520078 bytes."
+  }
+}

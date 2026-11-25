@@ -83,6 +83,12 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Visual result:** *Pending director's keyframes-gate verdict.* All 10 PNGs were opened in the browser; this assistant cannot see PNG content and makes no finger/face/realism claim it did not observe.
 - **Decision:** Provisional pending verdict. If any shot fails the hands policy, use at most 3 attempts, then change framing, then FFmpeg Ken Burns over the clean still. No Wan video or ACE-Step GPU job has been started.
 
+## EXP-013 — Register the downloaded ACE-Step WAV as the score (director approved, 2026-11-25)
+- **Hypothesis:** The single downloaded 60.0 s stereo WAV can serve as the floor score even though the 3-candidate notebook metadata was not downloaded with it.
+- **Change:** Renamed `outputs/music/download (1).wav` to `outputs/music/candidate_01_seed777.wav` **without processing the audio**; wrote `music_run_metadata.json` with `seed=null` and an explicit note that the filename's `777` is an ordering convention, not a measured seed; set `storyboard.json -> music.selected_candidate = "candidate_01"`. Ran `py run.py music` to hash and log it.
+- **Result:** `candidates_ready`, 1 candidate, measured `60.0 s` (`pcm_s16le`, 48 kHz, stereo), `input_hash=40539b99…`, `cache_hit=false`, one `1_kaggle_acestep_call` row in `runs.jsonl` with `latency_ms=null` (not measured, so not invented).
+- **Decision:** Approved by director for the floor. If the 3-candidate Kaggle zip is imported later, only the score/mix/final assembly depend on that change.
+
 
 
 
