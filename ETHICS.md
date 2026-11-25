@@ -14,7 +14,7 @@
 
 | Stage | Provider | Verified Model ID | Licence / Terms | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| Script & Translation | Google Gemini | `gemini-3.8-flash` (bulk fallback: `gemini-3.5-flash-lite`) | Google Gemini API Terms of Service | Live verified 2026-11-25 (`gemini-3.8-flash-lite` not listed) |
+| Script & Translation | Google Gemini | `gemini-3.6-flash` (fallback tested: `3.8` / `3.7` 503, `2.5` 404, `3.5` 60s timeout) | Google Gemini API Terms of Service | Live verified & used 2026-11-25 (`33.9 s`) |
 | Narration (TTS) | Google Gemini | `gemini-3.8-flash-tts` | Google Gemini API Terms of Service | Live verified 2026-11-25 |
 | Keyframes (Production) | Cloudflare Workers AI | `@cf/black-forest-labs/flux-2-klein-4b` | **Apache 2.0** (commercial / public-post safe) | Selected over `flux-2-klein-9b` (which is non-commercial) |
 | Keyframes (Experiment only) | Cloudflare Workers AI | `@cf/black-forest-labs/flux-2-klein-9b` / `@cf/black-forest-labs/flux-1-schnell` | `9b`: BFL Non-Commercial Licence; `1-schnell`: Apache 2.0 | `9b` kept strictly for non-public benchmark comparison if tested |

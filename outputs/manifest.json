@@ -47,6 +47,14 @@
       "input_hash": "5d7a4c265478249158e918c752ce58945afd466998b9654e41f5d8bedcaa5cc3",
       "status": "ok",
       "updated_at": "2026-11-25T07:46:27.523311+00:00"
+    },
+    "storyboard.json": {
+      "file_name": "storyboard.json",
+      "stage": "script",
+      "shot_id": "all",
+      "input_hash": "e01bbb00c86981cce0d5de518c3e9874c831fa27ef78bc768bcfd6210dbdb800",
+      "status": "ok",
+      "updated_at": "2026-11-25T07:59:25.189101+00:00"
     }
   }
 }

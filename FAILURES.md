@@ -35,7 +35,7 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 ## 007 — `gemini-3.5-flash` hit the 60s hard read timeout on nested `responseSchema`
 - **What broke:** Fallback `gemini-3.5-flash` timed out cleanly at `60,356 ms` (`ReadTimeoutError`, confirming the 60s hard cap works) when generating the 10-shot storyboard with a large nested `responseSchema`.
 - **What we tried:** Replaced the heavy server-side `responseSchema` constraint with `responseMimeType: "application/json"` plus explicit JSON structure in the prompt, relying on local `validate.py` (`jsonschema`) to enforce exact schema compliance.
-- **Status:** Waiting for director approval to run with `gemini-3.5-flash-lite` / `gemini-3.6-flash` / `gemini-3.8-flash`.
+- **What fixed it:** `gemini-3.6-flash` succeeded in `33,900 ms` with the lighter JSON-only request and passed `validate.py` cleanly (`10 shots`).
 
 
 

@@ -1,0 +1,173 @@
+{
+  "version": "1.0",
+  "title": "The Morning Hands (የማለዳ እጆች)",
+  "language": "amharic",
+  "audience": "Family and community on WhatsApp/TikTok (9:16), classmates and reviewers on desktop (16:9)",
+  "ending_feeling": "Quiet gratitude and warmth",
+  "aspect_ratios": [
+    "9:16",
+    "16:9"
+  ],
+  "models": {
+    "script": "gemini-3.6-flash",
+    "tts": "gemini-3.8-flash-tts",
+    "keyframes": "@cf/black-forest-labs/flux-2-klein-4b",
+    "video": "Wan-AI/Wan2.2-TI2V-5B",
+    "music": "ACE-Step/ACE-Step-v1.5"
+  },
+  "style_block": "warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+  "character": {
+    "name": "Grandmother",
+    "reference_seed": 1024,
+    "description": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim",
+    "selected_reference_image": null
+  },
+  "music": {
+    "tempo_bpm": 72,
+    "key": "D major",
+    "duration_sec": 75,
+    "style": "acoustic folk instrumental",
+    "mood": "warm, grateful, unhurried, nostalgic",
+    "instruments": "krar plucked strings, gentle bamboo flute, soft felt piano",
+    "texture": "warm organic acoustic",
+    "caption": "Warm acoustic Ethiopian-inspired folk instrumental with gentle krar strings, soft bamboo flute, and subtle felt piano, unhurried morning courtyard mood, organic warm texture, no vocals",
+    "seed": 777,
+    "selected_candidate": null
+  },
+  "end_card": {
+    "text": "Made with AI · A fictional tribute to quiet morning hands",
+    "duration_sec": 3.0
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 7.0,
+      "narration": "ፀሐይ ሳትወጣ በፊት፣ መንደሩ በፀጥታ ይነቃል።",
+      "subtitle_en": "Before the sun rises,\nthe village awakens in quiet.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "A quiet mist-covered rural village dawn with traditional thatch-roofed houses nestled among soft green hills, early blue and amber light spreading across the sky, centered framing for 9:16 and 16:9 crops, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 101,
+      "video_motion_prompt": "Slow panoramic camera pan across misty sleeping village hills as dawn light warm softly",
+      "video_seed": 201,
+      "sfx_ambience": "Soft distant morning birds chirping and gentle dawn breeze",
+      "story_reason": "Establishes the calm, peaceful atmosphere of the village before the household awakens."
+    },
+    {
+      "id": "shot_02",
+      "duration_sec": 7.0,
+      "narration": "አያቴ በማለዳ ተነስታ፣ እሳቱን ታንድዳለች።",
+      "subtitle_en": "Grandmother rises early\nand lights the warm hearth.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim sitting gently beside a small clay hearth, tending glowing red embers, centered composition in a rustic earth-toned kitchen, warm golden morning light, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 102,
+      "video_motion_prompt": "Slow gentle push-in as tiny orange sparks and soft smoke rise from glowing hearth coals",
+      "video_seed": 202,
+      "sfx_ambience": "Crackling embers and subtle woodfire rustle",
+      "story_reason": "Shows Grandmother starting the day quietly, bringing heat and life into the home."
+    },
+    {
+      "id": "shot_03",
+      "duration_sec": 7.0,
+      "narration": "አያቴ አረንጓዴውን ቡና፣ በጥንቃቄ ታጥባለች።",
+      "subtitle_en": "She washes green coffee beans\nwith care and devotion.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim washing green raw coffee beans in a clay bowl filled with clear water, her gentle weathered hands holding the beans, centered close-up composition, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 103,
+      "video_motion_prompt": "Close-up slow zoom as her hands gently swirl green coffee beans in clear water",
+      "video_seed": 203,
+      "sfx_ambience": "Soft water sloshing softly in a clay basin",
+      "story_reason": "Highlights the mindful ritual and tactile care in preparing morning coffee."
+    },
+    {
+      "id": "shot_04",
+      "duration_sec": 7.0,
+      "narration": "የቡናው መልካም ጠረን፣ መኖሪያ ቤታችንን ይሞላዋል።",
+      "subtitle_en": "The rich aroma of roasting coffee\nfills our cozy home.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim holding a flat iron roasting pan over glowing charcoal embers, fragrant wisps of white smoke rising from dark roasting coffee beans, centered framing inside cozy kitchen, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 104,
+      "video_motion_prompt": "Gentle hand movement shaking pan gently as fragrant smoke curls slowly upward",
+      "video_seed": 204,
+      "sfx_ambience": "Rhythmic popping sound of roasting coffee beans over warm coals",
+      "story_reason": "Captures the iconic scent and warmth that anchors daily home life across generations."
+    },
+    {
+      "id": "shot_05",
+      "duration_sec": 7.0,
+      "narration": "ጀበናው በምድጃው ላይ፣ እያፈላ ይንተከተካል።",
+      "subtitle_en": "The clay coffee pot simmers\ngently upon the stove.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim sitting beside a traditional black clay jebena coffee pot boiling softly on a small burner, wisps of steam floating up, warm interior atmosphere, centered composition, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 105,
+      "video_motion_prompt": "Static shot with steam rising slowly from the neck of the clay pot",
+      "video_seed": 205,
+      "sfx_ambience": "Gentle bubbling and simmering sound of coffee brewing",
+      "story_reason": "Focuses on patience and quiet waiting during the morning ritual."
+    },
+    {
+      "id": "shot_06",
+      "duration_sec": 7.0,
+      "narration": "በእጆቿ የሚጋገረው እንጀራ፣ ቤተሰቡን ይመግባል።",
+      "subtitle_en": "Fresh injera baked by her hands\nnourishes the whole family.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim pouring fermented batter onto a wide clay griddle (mitad), soft steam lifting from the porous surface, centered kitchen setting, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 106,
+      "video_motion_prompt": "Slow camera pull-back showing smooth spiral pouring motion of dough onto hot griddle",
+      "video_seed": 206,
+      "sfx_ambience": "Soft sizzle of batter on hot griddle and warm kitchen atmosphere",
+      "story_reason": "Represents basic sustenance provided with maternal care and labor."
+    },
+    {
+      "id": "shot_07",
+      "duration_sec": 7.0,
+      "narration": "አያቴ ቡናውን በሲኒ፣ አጥልላ ታፈሳለች።",
+      "subtitle_en": "Grandmother carefully pours coffee\ninto small porcelain cups.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim holding a clay coffee pot high and pouring a thin steady dark stream of coffee into small porcelain cups arranged on a woven tray scattered with fresh green grass, centered framing, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 107,
+      "video_motion_prompt": "Slow close-up tilt following the stream of coffee flowing steadily into porcelain cups",
+      "video_seed": 207,
+      "sfx_ambience": "Clear liquid pouring stream and gentle clink of small cups",
+      "story_reason": "Highlights hospitality and grace in serving others first."
+    },
+    {
+      "id": "shot_08",
+      "duration_sec": 7.0,
+      "narration": "አያቴ ግቢውን በፍቅር፣ በጠዋት አጽድታ ታዘጋጃለች።",
+      "subtitle_en": "She sweeps the sunny courtyard\nwith love every morning.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim sweeping a neat dirt courtyard with a handmade straw broom, bright morning sunlight filtering through tree leaves, centered framing, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 108,
+      "video_motion_prompt": "Slow gentle tracking shot accompanying sweeping broom motion across warm earth",
+      "video_seed": 208,
+      "sfx_ambience": "Rhythmic sweeping broom sound on earth and distant morning birds",
+      "story_reason": "Shows how simple household maintenance creates a welcoming sanctuary for community."
+    },
+    {
+      "id": "shot_09",
+      "duration_sec": 7.0,
+      "narration": "ጎረቤቶች ወደ ቤት ገብተው፣ ሰላምታ ይለዋወጣሉ።",
+      "subtitle_en": "Neighbors gather together\nand share warm greetings.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim sitting together with smiling village neighbors and young children on low wooden stools in a bright sunlit doorway, sharing coffee, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 109,
+      "video_motion_prompt": "Gentle zoom out revealing welcoming neighbors chatting softly in doorway sunlight",
+      "video_seed": 209,
+      "sfx_ambience": "Gentle murmur of quiet laughter and warm chatter",
+      "story_reason": "Demonstrates the strength of community bonded by quiet hospitality."
+    },
+    {
+      "id": "shot_10",
+      "duration_sec": 7.0,
+      "narration": "አያቴ በደስታ ፈገግ ብላ፣ ቀኑን ትባርካለች።",
+      "subtitle_en": "Grandmother smiles softly\nand blesses the new day.",
+      "tts_style": "Aoede, no English wrapper in spoken text",
+      "image_prompt": "an elderly East African grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim holding her palms open in a gentle blessing, tender peaceful smile, softly illuminated by glowing golden morning light, centered portrait composition, warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and terracotta light, gentle natural shadows, timeless East African village folktale mood, centered framing for 9:16 and 16:9 crops, no text or watermarks",
+      "image_seed": 110,
+      "video_motion_prompt": "Slow gentle push-in to her serene smiling face as golden sunlight glimmers softly",
+      "video_seed": 210,
+      "sfx_ambience": "Peaceful gentle wind chimes and warm breath sound fading gently",
+      "story_reason": "Concludes with deep gratitude and blessing, leaving a lingering warmth."
+    }
+  ]
+}
