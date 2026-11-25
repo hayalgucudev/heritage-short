@@ -143,6 +143,30 @@
       "input_hash": "779029612911d6817d90a303a6d79e28a03c52ffc69ca8ed486e1b0f55b8b974",
       "status": "ok",
       "updated_at": "2026-11-25T09:11:06.468115+00:00"
+    },
+    "outputs/keyframes/ref_seed1024.png": {
+      "file_name": "ref_seed1024.png",
+      "stage": "reference_sheet",
+      "shot_id": "ref_01",
+      "input_hash": "ecb681f1c65b422a03d57ca6fecffd051e701ed185ab014e933c1bf476c410a4",
+      "status": "ok",
+      "updated_at": "2026-11-25T10:39:01.255697+00:00"
+    },
+    "outputs/keyframes/ref_seed1025.png": {
+      "file_name": "ref_seed1025.png",
+      "stage": "reference_sheet",
+      "shot_id": "ref_02",
+      "input_hash": "61bf65141828e017b08f6b8a08d474a52ed25568be6f712b2cd22a8c5cb339f3",
+      "status": "ok",
+      "updated_at": "2026-11-25T10:39:11.547696+00:00"
+    },
+    "outputs/keyframes/ref_seed1026.png": {
+      "file_name": "ref_seed1026.png",
+      "stage": "reference_sheet",
+      "shot_id": "ref_03",
+      "input_hash": "c73666ce05c7af187094646fae91d957f20018ab64dda2364b69197ad3c5242b",
+      "status": "ok",
+      "updated_at": "2026-11-25T10:39:20.852254+00:00"
     }
   }
 }

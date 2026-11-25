@@ -16,3 +16,9 @@
 - **Why build a "Radio Cut" before drawing pictures:** Listening to the voiceover alone over a quiet placeholder hum on a black screen lets us check pacing, pronunciation, and whether every line fits its 7-second shot before spending image or GPU time.
 - **Per-shot caching (`narration.py`):** Each shot's `.wav` is hashed solely from its own Amharic text, voice (`Kore`), and TTS model — so fixing one Amharic word or retrying 4 shots regenerates only those `.wav` files and leaves the rest untouched.
 - **Provisional status & Radio Cut build:** Because `gemini-3.8-flash-tts` has a 10-requests/day free-tier cap, `shot_01`–`shot_06` use the main model while `shot_07`–`shot_10` temporarily used `gemini-3.8-flash-lite-tts` (`EXP-006`, marked **PROVISIONAL** until retried after 11:00 EAT on 2026-11-26). `py run.py radio-cut` assembled all 10 tracks plus the 3s end-card silence into `outputs/final/radio_cut.mp4` (`73.0 s` total, `0` API calls).
+
+## Stage 4 (Part 1): Character Reference Sheet (`keyframes.py`)
+- **Why draw Grandmother first:** Before generating 10 scenes, we generated 3 reference portraits (`ref_seed1024.png`, `ref_seed1025.png`, `ref_seed1026.png`) using `@cf/black-forest-labs/flux-2-klein-4b` (Apache 2.0) with our exact `character.description` and `style_block`. Once you approve one portrait, every character keyframe will be conditioned on that image so Grandmother's face, headwrap, and dress stay consistent across shots.
+
+## Stage 5 (Prep): Kaggle Music Notebook (`notebooks/acestep_music.ipynb` + `music.py`)
+- **Why prepare music in parallel:** Heavy audio generation runs on Kaggle's free GPUs (`ACE-Step/Ace-Step1.5`, MIT licence) rather than locally. Exporting `music_job.json` and generating 3 fixed-seed instrumental candidates (`72 BPM`, `D major`, `60 s`) lets Kaggle run while we review and generate keyframes locally.

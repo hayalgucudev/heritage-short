@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from pipeline.keyframes import generate_keyframes, generate_reference_sheet
 from pipeline.music import run_music_stage
 from pipeline.narration import build_radio_cut, generate_narration
 from pipeline.script import draft_storyboard
@@ -118,6 +119,35 @@ def cmd_music(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ref_sheet(args: argparse.Namespace) -> int:
+    rows = generate_reference_sheet(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        count=args.count,
+        steps=args.steps,
+    )
+    print(json.dumps(rows, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_keyframes(args: argparse.Namespace) -> int:
+    rows = generate_keyframes(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        only_shot=args.shot,
+        steps=args.steps,
+        use_reference=not args.no_ref,
+    )
+    print(json.dumps(rows, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_not_yet(name: str) -> int:
     print(
         f"Command '{name}' is scaffolded and will be implemented in its upcoming stage.",
@@ -177,6 +207,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_mus = sub.add_parser("music", help="Export Kaggle ACE-Step job spec or register downloaded music candidates.")
     p_mus.add_argument("--import-dir", default=None, help="Optional folder containing downloaded candidate_*.wav files.")
     p_mus.set_defaults(func=cmd_music)
+
+    p_ref = sub.add_parser("ref-sheet", help="Generate character reference-sheet candidates via Cloudflare FLUX.")
+    p_ref.add_argument("--count", type=int, default=3)
+    p_ref.add_argument("--steps", type=int, default=4)
+    p_ref.set_defaults(func=cmd_ref_sheet)
+
+    p_kf = sub.add_parser("keyframes", help="Generate per-shot keyframes via Cloudflare FLUX.")
+    p_kf.add_argument("--shot", default=None, help="Optional single shot id (e.g. shot_02).")
+    p_kf.add_argument("--steps", type=int, default=4)
+    p_kf.add_argument("--no-ref", action="store_true", help="Disable image reference conditioning.")
+    p_kf.set_defaults(func=cmd_keyframes)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")
     p_plan.set_defaults(func=lambda _a: cmd_not_yet("plan"))
