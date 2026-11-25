@@ -14,6 +14,8 @@
 ## User Tests
 *(To be recorded verbatim with timestamps and resulting pipeline/edit changes.)*
 
+- **Sample-size caveat (recorded honestly, 2026-11-25):** the brief asks for at least three people from the intended audience at **each** of the two tests. Test 1 currently records **one** viewer and Test 2 records **the director**. This gap is not hidden; if more people watch the cut, their exact words and the resulting changes will be appended below with timestamps.
+
 ### User Test 1 (Floor Draft — Provisional Radio Cut)
 - **Viewer feedback (verbatim):** `"it is good, but the shots after 7 are not good"`
 - **Context at time of test:**
@@ -33,7 +35,7 @@
 
 ## Ceiling projects chosen by the director (2026-11-25)
 - The director picked exactly **two**, to be planned now and **built only after the floor is finished**: **(a) the same film in a second language** and **(e) packaging the pipeline as a CLI others can use**.
-- Second language: Afaan Oromo, Tigrinya or Somali is still to be chosen by the director; no translated text will be invented or sent to a free endpoint without asking. Hypothesis and measurement plan go in `EXPERIMENTS.md`; model failures go in `FAILURES.md`.
+- Second language: **Afaan Oromo**, chosen by the director on 2026-11-25. The director consented to sending only the locked fictional story text to Gemini; no real family details are included. Hypothesis and measurement plan go in `EXPERIMENTS.md` (EXP-017); model failures go in `FAILURES.md`.
 - CLI packaging: the working `run.py` becomes a reusable command-line tool with documented arguments and a clean-clone test. Hypothesis: a stranger can rebuild both exports from `storyboard.json` without reading the source code.
 - Deliberately **not** chosen for now: lyrics/lyric video, open-vs-frontier benchmark, LoRA consistency experiment and post-publication audience measurement.
 
@@ -41,4 +43,4 @@
 - **Showcase:** the director chose a **Hugging Face Space** with placeholder handle `YOUR_USERNAME/heritage-short`. `space/index.html` and `space/README.md` are committed; `py run.py showcase` copies the two MP4s, storyboard, cost report and keyframe sheet into `space/`. The command never reads `HF_TOKEN` and uploads nothing.
 - **Public post:** the director chose **YouTube** after the final film is approved. Draft caption (not yet posted): *"The Heritage Short — an AI-generated film. A quiet fictional tribute to a grandmother in the Ethiopian highlands. Amharic narration with English subtitles; images, voice and music made with generative models; directed and edited by a human. AI-generated film."*
 - **AI label wording:** **"AI-generated film"**, matching the disclosure printed in the Space. The film's own end card says "Made with AI · A fictional tribute to quiet morning hands" and was approved earlier.
-- **Gate:** no upload and no public post until the director explicitly approves the final export and the actual account/handle to use.
+- **Gate:** the director approved the **final edit on 2026-11-25**. No upload and no public post until the director also approves the actual account/handle to use and gives an explicit "publish" instruction. The Afaan Oromo variant must not be published until its native-speaker check is recorded in `ETHICS.md`.
