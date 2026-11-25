@@ -158,7 +158,7 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What broke:** after the pin fix, the director's Kaggle run still stopped in cell 1 with `wan_job.json not found`. The auto-detect could not help because nothing matching `wan_job.json` existed under `/kaggle/input`.
 - **Root cause:** `outputs/wan_job.zip` did not exist in the repository or on disk. The notebook README had said to run `py run.py clips-export` first, but that local step had never been executed, so there was nothing to upload as a Kaggle dataset. This is a workflow gap, not a model failure.
 - **What fixed it:** ran `py run.py clips-export` locally (zero quota; copies the 10 committed keyframes and writes `wan_job.json`, `README.txt` and `outputs/wan_job.zip`). Result: **10 shots, 7,796,471-byte zip**. The zip stays gitignored (`*.zip`) and the staging folder `outputs/wan_job/` was added to `.gitignore`; a clean clone regenerates it with the same one command. Cell 1's error now names that command and prints the visible `/kaggle/input` entries.
-- **Status:** the director can now upload `outputs/wan_job.zip` as a Kaggle dataset and rerun. **No Wan clip or GPU latency exists yet**; the film still uses the local Ken Burns fallback.
+- **Status:** the director chose on 2026-11-25 to **defer the Wan rerun until after tomorrow's scheduled TTS and Oromo jobs**, because Wan is optional and the floor already works. The zip is ready locally. **No Wan clip or GPU latency exists yet**; the film still uses the local Ken Burns fallback.
 
 
 
