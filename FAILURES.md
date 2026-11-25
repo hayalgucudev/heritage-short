@@ -116,7 +116,8 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 ## 021 — No Wan clip output found when asked about the clips gate (2026-11-25)
 - **What happened:** Asked whether to run the Wan Kaggle job, the director replied *"I already saved the kaggle output in music/"*. I checked `outputs/music/` and found only `candidate_01_seed777.wav`, `music_job.json` and `music_run_metadata.json` — the ACE-Step score, not video clips. `outputs/clips/` did not exist and no Wan zip was in Downloads.
 - **What I did:** Did not guess a clip source or invent a Wan result. Recorded the ambiguity here, treated it as **no Wan clips available**, and used the local Ken Burns fallback for the provisional cut. The Wan notebook remains prepared but unrun.
-- **Lesson / Open question:** Please tell me if the Wan clips are somewhere else and give the exact folder. If they arrive later, `py run.py shots --import-dir <folder>` will replace only the 10 clips and both finals; everything else stays cached.
+- **Director's clarification (2026-11-25):** They confirmed the file they meant was **`candidate_01_seed777` in `outputs/music`** — the ACE-Step score, not Wan video. So no Wan clip output exists. Decision: **use the local Ken Burns fallback for the final film**; the Wan notebook stays prepared as evidence but unrun.
+- **Status:** Closed for the floor. If Wan clips are generated later, `py run.py shots --import-dir <folder>` replaces only the 10 clips and both finals; everything else stays cached.
 
 
 

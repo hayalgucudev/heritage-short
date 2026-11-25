@@ -28,4 +28,4 @@
 
 ### User Test 2 (Provisional Visual Cut, 2026-11-25)
 - **Director's instruction:** render a provisional cut **now** with the still-stale voices, so the visual and subtitle work can be judged early. Flag recorded as `--allow-stale-narration`; the export hash still uses the expected narration hashes, so fixing the TTS later forces a rebuild.
-- **Viewer feedback:** *Pending.* To be quoted verbatim here with timestamp and the resulting change.
+- **Status (2026-11-25 15:44 EAT):** The director had **not yet watched** the film when asked; they asked where to find it. Exact paths were given: `C:\Users\Rahmetulaha\heritage-short\outputs\final\film_9x16.mp4` and `...\film_16x9.mp4`. **Viewer feedback still pending** — to be quoted verbatim here with timestamp and the resulting change. No edit has been made on the basis of User Test 2.
