@@ -443,3 +443,120 @@ def run_smoke_tests(
         summary["cloudflare_flux"] = {"model": flux_model, "status": "error", "error": err_msg}
 
     return summary
+
+
+def run_tts_sample(
+    project_root: Path,
+    runs_path: Path,
+    manifest_path: Path,
+    *,
+    tts_model: str,
+    tts_voice: str,
+    out_rel_path: str,
+    text: str = SMOKE_AMHARIC_TEXT,
+    stage_name: str = "smoke_tts_experiment",
+) -> dict[str, Any]:
+    """Generate one TTS test WAV using the exact smoke prompt wrapper (1-variable test)."""
+    load_env(project_root)
+    gemini_key = require_env("GEMINI_API_KEY")
+
+    tts_instruction = (
+        f"Speak in a calm, warm, unhurried storytelling voice in Amharic: {text}"
+    )
+    tts_hash = compute_stage_hash(
+        stage=stage_name,
+        model=tts_model,
+        prompt=tts_instruction,
+        params={"voice": tts_voice},
+    )
+    wav_path = project_root / out_rel_path
+    wav_path.parent.mkdir(parents=True, exist_ok=True)
+
+    t0 = time.perf_counter()
+    try:
+        tts_resp = _post_with_retry(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{tts_model}:generateContent",
+            headers={"x-goog-api-key": gemini_key, "Content-Type": "application/json"},
+            json_body={
+                "contents": [{"parts": [{"text": tts_instruction}]}],
+                "generationConfig": {
+                    "responseModalities": ["AUDIO"],
+                    "speechConfig": {
+                        "voiceConfig": {
+                            "prebuiltVoiceConfig": {"voiceName": tts_voice}
+                        }
+                    },
+                },
+            },
+            timeout=60,
+        )
+        latency_tts = int((time.perf_counter() - t0) * 1000)
+        inline = tts_resp.json()["candidates"][0]["content"]["parts"][0]["inlineData"]
+        audio_bytes = base64.b64decode(inline["data"])
+        mime = inline.get("mimeType", "")
+        if "wav" in mime.lower():
+            wav_path.write_bytes(audio_bytes)
+        else:
+            _write_pcm_to_wav(audio_bytes, wav_path, sample_rate=24000)
+
+        probe = subprocess.run(
+            [
+                "ffprobe",
+                "-v",
+                "error",
+                "-show_entries",
+                "format=duration",
+                "-of",
+                "default=noprint_wrappers=1:nokey=1",
+                str(wav_path),
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        duration_sec = round(float(probe.stdout.strip()), 3)
+
+        update_manifest(
+            manifest_path,
+            output_file=wav_path,
+            project_root=project_root,
+            stage=stage_name,
+            shot_id="smoke",
+            input_hash=tts_hash,
+        )
+        log_run(
+            runs_path,
+            stage=stage_name,
+            shot_id="smoke",
+            model=tts_model,
+            parameters={"voice": tts_voice, "mimeType": mime, "duration_sec": duration_sec},
+            latency_ms=latency_tts,
+            cost_or_quota="1_gemini_tts_call",
+            status="ok",
+            input_hash=tts_hash,
+            output_path=wav_path.relative_to(project_root).as_posix(),
+        )
+        return {
+            "model": tts_model,
+            "voice": tts_voice,
+            "latency_ms": latency_tts,
+            "duration_sec": duration_sec,
+            "file": wav_path.relative_to(project_root).as_posix(),
+            "amharic_text": text,
+        }
+    except Exception as exc:  # noqa: BLE001
+        latency_tts = int((time.perf_counter() - t0) * 1000)
+        err_msg = redact_secrets(str(exc))
+        log_run(
+            runs_path,
+            stage=stage_name,
+            shot_id="smoke",
+            model=tts_model,
+            parameters={"voice": tts_voice},
+            latency_ms=latency_tts,
+            cost_or_quota="1_gemini_tts_call_failed",
+            status="error",
+            input_hash=tts_hash,
+            error=err_msg,
+        )
+        raise

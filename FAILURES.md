@@ -15,7 +15,13 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 ## 003 — `gemini-3.8-flash` returned HTTP 503 (`UNAVAILABLE`) on smoke test
 - **What broke:** During `run.py smoke`, `gemini-3.8-flash` returned HTTP 503 (`This model is currently experiencing high demand`) across all 3 exponential-backoff attempts (and our first attempt before fixing `smoke.py` to call `raise_for_status()` inside the retry wrapper).
 - **What we tried:** Fixed `_post_with_retry` in `pipeline/smoke.py` so HTTP 429/5xx raises inside the retry loop (2s, 4s backoff), and logged the error to `runs.jsonl` without crashing the remaining TTS and FLUX smoke tests.
-- **What fixed it / Status:** `gemini-3.8-flash-tts` and `@cf/black-forest-labs/flux-2-klein-4b` both succeeded; `gemini-3.8-flash` remains marked for retry or user-approved fallback (`gemini-3.7-flash` or `gemini-2.5-flash`) before Stage 2 storyboard drafting.
+- **What fixed it / Status:** `gemini-3.8-flash-tts` and `@cf/black-forest-labs/flux-2-klein-4b` both succeeded; `gemini-3.8-flash` remains marked for retry, with director pre-approval (`2B`) to fall back automatically to `gemini-3.7-flash` if `gemini-3.8-flash` returns 503 after 3 retries (logged to `FAILURES.md` and `runs.jsonl`).
+
+## 004 — Baseline Amharic TTS (`gemini-3.8-flash-tts`, voice `Aoede`) poor quality / 14.32s duration
+- **What broke:** Director listened to `outputs/smoke/amharic_tts_test.wav` (one 10-word Amharic sentence) and found the Amharic delivery unacceptable (duration was `14.32 s`, suggesting overly slow/robotic pacing or misreading of the instruction wrapper).
+- **What we are trying:** Before deciding whether to switch primary narration to English, running two controlled 1-variable experiments (`EXP-001`: different prebuilt voice `Kore`; `EXP-002`: `gemini-3.8-flash-lite-tts`) on the exact same sentence.
+- **Status:** Pending execution and director listening verdict.
+
 
 
 

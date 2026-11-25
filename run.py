@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from pipeline.smoke import run_smoke_tests, verify_live_models
+from pipeline.smoke import run_smoke_tests, run_tts_sample, verify_live_models
 from pipeline.validate import validate_storyboard
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -43,6 +43,19 @@ def cmd_smoke(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_smoke_tts(args: argparse.Namespace) -> int:
+    summary = run_tts_sample(
+        PROJECT_ROOT,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        tts_model=args.tts_model,
+        tts_voice=args.tts_voice,
+        out_rel_path=args.out,
+    )
+    print(json.dumps(summary, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_not_yet(name: str) -> int:
     print(
         f"Command '{name}' is scaffolded and will be implemented in its upcoming stage.",
@@ -70,6 +83,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_sm.add_argument("--flux-model", required=True)
     p_sm.add_argument("--tts-voice", default="Aoede")
     p_sm.set_defaults(func=cmd_smoke)
+
+    p_stts = sub.add_parser("smoke-tts", help="Run a single controlled TTS sample test.")
+    p_stts.add_argument("--tts-model", required=True)
+    p_stts.add_argument("--tts-voice", required=True)
+    p_stts.add_argument("--out", required=True)
+    p_stts.set_defaults(func=cmd_smoke_tts)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")
     p_plan.set_defaults(func=lambda _a: cmd_not_yet("plan"))
