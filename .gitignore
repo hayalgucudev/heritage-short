@@ -16,3 +16,6 @@ outputs/**/*.aac
 outputs/**/*.pcm
 outputs/clips/
 outputs/final/
+# Ignore downloaded Kaggle zip bundles (director's choice, 2026-11-25).
+# The approved ACE-Step WAV and the 10 narration WAVs are force-added so a clean clone needs no model calls.
+*.zip
