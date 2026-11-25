@@ -23,7 +23,7 @@
   2. Stale `shot_09` text misaligned with the intended scene.
   3. Weaker second half of the story arc.
   4. Empty silence gaps (~`2.4 s`–`3.5 s` of padding inside each `7.0 s` slot).
-- **Status / Follow-up:** **Pending.** Asking the viewers specifically what they meant before making any story or storyboard text changes.
+- **Status / Follow-up:** **STILL PENDING as of 2026-11-25.** The viewer has not yet answered the follow-up question: *"What exactly was wrong after shot 7 — the voices, the story, the text, or the gaps?"* No story or storyboard text change has been made on the basis of this test. The known context (mixed TTS models, stale `shot_09` line and 2.4–3.5 s padding gaps) remains a list of **hypotheses only**, not a confirmed finding.
 
 ### User Test 2 (Polished Cut)
 - *Pending Quality completion.*
