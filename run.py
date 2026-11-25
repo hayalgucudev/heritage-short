@@ -16,6 +16,7 @@ from pipeline.music import run_music_stage
 from pipeline.narration import build_radio_cut, generate_narration
 from pipeline.plan import build_plan, format_plan
 from pipeline.script import draft_storyboard
+from pipeline.second_language import run_second_language
 from pipeline.shots import export_clips_job, run_shots_stage
 from pipeline.smoke import run_smoke_tests, run_tts_sample, verify_live_models
 from pipeline.validate import validate_storyboard
@@ -249,6 +250,15 @@ def cmd_report_costs(_args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_second_language(_args: argparse.Namespace) -> int:
+    config_path = PROJECT_ROOT / "translations" / "afaan_oromo.json"
+    info = run_second_language(
+        PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH, RUNS_PATH, MANIFEST_PATH, config_path
+    )
+    print(json.dumps(info, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_preflight(_args: argparse.Namespace) -> int:
     """Check tools and committed inputs; never print or read .env values."""
     problems: list[str] = []
@@ -403,6 +413,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_costs = sub.add_parser("report-costs", help="Generate COSTS.md tables from runs.jsonl.")
     p_costs.set_defaults(func=cmd_report_costs)
+
+    p_second = sub.add_parser(
+        "second-language",
+        help="Ceiling: Afaan Oromo narration in one TTS call, split locally, both exports.",
+    )
+    p_second.set_defaults(func=cmd_second_language)
 
     return parser
 

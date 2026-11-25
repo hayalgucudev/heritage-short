@@ -127,6 +127,13 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Verification:** Both re-rendered MP4s are 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR; slot means `-20.3` to `-16.2` dB in all ten; measured **-14.01 LUFS / -0.99 dBTP**. Render latencies 8,147 ms (9:16) and 4,896 ms (16:9), zero model calls.
 - **Lesson:** Silence is not an exception — FFmpeg exited successfully on the broken mix. Never trust a render without measuring the actual delivered file, slot by slot, after the director reports a problem.
 
+## 023 — Two FFmpeg split bugs in the one-call second-language smoke test (2026-11-25)
+- **What happened:** In a temp clone, the synthetic long WAV was split into 10 shot WAVs, but shots 03-10 were 78-byte empty headers, so assembly failed with `could not convert string to float: 'N/A'`.
+- **Bug A, timestamps:** Seeking with `-ss` *after* `-i` left filter timestamps starting at 12.3 s, so `atrim=duration=7.000` cut everything. Tried adding `asetpts=PTS-STARTPTS` before the trim; still empty.
+- **Bug B, `-t` measured from input start:** With `-ss` after the input, `-t 7` limited output to the first 7 s of the *source*, before the 12.3 s seek point. **Fix:** put `-ss` **before** `-i`, keep `-t` after the input, and reset timestamps before `apad`/`atrim`. Verified one command produced 7.000 s / 336,078 bytes.
+- **Cache consequence:** The split hash did not include the code version, so broken files would have been treated as cached. Added `code_version: 2` to the split hash so the fix invalidates them.
+- **Verification:** Re-ran in the temp clone with no model calls: both `film_9x16_om.mp4` and `film_16x9_om.mp4` rendered 73.0 s (latencies 7,769 ms and 8,836 ms); all ten slots measured `-20.3` to `-16.2 dB`. No Afaan Oromo model call has been made yet.
+
 
 
 

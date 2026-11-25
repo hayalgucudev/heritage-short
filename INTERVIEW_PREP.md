@@ -45,3 +45,8 @@
 1. **Why track 1.88 MB of narration WAVs?** A clean clone then has every cached input and can rebuild the film without API keys or model calls; this was the director's choice. Re-generated WAVs 07-10 will be force-added after the TTS fix.
 2. **What does `preflight` prove?** It checks tools and required files and reports booleans only — it never prints `.env` values. In a clone with no `.env`, it returned `ready: true` and `missing_files: []`.
 3. **What is still pending?** The clean clone needed `--skip-narration --allow-stale-narration` because four voices are provisional. After tomorrow's scheduled TTS fix, plain `py run.py film` must succeed with no flags; that is the final CLI measurement.
+
+## Second-language ceiling — be able to explain this
+1. **Why one TTS call instead of ten?** The 10/day cap and the 4-call voice fix leave only 6 calls before the deadline. One long narration call plus local splitting fits, at the cost of a timing-alignment risk that must be measured.
+2. **How are the 10 shot files made?** FFmpeg detects pauses in the long WAV and cuts at the nine longest ones; if that fails it falls back to word-count proportions. Each piece is padded to its 7-second slot. A smoke test with a synthetic WAV produced 10 audible slots and both 73.0 s exports.
+3. **What has not happened yet?** No real Afaan Oromo translation or TTS call has been made, and the family/community native-speaker check is pending. The alternate film must not be published until that check is recorded.

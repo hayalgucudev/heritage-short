@@ -34,6 +34,7 @@ flowchart LR
 | `music.py` | music caption + params, imported WAV | `outputs/music/candidate_*.wav` | caption + music hash + filename | mix, final |
 | `shots.py` | keyframe, video prompt, video seed | `outputs/clips/shot_NN.mp4` | video params + keyframe hash + source | final |
 | `assemble.py` | clips, narration, score, end card | `outputs/final/film_*.mp4` | all clip/narration/music hashes + aspect + settings | deliverable |
+| `second_language.py` | `translations/afaan_oromo.json`, English subtitles, one TTS call | `outputs/narration_om/shot_*.wav`, `outputs/final/film_*_om.mp4` | translation prompt + lines + TTS hash + split method | alternate exports only; locked `storyboard.json` untouched |
 
 A cache hit means: the file exists, its `outputs/manifest.json` hash matches the current recipe, and its status is `ok`. Changing one shot's prompt or narration line changes only that shot's hash, so `plan` reports one clip/one WAV and the two finals — not all ten shots.
 

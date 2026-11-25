@@ -186,6 +186,7 @@ def assemble_hash(
     clip_input_hashes: list[str],
     narration_input_hashes: list[str],
     music_input_hash: str,
+    variant: str = "",
 ) -> str:
     """Hash for one final aspect-ratio export."""
     upstream = {
@@ -202,6 +203,7 @@ def assemble_hash(
             "width": width,
             "height": height,
             "end_card_sec": float(sb["end_card"]["duration_sec"]),
+            "variant": variant,
             "settings": ASSEMBLE_SETTINGS,
         },
         reference_files=clip_paths + narration_paths + [music_path],

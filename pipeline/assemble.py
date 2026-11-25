@@ -305,12 +305,18 @@ def assemble_film(
     manifest_path: Path,
     *,
     allow_stale_narration: bool = False,
+    narration_dir: Path | None = None,
+    output_suffix: str = "",
+    narration_hashes_override: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     """Build film_9x16.mp4 and film_16x9.mp4 from cached stage outputs.
 
     allow_stale_narration is only for a director-approved provisional cut. The
     export hash still uses the *expected* narration hashes, so fixing the TTS
     later automatically invalidates and rebuilds both finals.
+
+    narration_dir / output_suffix / narration_hashes_override support the
+    second-language ceiling item without changing the locked storyboard.
     """
     sb = validate_storyboard(storyboard_path, schema_path)
     manifest = contracts.load_manifest(manifest_path)
@@ -324,10 +330,11 @@ def assemble_film(
     narration_hashes: list[str] = []
     slots: list[float] = []
     stale_narration: list[str] = []
-    for shot in sb["shots"]:
+    narration_root = narration_dir or (project_root / "outputs" / "narration")
+    for index, shot in enumerate(sb["shots"]):
         sid = shot["id"]
         clip = project_root / "outputs" / "clips" / f"{sid}.mp4"
-        wav = project_root / "outputs" / "narration" / f"{sid}.wav"
+        wav = narration_root / f"{sid}.wav"
         if not clip.exists() or not wav.exists():
             raise FileNotFoundError(
                 f"Missing inputs for {sid}: clip={clip.exists()}, narration={wav.exists()}. "
@@ -346,7 +353,11 @@ def assemble_film(
             raise ValueError(f"Clip {sid} is stale or unregistered. Regenerate the shots stage.")
         clip_paths.append(clip)
 
-        n_hash = contracts.narration_hash(sb, shot)
+        n_hash = (
+            narration_hashes_override[index]
+            if narration_hashes_override is not None
+            else contracts.narration_hash(sb, shot)
+        )
         got_narration = artifacts.get(wav.relative_to(project_root).as_posix(), {}).get("input_hash")
         if got_narration != n_hash and not allow_stale_narration:
             raise ValueError(
@@ -368,7 +379,7 @@ def assemble_film(
 
     planned: list[tuple[str, Path, str]] = []
     for aspect, (width, height, _, _, _) in ASPECTS.items():
-        rel = f"outputs/final/film_{aspect.replace(':', 'x')}.mp4"
+        rel = f"outputs/final/film_{aspect.replace(':', 'x')}{output_suffix}.mp4"
         out_path = project_root / rel
         digest = contracts.assemble_hash(
             sb,
@@ -381,6 +392,7 @@ def assemble_film(
             clip_input_hashes=clip_hashes,
             narration_input_hashes=narration_hashes,
             music_input_hash=music_hash,
+            variant=output_suffix,
         )
         planned.append((aspect, out_path, digest))
 

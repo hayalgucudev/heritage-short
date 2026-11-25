@@ -1,0 +1,12 @@
+{
+  "language": "Afaan Oromo",
+  "source_field": "subtitle_en",
+  "text_model": "gemini-3.8-flash",
+  "tts_model": "gemini-3.8-flash-tts",
+  "voice": "Kore",
+  "translation_prompt": "Translate each of the following 10 English subtitle lines into natural, spoken Afaan Oromo. Keep the meaning warm and unhurried. Keep any names and place names unchanged. Do not add explanations, stage directions or extra sentences. Return ONLY a JSON array of exactly 10 strings, one per line, in the same order. Lines:\n{lines}",
+  "tts_joiner": "\n",
+  "split_method": "silence_then_words",
+  "native_speaker_check": "Family/community member arranged by the director; name withheld for privacy. Status: pending verification.",
+  "prompt_rationale": "One shared translation prompt plus a JSON-array format keeps the 10 lines aligned to their shots; spoken wording and unchanged names protect meaning and consent."
+}
