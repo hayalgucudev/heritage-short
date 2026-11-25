@@ -38,6 +38,12 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** Director listening check found that `shot_07`–`shot_10` sound unnatural compared to `shot_01`–`shot_06`.
 - **Decision:** **Narration marked `PROVISIONAL`.** Proceed with `radio-cut` today to verify pacing/timing, then regenerate only `shot_07`–`shot_10` (4 calls, well within the 10/day limit) on `gemini-3.8-flash-tts` after `11:00 EAT` tomorrow (2026-11-26) when the daily quota resets. Because narration is cached per shot, downstream stages can proceed in parallel and only final assembly will re-run once those 4 WAVs update.
 
+## EXP-007 — Visual Style Pivot: Painterly Illustration vs. 35mm Documentary Realism
+- **Hypothesis:** Replacing the painterly gouache/oil style (`ref_seed1024.png`) with a realistic 35mm documentary film style (`ref_real_seed1024.png`–`1026.png`) will make the film feel less visibly AI-generated and more grounded for family and classmate audiences.
+- **Change:** Replaced `style_block` in `storyboard.json` (and removed gouache/oil illustration wording across all shot prompts) with `"cinematic 35mm film still, natural soft window light, muted warm earth tones, visible skin texture and fine wrinkles, subtle film grain, shallow depth of field, documentary realism, slightly imperfect and unposed, Ethiopian highland village, no text or watermarks"`, keeping fixed seeds `1024, 1025, 1026` on `@cf/black-forest-labs/flux-2-klein-4b` and shifting hands to a relaxed, simple pose holding a clay cup.
+- **Result:** *Pending director viewing of `ref_real_seed1024..1026.png` vs `ref_seed1024.png`, plus a blind preference check with 3 people to be run by the director.*
+- **Trade-off Risk & Mitigation:** Realistic human skin, eyes, and hands tend to drift or warp more noticeably in `Wan 2.2 TI2V-5B` at `480p` than stylized illustration. If any animated clip shows facial or hand artifacts, our plan uses the deterministic FFmpeg Ken Burns (`zoompan`) fallback over the clean FLUX keyframe for those shots.
+
 
 
 
