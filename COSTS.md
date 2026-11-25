@@ -11,10 +11,10 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **84**
-- Non-cache model/FFmpeg calls: **78**
+- Real logged records: **87**
+- Non-cache model/FFmpeg calls: **81**
 - Failed calls: **7**
-- Total logged latency: **721,360 ms** (12.0 min)
+- Total logged latency: **760,621 ms** (12.7 min)
 
 ### By stage
 
@@ -25,7 +25,7 @@
 | music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
 | narration | 18 | 5 | 2 | 68,368 | 0_cache_hit x5, 1_gemini_tts_call x16, 1_gemini_tts_call_failed x2 |
 | radio_cut | 1 | 0 | 0 | 2,967 | 0_local_ffmpeg x1 |
-| reference_sheet | 6 | 0 | 0 | 59,005 | 1_cloudflare_flux_call x6 |
+| reference_sheet | 9 | 0 | 0 | 98,266 | 1_cloudflare_flux_call x9 |
 | script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
 | shots | 11 | 0 | 0 | 15,870 | 0_local_ffmpeg x11 |
 | smoke_flux | 1 | 0 | 0 | 8,846 | 1_cloudflare_flux_call x1 |
@@ -38,7 +38,7 @@
 
 | Model | Calls | Latency (ms) |
 | --- | --- | --- |
-| @cf/black-forest-labs/flux-2-klein-4b | 22 | 216,450 |
+| @cf/black-forest-labs/flux-2-klein-4b | 25 | 255,711 |
 | gemini-3.8-flash | 2 | 213,444 |
 | gemini-3.8-flash-tts | 18 | 73,788 |
 | ffmpeg-9.1 | 13 | 70,150 |
@@ -83,9 +83,9 @@
 | reference_sheet | ref_01 | 1 | 9,064 |
 | reference_sheet | ref_02 | 1 | 10,286 |
 | reference_sheet | ref_03 | 1 | 9,296 |
-| reference_sheet | ref_real_seed_01 | 1 | 8,503 |
-| reference_sheet | ref_real_seed_02 | 1 | 11,422 |
-| reference_sheet | ref_real_seed_03 | 1 | 10,434 |
+| reference_sheet | ref_real_seed_01 | 2 | 21,547 |
+| reference_sheet | ref_real_seed_02 | 2 | 23,143 |
+| reference_sheet | ref_real_seed_03 | 2 | 24,930 |
 | script | all | 5 | 316,424 |
 | shots | shot_01 | 1 | 1,417 |
 | shots | shot_02 | 2 | 2,901 |

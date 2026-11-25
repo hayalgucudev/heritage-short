@@ -123,6 +123,12 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** The first ambience gain (`0.012`) measured **-54.1 dB mean / -42.1 dB peak** in isolation — effectively inaudible, so the hypothesis failed at that value. Raised to `0.06`: **-40.2 dB mean / -28.2 dB peak**, a gentle bed. Rebuilt both finals: 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR, **-14.04 LUFS / -0.99 dBTP**, all ten slot means **-20.2 to -16.1 dB**. FFmpeg latencies 4,325 ms and 5,396 ms, both `0_local_ffmpeg`, logged in `runs.jsonl` at 13:36 UTC.
 - **Decision:** Kept the polished version; it changed my mind about "quiet ambience" — a number that looks small in code can be far below audibility after filtering, so the layer is now measured in isolation before judging it. Subtitle legibility and end-card appearance still need the director's eyes (this session cannot view frames); no visual claim is made here.
 
+## EXP-020 — Clearing stale reference portraits (2026-11-25)
+- **Hypothesis:** Regenerating the three unused reference portraits against the locked style block will make `plan` clean without changing the director-approved final edit.
+- **Change:** `py run.py ref-sheet` with the three original seeds (1024, 1025, 1026). Director explicitly approved this 3-call Cloudflare Flux spend; production keyframes use `--no-ref`, so no clip depends on these images.
+- **Result:** Three real calls, cache miss, latencies **13,044 / 11,721 / 14,496 ms**. `plan` went from 29 hits / 9 regenerations to **34 hits / 4 regenerations** — only the four known TTS shots remain. Both finals stayed cache hits, so the approved edit was untouched.
+- **Decision:** Kept. This is a quota-cleanliness fix, not a visual change; it makes the clean-clone one-command test predictable. No new keyframe, clip or export was generated.
+
 
 
 
