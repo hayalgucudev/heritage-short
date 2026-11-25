@@ -14,8 +14,8 @@
 
 | Stage | Provider | Verified Model ID | Licence / Terms | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| Script & Translation | Google Gemini | *Pending `verify-models`* | Gemini API Terms | Free tier |
-| Narration (TTS) | Google Gemini | *Pending `verify-models`* | Gemini API Terms | Free tier |
-| Keyframes | Cloudflare Workers AI | *Pending `verify-models`* | Cloudflare AI / Model Licence | Free tier |
+| Script & Translation | Google Gemini | `gemini-3.8-flash` | Gemini API Terms | Live verified 2026-11-25 (`gemini-3.8-flash-lite` not listed; `gemini-3.5-flash-lite` available) |
+| Narration (TTS) | Google Gemini | `gemini-3.8-flash-tts` | Gemini API Terms | Live verified 2026-11-25 (`gemini-3.8-flash-lite-tts` also live) |
+| Keyframes | Cloudflare Workers AI | `@cf/black-forest-labs/flux-2-klein-9b` / `@cf/black-forest-labs/flux-1-schnell` | Cloudflare Workers AI / Black Forest Labs Terms | Live verified 2026-11-25 (`flux-2-klein-4b` and `flux-2-dev` also live) |
 | Video Clips | Kaggle GPU (Wan 2.2 TI2V-5B) | Wan 2.2 TI2V-5B | Apache 2.0 (verify at run) | Open weights |
 | Music Score | Kaggle GPU (ACE-Step 1.5) | ACE-Step 1.5 | Verify repo licence at run | Open weights |
