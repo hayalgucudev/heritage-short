@@ -1,6 +1,7 @@
 # Design & Audience Log
 
 ## Creative Brief (Locked at Gate 1)
+- **Story lock (director, 2026-11-25):** `"story locked"`. The 10-shot storyboard text, Amharic narration, English subtitles, seeds and shot order are now fixed. Only the visual realism wording remains to be decided (EXP-012); no new narration text is to be invented without asking the director. The separate checkpoint gates for reference sheet, keyframes, clips, score and final edit still require explicit approval before generation.
 - **Story:** A warm, stylized tribute to `"Grandmother"` in `"the village"` (fictionalized, no real-person likeness).
 - **Audience & Platforms:**
   - Family & community on mobile (WhatsApp, TikTok — **9:16** vertical, safe-area English subtitles).

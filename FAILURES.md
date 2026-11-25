@@ -98,7 +98,8 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Director's decision:** Option C — keep testing reference conditioning, but add a measurement; regenerate the no-reference version with **another seed** and compare.
 - **Hands policy adopted for all future keyframes:** hands must be **holding an object, partly in shadow, or out of frame**; **max 3 attempts** per shot; after 3 failures **change the framing**; final fallback is deterministic **FFmpeg Ken Burns pan/zoom over the clean still** rather than spending more GPU quota.
 - **What was generated (EXP-009 follow-up):** (1) `shot_02` conditioned on `ref_real_seed1025.png`, `seed=102`, pose-override instruction; (2) `shot_02` no-reference with a new seed and object-in-hand/shadow phrasing; (3) `shot_03` no-reference with its original prompt and `seed=103` for an honest face comparison. All are test files with distinct names; `storyboard.json` was not changed.
-- **Status:** Generation and latencies are logged in `runs.jsonl`; **visual verdict is pending the director**. This assistant cannot see PNG content in this session, so it will not claim any finger count or face similarity it did not observe.
+- **Director's verdict (2026-11-25):** EXP-009 (`shot_02_exp009_ref.png`) had a **different face**, so the pose-override + reference approach failed identity preservation; EXP-010 and EXP-011 were `"okay"`. The adopted production rule is verbatim description + `--no-ref` for action shots; `input_image_0` is not used to hold identity on `flux-2-klein-4b` on this evidence.
+- **Status:** Generation and latencies are logged in `runs.jsonl`. This assistant did not visually inspect the PNGs; finger counts and face comparisons above are the director's observations. Director also asked to "make it more realistic"; scope of that change is pending a decision (EXP-012).
 
 
 
