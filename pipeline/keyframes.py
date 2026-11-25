@@ -204,6 +204,7 @@ def generate_keyframes(
     only_shot: str | None = None,
     steps: int = 4,
     use_reference: bool = True,
+    out_name: str | None = None,
 ) -> list[dict[str, Any]]:
     """Generate per-shot keyframes conditioned on storyboard style and approved reference."""
     sb = validate_storyboard(storyboard_path, schema_path)
@@ -240,7 +241,8 @@ def generate_keyframes(
 
         prompt = shot["image_prompt"]
         seed = int(shot["image_seed"])
-        img_path = out_dir / f"{sid}.png"
+        filename = out_name if (only_shot and out_name) else f"{sid}.png"
+        img_path = out_dir / filename
         rel_img = img_path.relative_to(project_root).as_posix()
 
         # Condition character shots on selected reference; shot_01 (village landscape) can omit ref if desired.

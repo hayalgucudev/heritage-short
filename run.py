@@ -144,6 +144,7 @@ def cmd_keyframes(args: argparse.Namespace) -> int:
         only_shot=args.shot,
         steps=args.steps,
         use_reference=not args.no_ref,
+        out_name=args.out_name,
     )
     print(json.dumps(rows, indent=2, ensure_ascii=False))
     return 0
@@ -219,6 +220,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_kf.add_argument("--shot", default=None, help="Optional single shot id (e.g. shot_02).")
     p_kf.add_argument("--steps", type=int, default=4)
     p_kf.add_argument("--no-ref", action="store_true", help="Disable image reference conditioning.")
+    p_kf.add_argument("--out-name", default=None, help="Optional output filename when running a single --shot.")
     p_kf.set_defaults(func=cmd_keyframes)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")

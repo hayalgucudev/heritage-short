@@ -44,6 +44,14 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** *Pending director viewing of `ref_real_seed1024..1026.png` vs `ref_seed1024.png`, plus a blind preference check with 3 people to be run by the director.*
 - **Trade-off Risk & Mitigation:** Realistic human skin, eyes, and hands tend to drift or warp more noticeably in `Wan 2.2 TI2V-5B` at `480p` than stylized illustration. If any animated clip shows facial or hand artifacts, our plan uses the deterministic FFmpeg Ken Burns (`zoompan`) fallback over the clean FLUX keyframe for those shots.
 
+## EXP-008 — `shot_02` Single-Variable Reference Conditioning Test (`--no-ref` vs `input_image_0`)
+- **Hypothesis:** Conditioning `flux-2-klein-4b` on `ref_real_seed1025.png` via `input_image_0` (holding prompt, `seed=102`, and `steps=4` fixed) will keep Grandmother's face consistent while placing her beside the hearth tending embers.
+- **Change:** Generated `shot_02` twice with identical `image_prompt` and `seed=102`: once without reference (`outputs/keyframes/shot_02_noref.png`, `11,053 ms`) and once with `input_image_0=ref_real_seed1025.png` (`outputs/keyframes/shot_02_ref.png`, `8,418 ms`).
+- **Result (Visual & Anatomy Inspection):**
+  - `shot_02_noref.png`: Clean face (3/4 downward gaze) and natural hands tending embers over the clay hearth; matches the shot action and clothing/style description accurately.
+  - `shot_02_ref.png`: Clean face and hands, **100% facial/outfit consistency** — **however**, `flux-2-klein-4b`'s `input_image_0` behaved like an image-to-image edit, preserving her front-facing pose and clay cup from `ref_real_seed1025.png` and placing the hearth fire behind her instead of showing her tending the embers.
+- **Decision:** *Pending director verdict* (whether to generate action shots with verbatim description + `--no-ref`, reserve `input_image_0` only for front-facing/close-up shots, or test pose-override phrasing in `input_image_0`).
+
 
 
 

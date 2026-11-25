@@ -191,6 +191,22 @@
       "input_hash": "3f1198599db888a48f86313b94940249de769762870cb7a9cd38a2a94119d4bc",
       "status": "ok",
       "updated_at": "2026-11-25T10:51:18.302476+00:00"
+    },
+    "outputs/keyframes/shot_02_noref.png": {
+      "file_name": "shot_02_noref.png",
+      "stage": "keyframes",
+      "shot_id": "shot_02",
+      "input_hash": "901937ce671ff630403b394ef93e05fdf3969d022423716db1f7e1379680622b",
+      "status": "ok",
+      "updated_at": "2026-11-25T11:05:43.026675+00:00"
+    },
+    "outputs/keyframes/shot_02_ref.png": {
+      "file_name": "shot_02_ref.png",
+      "stage": "keyframes",
+      "shot_id": "shot_02",
+      "input_hash": "881d47cb6e0a7a751eb0b1b69c688c5b9314e05d90cd1aea7f51fa236cf75666",
+      "status": "ok",
+      "updated_at": "2026-11-25T11:05:51.773843+00:00"
     }
   }
 }
