@@ -404,17 +404,17 @@
       "file_name": "film_9x16.mp4",
       "stage": "assemble",
       "shot_id": "9:16",
-      "input_hash": "a909b223d3ec6ca1729e5c3639b4114b56951c2ff27868d8c4340be11585e629",
+      "input_hash": "02c0a0712a3e8e1088f0509d02ffdcf66fd7437bd64a42d6dcc902baa6ae6fd3",
       "status": "ok",
-      "updated_at": "2026-11-25T13:12:19.465896+00:00"
+      "updated_at": "2026-11-25T13:36:08.460461+00:00"
     },
     "outputs/final/film_16x9.mp4": {
       "file_name": "film_16x9.mp4",
       "stage": "assemble",
       "shot_id": "16:9",
-      "input_hash": "9f67c583bb874b81bad55dbab11183c6ab35b84950086ea153dc4a88bb733bf9",
+      "input_hash": "5a01a36c6c521354135971c630d6f16eee6b6bf33050fae6d3d160af6e679804",
       "status": "ok",
-      "updated_at": "2026-11-25T13:12:28.267650+00:00"
+      "updated_at": "2026-11-25T13:36:13.901646+00:00"
     }
   }
 }

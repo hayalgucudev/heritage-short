@@ -11,16 +11,16 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **80**
-- Non-cache model/FFmpeg calls: **74**
+- Real logged records: **84**
+- Non-cache model/FFmpeg calls: **78**
 - Failed calls: **7**
-- Total logged latency: **701,727 ms** (11.7 min)
+- Total logged latency: **721,360 ms** (12.0 min)
 
 ### By stage
 
 | Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
 | --- | --- | --- | --- | --- | --- |
-| assemble | 8 | 0 | 0 | 47,550 | 0_local_ffmpeg x8 |
+| assemble | 12 | 0 | 0 | 67,183 | 0_local_ffmpeg x12 |
 | keyframes | 15 | 0 | 0 | 148,599 | 1_cloudflare_flux_call x15 |
 | music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
 | narration | 18 | 5 | 2 | 68,368 | 0_cache_hit x5, 1_gemini_tts_call x16, 1_gemini_tts_call_failed x2 |
@@ -41,8 +41,8 @@
 | @cf/black-forest-labs/flux-2-klein-4b | 22 | 216,450 |
 | gemini-3.8-flash | 2 | 213,444 |
 | gemini-3.8-flash-tts | 18 | 73,788 |
+| ffmpeg-9.1 | 13 | 70,150 |
 | gemini-3.5-flash | 1 | 60,356 |
-| ffmpeg-9.1 | 9 | 50,517 |
 | gemini-3.6-flash | 1 | 33,900 |
 | gemini-3.7-flash | 1 | 21,871 |
 | Wan-AI/Wan2.2-TI2V-5B | 11 | 15,870 |
@@ -56,8 +56,8 @@
 
 | Stage | Shot | Calls | Latency (ms) |
 | --- | --- | --- | --- |
-| assemble | 16:9 | 4 | 23,141 |
-| assemble | 9:16 | 4 | 24,409 |
+| assemble | 16:9 | 6 | 33,937 |
+| assemble | 9:16 | 6 | 33,246 |
 | keyframes | shot_01 | 1 | 10,233 |
 | keyframes | shot_02 | 5 | 48,359 |
 | keyframes | shot_03 | 2 | 22,779 |

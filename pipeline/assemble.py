@@ -17,9 +17,11 @@ from pipeline.validate import validate_storyboard
 
 
 # aspect: (width, height, subtitle_font_px, subtitle_margin_v_px, endcard_font_px)
+# Subtitle sizes were raised 10% (32->35, 40->44) per director approval. The
+# longest line is 33 chars: measured 587 px in Arial Bold 35 px, inside 608 px.
 ASPECTS: dict[str, tuple[int, int, int, int, int]] = {
-    "9:16": (608, 1080, 32, 180, 18),
-    "16:9": (1280, 720, 40, 52, 28),
+    "9:16": (608, 1080, 35, 180, 18),
+    "16:9": (1280, 720, 44, 52, 28),
 }
 FPS = 24
 
@@ -47,10 +49,12 @@ def _write_ass(sb: dict[str, Any], slots: list[float], path: Path, width: int, h
     PlayRes to the actual export size, FontSize and MarginV are real pixels,
     which makes the vertical safe area predictable instead of guessed.
     """
+    # Bold=-1 selects the real Arial Bold face (arialbd.ttf) via libass.
+    # MarginL/MarginR are 8 px (not 24) so the +10% font keeps its full lines.
     style = (
         "Style: Default,Arial,"
         f"{font_px},&H00FFFFFF,&H000000FF,&H00000000,&H00000000,"
-        "-1,0,0,0,100,100,0,0,1,2,2,2,24,24,"
+        "-1,0,0,0,100,100,0,0,1,2,2,2,8,8,"
         f"{margin_v},1"
     )
     lines = [
@@ -147,7 +151,14 @@ def _build_audio_mix(
         "[music_in][voice_side]sidechaincompress="
         "threshold=0.02:ratio=6:attack=300:release=1500[ducked]"
     )
-    parts.append("[voice][ducked]amix=inputs=2:duration=longest:normalize=0[out]")
+    # Very quiet, deterministic room tone. Pink noise is filtered and lowered
+    # to about -38 dBFS; it fills silences without competing with the voice.
+    # A fixed seed means this local layer is reproducible on any machine.
+    parts.append(
+        "anoisesrc=color=pink:sample_rate=48000:amplitude=1:seed=20261126,"
+        f"lowpass=f=1400,atrim=duration={total:.3f},asetpts=PTS-STARTPTS,volume=0.06[amb]"
+    )
+    parts.append("[voice][ducked][amb]amix=inputs=3:duration=longest:normalize=0[out]")
 
     cmd.extend(
         [
@@ -201,18 +212,25 @@ def _loudnorm_filter(m: dict[str, str]) -> str:
     )
 
 
-def _font_prefix() -> str:
+def _font_prefix(*, bold: bool = False) -> str:
     """Resolve a real font file without relying on fontconfig.
 
     This FFmpeg build has fontconfig enabled but no config file on the director's
     Windows machine, so `font=Arial` crashes. A fontfile path works, but the
     drive colon must be both quoted and escaped inside a filtergraph.
+    `bold=True` picks arialbd.ttf so the end card headline is genuinely bold.
     """
-    candidates = [
-        Path("C:/Windows/Fonts/arial.ttf"),
-        Path("C:/Windows/Fonts/segoeui.ttf"),
-        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
-    ]
+    if bold:
+        candidates = [
+            Path("C:/Windows/Fonts/arialbd.ttf"),
+            Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+        ]
+    else:
+        candidates = [
+            Path("C:/Windows/Fonts/arial.ttf"),
+            Path("C:/Windows/Fonts/segoeui.ttf"),
+            Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+        ]
     for font in candidates:
         if font.exists():
             escaped = font.as_posix().replace(":", r"\:")
@@ -249,12 +267,27 @@ def _render_aspect(
             f"trim=duration={slot:.3f},setpts=PTS-STARTPTS[v{i}]"
         )
         concat_labels += f"[v{i}]"
-    parts.append(f"color=c=0x1c1713:s={width}x{height}:r={FPS}:d={end_sec:.3f}[endraw]")
+    # Restyled end card (still exactly 3 s): warm near-black field, a small
+    # bronze rule, a bold "Made with AI" headline and a quieter tribute line.
+    # Splitting the one storyboard string in code keeps storyboard.json locked.
+    parts.append(f"color=c=0x15100c:s={width}x{height}:r={FPS}:d={end_sec:.3f}[endraw]")
+    card_pieces = [p.strip() for p in sb["end_card"]["text"].split("·", 1)]
+    headline = card_pieces[0]
+    tribute = card_pieces[1] if len(card_pieces) > 1 else ""
+    card_dir = endcard_path.parent
+    headline_path = card_dir / "endcard_headline.txt"
+    tribute_path = card_dir / "endcard_tribute.txt"
+    headline_path.write_text(headline, encoding="utf-8")
+    tribute_path.write_text(tribute, encoding="utf-8")
+    headline_size, tribute_size = round(end_font * 1.8), round(end_font * 1.1)
     parts.append(
-        f"[endraw]drawtext={_font_prefix()}textfile={endcard_path.relative_to(project_root).as_posix()}:"
-        f"expansion=none:fontcolor=white:fontsize={end_font}:"
-        "x=(w-text_w)/2:y=(h-text_h)/2:"
-        "box=1:boxcolor=black@0.55:boxborderw=18[end]"
+        f"[endraw]drawbox=x=(w-260)/2:y=h/2+6:w=260:h=2:color=0x9a7b55@0.85:t=fill,"
+        f"drawtext={_font_prefix(bold=True)}textfile={headline_path.relative_to(project_root).as_posix()}:"
+        f"expansion=none:fontcolor=white:fontsize={headline_size}:"
+        "x=(w-text_w)/2:y=h/2-text_h-18,"
+        f"drawtext={_font_prefix()}textfile={tribute_path.relative_to(project_root).as_posix()}:"
+        f"expansion=none:fontcolor=0xCBB99A:fontsize={tribute_size}:"
+        "x=(w-text_w)/2:y=h/2+22[end]"
     )
     parts.append(f"{concat_labels}[end]concat=n={len(clip_paths) + 1}:v=1:a=0[cat]")
     parts.append(

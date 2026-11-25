@@ -161,7 +161,17 @@ def clip_hash(
 ASSEMBLE_SETTINGS: dict[str, Any] = {
     # Bump when the FFmpeg filter graph changes even if storyboard inputs do not.
     # v2 adds asplit=2 so the voice sidechain cannot truncate the final 2 slots.
-    "code_version": 2,
+    # v3: +10% Arial Bold subtitles, restyled 3 s end card, quiet seeded room tone.
+    "code_version": 3,
+    "subtitle_bold": True,
+    "subtitle_size_scale": 1.10,
+    "endcard_style_version": 2,
+    "ambience": {
+        "source": "local_anoisesrc_pink",
+        "seed": 20261126,
+        "lowpass_hz": 1400,
+        "gain": 0.06,
+    },
     "fps": 24,
     "sidechain_threshold": 0.02,
     "sidechain_ratio": 6,
