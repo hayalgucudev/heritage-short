@@ -55,3 +55,33 @@
 1. **Why keep the Space folder but ignore its copies?** The HTML and metadata are stable; the MP4s and cost table change after the final voice fix. `py run.py showcase` refreshes them, so the Space cannot silently show an old film.
 2. **Did the pipeline publish anything?** No. The showcase command reads no keys and uploads nothing; YouTube and Hugging Face publication both wait for the director's explicit approval.
 3. **What is the agreed disclosure?** "AI-generated film" in the post and Space, plus the film's own "Made with AI" end card. No real person's face or voice appears.
+
+## 5-minute walkthrough script (rehearsed 2026-11-25, shot_02)
+**0:00–0:30 — Intro.** Open the repo and say: *"This is The Heritage Short. The story is locked in `storyboard.json`. One command, `py run.py film`, rebuilds both films. Every stage checks a hash of its inputs, so only changed things regenerate."*
+
+**0:30–1:15 — Prove the environment is safe.**
+```powershell
+.\.venv\Scripts\python.exe run.py preflight
+.\.venv\Scripts\python.exe run.py plan
+```
+Say: *"Preflight checks FFmpeg and committed inputs without keys. The dry run makes no model calls; it currently reports 31 cache hits and 7 regenerations — the four provisional voices plus outputs that only exist after tomorrow's fix."*
+
+**1:15–2:00 — Show the source of truth.** Open `storyboard.json` shot_02 and say: *"Prompt, seed 102, motion prompt and duration live here, not in Python. Changing this one prompt would change only shot_02's keyframe, clip and the two finals."*
+
+**2:00–3:00 — Live regeneration (zero quota).**
+```powershell
+Remove-Item outputs\clips\shot_02.mp4 -Force
+.\.venv\Scripts\python.exe run.py shots --shot shot_02
+```
+Expected real output from rehearsal: `cache_hit: false`, `source: ken_burns`, `duration_sec: 7.0`, `latency_ms: 1452`, `input_hash: d017039b9cbbe22513dea62644e52b48d82909df5dc754aacd9fc3e6a73c5a9d`. Say: *"I deleted one derived clip. The stage rebuilt only that clip from the approved still, with local FFmpeg — no model call, no quota."*
+
+**3:00–3:45 — Show the evidence.**
+```powershell
+Get-Content runs.jsonl -Tail 1
+.\.venv\Scripts\python.exe run.py plan | Select-String 'shots/shot_02'
+```
+Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache flag and hash. The plan now calls shot_02 a cache hit, which proves the manifest agrees with the file."*
+
+**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz, measured -14.01 LUFS / -0.99 dBTP, with all ten voices audible after the mix fix."*
+
+**4:30–5:00 — Close.** Say: *"Tomorrow's scheduled job replaces only four voice files and rebuilds the finals; the Afaan Oromo version then spends one translation call and one TTS call. Nothing is published until I approve it."*
