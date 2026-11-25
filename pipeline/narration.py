@@ -361,7 +361,7 @@ def build_radio_cut(
             "-filter_complex",
             ";".join(filter_parts),
             "-map",
-            f"[{video_idx}:v]",
+            f"{video_idx}:v",
             "-map",
             "[aout]",
             "-c:v",

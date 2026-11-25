@@ -30,7 +30,13 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Hypothesis:** After `gemini-3.8-flash-tts` hit its 10/day free-tier limit at `shot_07`, generating `shot_07` with `gemini-3.8-flash-lite-tts` using the same `Kore` voice and `--no-wrapper` prompt will match `shot_01`–`shot_06` closely enough to finish Stage 3 today without audible speaker mismatch.
 - **Change:** `tts_model`: `gemini-3.8-flash-tts` -> `gemini-3.8-flash-lite-tts` on `shot_07` (`Kore`, `--no-wrapper`).
 - **Result:** Succeeded in `2,967 ms` (`outputs/narration/shot_07.wav`), duration **`3.92 s`** (vs `7.00 s` slot).
-- **Decision:** *Pending director listening check comparing `shot_06.wav` (`3.8-flash-tts`) and `shot_07.wav` (`3.8-flash-lite-tts`).*
+- **Decision:** Superseded by `EXP-006` after listening to all 10 shots (`shot_07`–`shot_10` flagged unnatural).
+
+## EXP-006 — Full 10-Shot Voice Continuity Review (`gemini-3.8-flash-tts` 01–06 vs `gemini-3.8-flash-lite-tts` 07–10)
+- **Hypothesis:** Using `gemini-3.8-flash-lite-tts` (`Kore`, `--no-wrapper`) for `shot_07`–`shot_10` would blend seamlessly with `shot_01`–`shot_06` (`gemini-3.8-flash-tts`, `Kore`) in a full listen-through.
+- **Change:** Generated `shot_07`–`shot_10` on `gemini-3.8-flash-lite-tts` (`2.45 s`–`2.97 s` latency; `3.52 s`–`4.52 s` audio durations) while keeping `shot_01`–`shot_06` on `gemini-3.8-flash-tts`.
+- **Result:** Director listening check found that `shot_07`–`shot_10` sound unnatural compared to `shot_01`–`shot_06`.
+- **Decision:** **Narration marked `PROVISIONAL`.** Proceed with `radio-cut` today to verify pacing/timing, then regenerate only `shot_07`–`shot_10` (4 calls, well within the 10/day limit) on `gemini-3.8-flash-tts` after `11:00 EAT` tomorrow (2026-11-26) when the daily quota resets. Because narration is cached per shot, downstream stages can proceed in parallel and only final assembly will re-run once those 4 WAVs update.
 
 
 

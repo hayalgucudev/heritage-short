@@ -53,6 +53,31 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What we fixed in code:** Updated `_post_with_retry` in `pipeline/smoke.py` to treat `"per day"` / `PerDay` 429 quota errors as non-retryable so we fail fast instead of burning retries.
 - **Status:** `shot_01`–`shot_06` (`Kore`) are saved and cached; paused at `shot_07` awaiting director choice between testing `gemini-3.8-flash-lite-tts` / `gemini-3.1-flash-tts-preview` or proceeding with keyframes/character sheet today while waiting for tomorrow's 24h reset.
 
+## 011 — Windows Store Python alias blocking `python` outside `.venv`
+- **What broke:** Running `python` in PowerShell outside an activated `.venv` hit the Windows Microsoft Store app execution alias instead of the installed Python interpreter.
+- **What we tried:** Verified `py` launcher and explicit `.venv` interpreter path.
+- **What fixed it:** Use `py` (for bootstrapping `.venv`) or `.\.venv\Scripts\python.exe` directly in PowerShell commands and documentation.
+
+## 012 — `Media.SoundPlayer` relative-path error in PowerShell
+- **What broke:** Playing `.wav` narration files via `.NET` `System.Media.SoundPlayer` with a relative path failed because `.NET` resolves relative paths against the process working directory rather than PowerShell's current location.
+- **What we tried:** Switched from relative paths to resolved full file paths.
+- **What fixed it:** Pass `Resolve-Path` / absolute Windows paths (e.g., `(Resolve-Path .\outputs\narration\shot_01.wav).Path`) to `SoundPlayer`, or play via standard media player / `ffplay`.
+
+## 013 — First AI session hit assistant quota cutoff mid-project
+- **What broke:** The initial AI coding session exhausted its assistant quota after completing Stages 0–3 (`smoke`, `storyboard.json`, and 10 per-shot narration WAVs).
+- **What we tried:** Resumed in a new session using the repo's written state (`runs.jsonl`, `outputs/manifest.json`, `EXPLAINED.md`, `FAILURES.md`, `EXPERIMENTS.md`) and adopted concise, targeted file reads.
+- **What fixed it / Lesson:** Keeping all state on disk (`storyboard.json`, `manifest.json`, `runs.jsonl`, markdown logs) allowed seamless handoff across sessions with zero lost work.
+
+## 014 — FFmpeg `-map [10:v]` bracket syntax error in `build_radio_cut`
+- **What broke:** Running `py run.py radio-cut` failed with FFmpeg exit code `-22` (`Invalid argument`): `Output with label '10:v' does not exist in any defined filter graph`.
+- **What we tried:** Captured FFmpeg `stderr` directly and inspected the `-map` flag in `pipeline/narration.py`.
+- **What fixed it:** Changed `-map [10:v]` (which looks for a named filtergraph output pad) to `-map 10:v` (raw input stream 10 video), and `radio-cut` succeeded cleanly.
+
+## 015 — Second language-quality & visual-alignment finding (`shot_09` narration)
+- **What broke:** After revising `shot_09`'s visual to show only Grandmother holding out a coffee cup toward the camera (no neighbours in frame), the old narration (`"ጎረቤቶች ወደ ቤት ገብተው፣ ሰላምታ ይለዋወጣሉ።"` / *"Neighbours come in and exchange greetings."*) described neighbours entering and conversing instead of matching the solo frame, and sounded stiff.
+- **What we tried:** Replaced the `shot_09` line with natural Amharic aligned to the visual (`"ጎረቤቶቿን ቡና ትጋብዛለች።"` / *"She invites the neighbours\nto share coffee."*).
+- **What fixed it / Status:** `storyboard.json` updated and re-validated. Only `shot_09.wav` is invalidated by its input hash; regeneration of `shot_09` (along with `shot_07`, `shot_08`, `shot_10`) is deferred until `gemini-3.8-flash-tts` daily quota resets after `11:00 EAT` on 2026-11-26.
+
 
 
 

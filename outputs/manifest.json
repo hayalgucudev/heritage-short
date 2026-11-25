@@ -111,6 +111,38 @@
       "input_hash": "f828fa3075593177917de321ff2cb6fbda05e571d1e4a028ee30e3ad4edf076d",
       "status": "ok",
       "updated_at": "2026-11-25T08:19:39.542008+00:00"
+    },
+    "outputs/narration/shot_08.wav": {
+      "file_name": "shot_08.wav",
+      "stage": "narration",
+      "shot_id": "shot_08",
+      "input_hash": "07f5261b8b4c604daaf50fdc33253286b702f826b9a13ed0b33b0f9035589722",
+      "status": "ok",
+      "updated_at": "2026-11-25T08:36:15.014963+00:00"
+    },
+    "outputs/narration/shot_09.wav": {
+      "file_name": "shot_09.wav",
+      "stage": "narration",
+      "shot_id": "shot_09",
+      "input_hash": "730d650794e7e78938c8498782956b01e8b8cd2df8b25a7302f14df486bfc991",
+      "status": "ok",
+      "updated_at": "2026-11-25T08:36:37.550830+00:00"
+    },
+    "outputs/narration/shot_10.wav": {
+      "file_name": "shot_10.wav",
+      "stage": "narration",
+      "shot_id": "shot_10",
+      "input_hash": "9b657e214881f1331d969a624957b2f3779b4a45af6811c4d7b7e85e880abc02",
+      "status": "ok",
+      "updated_at": "2026-11-25T08:36:40.682146+00:00"
+    },
+    "outputs/final/radio_cut.mp4": {
+      "file_name": "radio_cut.mp4",
+      "stage": "radio_cut",
+      "shot_id": "all",
+      "input_hash": "779029612911d6817d90a303a6d79e28a03c52ffc69ca8ed486e1b0f55b8b974",
+      "status": "ok",
+      "updated_at": "2026-11-25T09:11:06.468115+00:00"
     }
   }
 }
