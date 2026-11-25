@@ -40,3 +40,8 @@
 1. **How did I find it?** The director said "the voice is not available after the first shot". I measured the volume of each 7 s slot in the delivered MP4: shots 09 and 10 were at -50.7 and -91.0 dB. The source WAVs were all normal, so I compared three filter graphs: plain mix, split-then-duck, and the original.
 2. **What was the fix?** The voice label was consumed twice by FFmpeg without `asplit=2`, which silently truncated the second consumer. After the split, all ten slots measure -20.3 to -16.2 dB and the film measures **-14.01 LUFS / -0.99 dBTP**. I bumped `code_version` to 2 so the cache rebuilt the exports.
 3. **What did this change about my process?** FFmpeg returned success on a broken mix. From now on, a render is not "verified" until the delivered file's own audio is measured slot by slot, not just its length and codec.
+
+## CLI packaging — be able to explain this
+1. **Why track 1.88 MB of narration WAVs?** A clean clone then has every cached input and can rebuild the film without API keys or model calls; this was the director's choice. Re-generated WAVs 07-10 will be force-added after the TTS fix.
+2. **What does `preflight` prove?** It checks tools and required files and reports booleans only — it never prints `.env` values. In a clone with no `.env`, it returned `ready: true` and `missing_files: []`.
+3. **What is still pending?** The clean clone needed `--skip-narration --allow-stale-narration` because four voices are provisional. After tomorrow's scheduled TTS fix, plain `py run.py film` must succeed with no flags; that is the final CLI measurement.

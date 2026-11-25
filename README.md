@@ -12,6 +12,7 @@ A 60–90 second AI-made short film plus a reproducible pipeline. A stranger wit
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe run.py preflight
 Copy-Item .env.example .env
 # Fill in keys in .env
 .\.venv\Scripts\python.exe run.py verify-models
@@ -32,6 +33,7 @@ Both have burned-in English subtitles, the ACE-Step score ducked under Amharic n
 | Command | What it does |
 | :--- | :--- |
 | `validate` | Check `storyboard.json` against the schema before any quota call. |
+| `preflight` | Check FFmpeg and all committed inputs exist; no keys or model calls. |
 | `plan` | Dry run: print exactly what would regenerate, why, and the quota estimate. No model calls. |
 | `narration --shot shot_07 --tts-model gemini-3.8-flash-tts` | Regenerate one narration line. |
 | `keyframes --shot shot_03 --no-ref` | Regenerate one keyframe. |

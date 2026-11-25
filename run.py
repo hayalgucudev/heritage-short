@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
 from typing import Any
@@ -248,6 +249,52 @@ def cmd_report_costs(_args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_preflight(_args: argparse.Namespace) -> int:
+    """Check tools and committed inputs; never print or read .env values."""
+    problems: list[str] = []
+    sb: dict[str, Any] | None = None
+    try:
+        sb = validate_storyboard(STORYBOARD_PATH, SCHEMA_PATH)
+    except Exception as exc:
+        problems.append(f"storyboard invalid: {exc}")
+
+    for tool in ("ffmpeg", "ffprobe"):
+        if shutil.which(tool) is None:
+            problems.append(f"{tool} not on PATH")
+
+    required: list[Path] = [
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        MANIFEST_PATH,
+        PROJECT_ROOT / "requirements.txt",
+    ]
+    if sb is not None:
+        for shot in sb["shots"]:
+            sid = shot["id"]
+            required.append(PROJECT_ROOT / "outputs" / "keyframes" / f"{sid}.png")
+            required.append(PROJECT_ROOT / "outputs" / "narration" / f"{sid}.wav")
+    scores = sorted((PROJECT_ROOT / "outputs" / "music").glob("candidate_*_*.wav"))
+    if scores:
+        required.append(scores[0])
+    else:
+        problems.append("no committed score WAV in outputs/music")
+
+    missing = [p.relative_to(PROJECT_ROOT).as_posix() for p in required if not p.is_file()]
+    info = {
+        "python": sys.version.split()[0],
+        "ffmpeg_on_path": shutil.which("ffmpeg") is not None,
+        "ffprobe_on_path": shutil.which("ffprobe") is not None,
+        "env_file_present": (PROJECT_ROOT / ".env").is_file(),
+        "storyboard_shots": len(sb["shots"]) if sb is not None else None,
+        "score_wav": scores[0].relative_to(PROJECT_ROOT).as_posix() if scores else None,
+        "missing_files": missing,
+        "problems": problems + [f"missing: {rel}" for rel in missing],
+    }
+    info["ready"] = not info["problems"]
+    print(json.dumps(info, indent=2, ensure_ascii=False))
+    return 0 if info["ready"] else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="py run.py",
@@ -257,6 +304,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_val = sub.add_parser("validate", help="Validate storyboard.json against schema.")
     p_val.set_defaults(func=cmd_validate)
+
+    p_pre = sub.add_parser("preflight", help="Check tools and committed inputs without model calls.")
+    p_pre.set_defaults(func=cmd_preflight)
 
     p_vm = sub.add_parser("verify-models", help="List live Gemini and Cloudflare FLUX models.")
     p_vm.set_defaults(func=cmd_verify_models)
