@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heritage-short.local/storyboard.schema.json",
+  "title": "The Heritage Short Storyboard",
+  "description": "Single source of truth for story, models, prompts, seeds, narration, music, and assembly.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "title",
+    "language",
+    "audience",
+    "ending_feeling",
+    "aspect_ratios",
+    "models",
+    "style_block",
+    "character",
+    "music",
+    "end_card",
+    "shots"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 2
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ending_feeling": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aspect_ratios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["9:16", "16:9"]
+      }
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["script", "tts", "keyframes", "video", "music"],
+      "properties": {
+        "script": { "type": "string", "minLength": 1 },
+        "tts": { "type": "string", "minLength": 1 },
+        "keyframes": { "type": "string", "minLength": 1 },
+        "video": { "type": "string", "minLength": 1 },
+        "music": { "type": "string", "minLength": 1 }
+      }
+    },
+    "style_block": {
+      "type": "string",
+      "minLength": 10
+    },
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "description", "reference_seed"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 15 },
+        "reference_seed": { "type": "integer", "minimum": 0 },
+        "selected_reference_image": { "type": ["string", "null"] }
+      }
+    },
+    "music": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["caption", "style", "mood", "instruments", "texture", "tempo_bpm", "key", "duration_sec", "seed"],
+      "properties": {
+        "caption": { "type": "string", "minLength": 10 },
+        "style": { "type": "string", "minLength": 1 },
+        "mood": { "type": "string", "minLength": 1 },
+        "instruments": { "type": "string", "minLength": 1 },
+        "texture": { "type": "string", "minLength": 1 },
+        "tempo_bpm": { "type": "integer", "minimum": 30, "maximum": 220 },
+        "key": { "type": "string", "minLength": 1 },
+        "duration_sec": { "type": "number", "minimum": 15, "maximum": 120 },
+        "seed": { "type": "integer", "minimum": 0 },
+        "selected_candidate": { "type": ["string", "null"] }
+      }
+    },
+    "end_card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "duration_sec"],
+      "properties": {
+        "text": { "type": "string", "minLength": 5 },
+        "duration_sec": { "type": "number", "minimum": 2.0, "maximum": 3.5 }
+      }
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "duration_sec",
+          "narration",
+          "subtitle_en",
+          "tts_style",
+          "image_prompt",
+          "image_seed",
+          "video_motion_prompt",
+          "video_seed"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^shot_[0-9]{2}$" },
+          "duration_sec": { "type": "number", "minimum": 1.0, "maximum": 15.0 },
+          "narration": { "type": "string", "minLength": 1 },
+          "subtitle_en": { "type": "string", "minLength": 1 },
+          "tts_style": { "type": "string", "minLength": 3 },
+          "image_prompt": { "type": "string", "minLength": 10 },
+          "image_seed": { "type": "integer", "minimum": 0 },
+          "video_motion_prompt": { "type": "string", "minLength": 5 },
+          "video_seed": { "type": "integer", "minimum": 0 },
+          "sfx_ambience": { "type": "string" }
+        }
+      }
+    }
+  }
+}

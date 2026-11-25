@@ -1,3 +1,18 @@
 ﻿.env
 .venv/
 __pycache__/
+*.pyc
+.pytest_cache/
+
+# Keep runs.jsonl, storyboard.json, outputs/manifest.json, and small keyframe/smoke PNGs tracked.
+# Ignore bulky generated audio and video artifacts.
+outputs/**/*.mp4
+outputs/**/*.mov
+outputs/**/*.mkv
+outputs/**/*.webm
+outputs/**/*.wav
+outputs/**/*.mp3
+outputs/**/*.aac
+outputs/**/*.pcm
+outputs/clips/
+outputs/final/
