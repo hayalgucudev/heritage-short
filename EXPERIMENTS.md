@@ -75,11 +75,13 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Visual result (director, 2026-11-25):** `"the others seem okay"` — accepted; no face complaint about this no-reference image.
 - **Decision:** **Accepted.** Together with EXP-009's rejected face, this supports the rule: generate action shots from the verbatim character description with `--no-ref`; do not use `input_image_0` on this model to preserve identity.
 
-## EXP-012 — "Make it more realistic" (requested 2026-11-25; scope pending)
-- **Director's verbatim request after viewing EXP-009/010/011:** `"make it more realistic"`.
-- **Status:** **Not yet executed.** The scope is ambiguous and changing the global `style_block` would invalidate all 10 keyframes, so no model call is made until the director chooses the option in the question asked on 2026-11-25.
-- **Options offered:** (A) tighten the single global style block and regenerate all 10 keyframes (~10 Cloudflare FLUX calls at ~9–11 s each based on the measured latencies in `runs.jsonl`); (B) tighten wording only in the shot prompts for human/action shots; (C) keep the accepted stills and increase realism at the motion/assembly stage instead.
-- **Note:** The story was locked by the director on 2026-11-25, but the keyframes checkpoint gate is separate; production keyframes are not generated until the realism decision and explicit keyframe approval are given.
+## EXP-012 — Tighter global style block for realism (director chose option A, 2026-11-25)
+- **Hypothesis:** Turning one shared dial — replacing "cinematic 35mm film still" with "candid 35mm documentary photograph" and adding "photoreal skin with visible pores and fine wrinkles, authentic woven cotton fabric texture, no illustration or painting" — will make all shots read as real photography without breaking consistency across the film.
+- **Change:** Edited **11 occurrences** in `storyboard.json`: the global `style_block` plus the same wording copied at the end of all 10 `image_prompt`s. Seeds `101`–`110`, model `@cf/black-forest-labs/flux-2-klein-4b`, `steps=4`, and every story/narration line were held constant. Generated with `--no-ref` (per EXP-009/011 decision).
+- **Prompt rationale (one line):** "photograph" instead of "film still" plus pores/weave/no-illustration pushes the model toward a real camera look; no living artist is named and the palette/light block stays fixed.
+- **Result:** 10/10 `status=ok`, `cache_hit=false`, `1_cloudflare_flux_call` each; latencies `10233, 9923, 11340, 7737, 8849, 11896, 10735, 8118, 9656, 10237` ms; **total 98,724 ms (~98.7 s)**. Files `outputs/keyframes/shot_01.png` … `shot_10.png`; hashes and rows written to `outputs/manifest.json` and `runs.jsonl`. Validation passed before any call.
+- **Visual result:** *Pending director's keyframes-gate verdict.* All 10 PNGs were opened in the browser; this assistant cannot see PNG content and makes no finger/face/realism claim it did not observe.
+- **Decision:** Provisional pending verdict. If any shot fails the hands policy, use at most 3 attempts, then change framing, then FFmpeg Ken Burns over the clean still. No Wan video or ACE-Step GPU job has been started.
 
 
 
