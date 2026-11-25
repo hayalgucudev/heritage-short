@@ -1,3 +1,20 @@
 {
-  "artifacts": {}
+  "artifacts": {
+    "outputs/smoke/amharic_tts_test.wav": {
+      "file_name": "amharic_tts_test.wav",
+      "stage": "smoke_tts",
+      "shot_id": "smoke",
+      "input_hash": "d7abeebc738023c83494a30d1e1330507500348a69bdc91b880aa2e8db3dd1f3",
+      "status": "ok",
+      "updated_at": "2026-11-25T07:31:29.056408+00:00"
+    },
+    "outputs/smoke/flux_test.png": {
+      "file_name": "flux_test.png",
+      "stage": "smoke_flux",
+      "shot_id": "smoke",
+      "input_hash": "fa0c88ef7cceb852c466d819fac8292a9ffc178bec8370603b3c94b8ab7066be",
+      "status": "ok",
+      "updated_at": "2026-11-25T07:31:37.906030+00:00"
+    }
+  }
 }
