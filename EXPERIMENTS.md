@@ -101,6 +101,12 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** `outputs/final/film_9x16.mp4` (608x1080) and `film_16x9.mp4` (1280x720), both H.264 + AAC 48 kHz stereo, 24 fps CFR, **73.0 s**. Measured audio **-14.32 LUFS / -0.95 dBTP**. `runs.jsonl` records `stale_narration=[shot_07, shot_08, shot_09, shot_10]` on both rows. `plan` now reports 31 cache hits and 7 regenerations.
 - **Decision:** Provisional only. Director to give User Test 2 feedback on the visuals; voices are confirmed as the User Test 1 problem and will be fixed at ~11:00 EAT on 2026-11-26. No story text changed.
 
+## EXP-016 — Isolating the missing-voice bug with a three-way A/B (2026-11-25)
+- **Hypothesis:** The silence in shots 09-10 is caused by reusing one FFmpeg audio label for both the sidechain and the final mix, not by the narration files or the score.
+- **Change:** Fixed seeds and inputs; three temporary filter graphs only: (A) plain `amix` with no ducking, (B) `asplit=2` then sidechain + `amix`, (C) original reused label. Then applied the winning graph to production code with `code_version: 2` so cache invalidation occurred.
+- **Result:** Slot mean dB for A/B/C respectively: shot 09 `-21.4 / -21.4 / -67.3`, shot 10 `-22.5 / -22.5 / -91.0`; all earlier slots normal in A and B. Production re-render: 10/10 slots audible (`-20.3` to `-16.2` dB), **-14.01 LUFS / -0.99 dBTP**, 73.0 s, 24 fps CFR.
+- **Decision:** Hypothesis confirmed; B is now the production graph. This changed my mind about a hidden risk: a successful FFmpeg exit is not proof of a correct mix, so slot-level measurement is now a mandatory verification step (logged in `FAILURES.md` 022).
+
 
 
 

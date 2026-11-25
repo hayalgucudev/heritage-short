@@ -133,7 +133,10 @@ def _build_audio_mix(
         )
         concat_labels += f"[n{i}]"
     parts.append(f"anullsrc=r=48000:cl=stereo:d={end_sec:.3f}[end_sil]")
-    parts.append(f"{concat_labels}[end_sil]concat=n={len(wavs) + 1}:v=0:a=1[voice]")
+    parts.append(f"{concat_labels}[end_sil]concat=n={len(wavs) + 1}:v=0:a=1[voice_raw]")
+    # The voice is needed twice: as the sidechain trigger and in the final mix.
+    # FFmpeg must split it explicitly; reusing one label silently truncates the tail.
+    parts.append("[voice_raw]asplit=2[voice_side][voice]")
     music_idx = len(wavs)
     parts.append(
         f"[{music_idx}:a]aformat=sample_rates=48000:channel_layouts=stereo,"
@@ -141,7 +144,7 @@ def _build_audio_mix(
         "asetpts=PTS-STARTPTS[music_in]"
     )
     parts.append(
-        "[music_in][voice]sidechaincompress="
+        "[music_in][voice_side]sidechaincompress="
         "threshold=0.02:ratio=6:attack=300:release=1500[ducked]"
     )
     parts.append("[voice][ducked]amix=inputs=2:duration=longest:normalize=0[out]")

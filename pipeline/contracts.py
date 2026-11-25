@@ -159,6 +159,9 @@ def clip_hash(
 
 
 ASSEMBLE_SETTINGS: dict[str, Any] = {
+    # Bump when the FFmpeg filter graph changes even if storyboard inputs do not.
+    # v2 adds asplit=2 so the voice sidechain cannot truncate the final 2 slots.
+    "code_version": 2,
     "fps": 24,
     "sidechain_threshold": 0.02,
     "sidechain_ratio": 6,

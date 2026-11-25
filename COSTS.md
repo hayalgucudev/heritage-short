@@ -11,16 +11,16 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **75**
-- Non-cache model/FFmpeg calls: **69**
+- Real logged records: **77**
+- Non-cache model/FFmpeg calls: **71**
 - Failed calls: **7**
-- Total logged latency: **670,482 ms** (11.2 min)
+- Total logged latency: **683,525 ms** (11.4 min)
 
 ### By stage
 
 | Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
 | --- | --- | --- | --- | --- | --- |
-| assemble | 4 | 0 | 0 | 17,757 | 0_local_ffmpeg x4 |
+| assemble | 6 | 0 | 0 | 30,800 | 0_local_ffmpeg x6 |
 | keyframes | 15 | 0 | 0 | 148,599 | 1_cloudflare_flux_call x15 |
 | music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
 | narration | 18 | 5 | 2 | 68,368 | 0_cache_hit x5, 1_gemini_tts_call x16, 1_gemini_tts_call_failed x2 |
@@ -43,8 +43,8 @@
 | gemini-3.8-flash-tts | 18 | 73,788 |
 | gemini-3.5-flash | 1 | 60,356 |
 | gemini-3.6-flash | 1 | 33,900 |
+| ffmpeg-9.1 | 7 | 33,767 |
 | gemini-3.7-flash | 1 | 21,871 |
-| ffmpeg-9.1 | 5 | 20,724 |
 | Wan-AI/Wan2.2-TI2V-5B | 10 | 14,418 |
 | gemini-3.8-flash-lite-tts | 5 | 14,179 |
 | cloudflare-models-search | 1 | 558 |
@@ -56,8 +56,8 @@
 
 | Stage | Shot | Calls | Latency (ms) |
 | --- | --- | --- | --- |
-| assemble | 16:9 | 2 | 9,524 |
-| assemble | 9:16 | 2 | 8,233 |
+| assemble | 16:9 | 3 | 14,420 |
+| assemble | 9:16 | 3 | 16,380 |
 | keyframes | shot_01 | 1 | 10,233 |
 | keyframes | shot_02 | 5 | 48,359 |
 | keyframes | shot_03 | 2 | 22,779 |

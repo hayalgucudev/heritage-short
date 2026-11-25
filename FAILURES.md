@@ -119,6 +119,14 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Director's clarification (2026-11-25):** They confirmed the file they meant was **`candidate_01_seed777` in `outputs/music`** — the ACE-Step score, not Wan video. So no Wan clip output exists. Decision: **use the local Ken Burns fallback for the final film**; the Wan notebook stays prepared as evidence but unrun.
 - **Status:** Closed for the floor. If Wan clips are generated later, `py run.py shots --import-dir <folder>` replaces only the 10 clips and both finals; everything else stays cached.
 
+## 022 — Voice disappears after the first shot in the rendered film (2026-11-25)
+- **What happened:** The director opened the provisional cut and said verbatim: *"the voice is not available after the first shot"*. This was a real defect, not a preference.
+- **How it was measured (no fabrication):** `volumedetect` on each 7 s slot of the delivered MP4 gave mean levels `-18.7, -19.7, -18.8, -18.3, -16.2, -16.6, -14.6, -20.2, -50.7, -91.0` dB. Every individual narration WAV measured `-17.5` to `-15.0` dB, so the source audio was fine. The concatenated voice track alone was healthy in all ten slots; the ducked and mixed output went silent in slots 9 and 10.
+- **Root cause:** The voice filter label `[voice]` was consumed **twice** — once as the `sidechaincompress` trigger and once in the final `amix`. FFmpeg allowed the graph to build but silently truncated the second consumer to about 3.7 s of usable signal, which progressively killed the tail. A 3-way A/B isolated it: plain `amix` = all 10 slots audible; `asplit=2` then duck = all 10 audible; the original reused label = slots 9/10 at `-67.3 / -91.0` dB.
+- **Fix:** `concat -> [voice_raw] -> asplit=2 -> [voice_side] (sidechain) + [voice] (mix)`, and the sidechain now reads `[voice_side]`. Because the storyboard inputs did not change, a code-only fix would have been treated as a cache hit; added `code_version: 2` to `ASSEMBLE_SETTINGS` so the change invalidates and rebuilds both exports.
+- **Verification:** Both re-rendered MP4s are 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR; slot means `-20.3` to `-16.2` dB in all ten; measured **-14.01 LUFS / -0.99 dBTP**. Render latencies 8,147 ms (9:16) and 4,896 ms (16:9), zero model calls.
+- **Lesson:** Silence is not an exception — FFmpeg exited successfully on the broken mix. Never trust a render without measuring the actual delivered file, slot by slot, after the director reports a problem.
+
 
 
 
