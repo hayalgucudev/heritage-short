@@ -15,12 +15,12 @@ from pipeline.validate import validate_storyboard
 
 FIXED_STYLE_BLOCK = (
     "warm painterly storybook gouache and soft oil illustration, rich golden-hour amber and "
-    "terracotta light, gentle natural shadows, timeless East African village folktale mood, "
+    "terracotta light, gentle natural shadows, timeless Ethiopian highland village folktale mood, "
     "centered framing for 9:16 and 16:9 crops, no text or watermarks"
 )
 
 CHARACTER_DESCRIPTION = (
-    "an elderly East African grandmother in her seventies with warm weathered brown skin, "
+    "an elderly Ethiopian highland grandmother in her seventies with warm weathered brown skin, "
     "kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, "
     "wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim"
 )

@@ -11,3 +11,7 @@
 ## Stage 2: Drafting `storyboard.json` (Single Source of Truth)
 - **Why one JSON file controls everything:** `storyboard.json` holds every Amharic line, English subtitle, image prompt, seed, motion prompt, and music spec in one place so code never invents prompts on the fly.
 - **What broke & how we solved it:** Preview models (`3.8-flash`, `3.7-flash`) hit HTTP 503 high demand, `2.5-flash` was retired for new keys (HTTP 404), and `3.5-flash` timed out at our hard `60 s` cap due to a heavy server-side `responseSchema`. Dropping `responseSchema` in favor of plain JSON mode + local `validate.py` checking let `gemini-3.6-flash` draft all 10 shots cleanly in `33.9 s`.
+
+## Stage 3: Per-Shot Narration & Radio Cut
+- **Why build a "Radio Cut" before drawing pictures:** Listening to the voiceover alone over a quiet placeholder hum on a black screen lets us check pacing, pronunciation, and whether every line fits its 7-second shot before spending image or GPU time.
+- **Per-shot caching (`narration.py`):** Each shot's `.wav` is hashed solely from its own Amharic text, voice (`Aoede`), and TTS model — so fixing one Amharic word in Shot 4 regenerates only `shot_04.wav` and leaves the other 9 shots untouched.

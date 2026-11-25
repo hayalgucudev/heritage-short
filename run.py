@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from pipeline.narration import build_radio_cut, generate_narration
 from pipeline.script import draft_storyboard
 from pipeline.smoke import run_smoke_tests, run_tts_sample, verify_live_models
 from pipeline.validate import validate_storyboard
@@ -73,6 +74,32 @@ def cmd_draft_storyboard(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_narration(args: argparse.Namespace) -> int:
+    rows = generate_narration(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        voice=args.voice,
+        only_shot=args.shot,
+    )
+    print(json.dumps(rows, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_radio_cut(_args: argparse.Namespace) -> int:
+    info = build_radio_cut(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+    )
+    print(json.dumps(info, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_not_yet(name: str) -> int:
     print(
         f"Command '{name}' is scaffolded and will be implemented in its upcoming stage.",
@@ -117,6 +144,14 @@ def build_parser() -> argparse.ArgumentParser:
     p_ds.add_argument("--fallback-model", default="gemini-3.7-flash")
     p_ds.add_argument("--force", action="store_true", help="Ignore cache and regenerate storyboard.json.")
     p_ds.set_defaults(func=cmd_draft_storyboard)
+
+    p_narr = sub.add_parser("narration", help="Generate per-shot TTS narration WAVs.")
+    p_narr.add_argument("--voice", default="Aoede")
+    p_narr.add_argument("--shot", default=None, help="Optional single shot id (e.g. shot_03).")
+    p_narr.set_defaults(func=cmd_narration)
+
+    p_rc = sub.add_parser("radio-cut", help="Assemble narration over placeholder tone on black video.")
+    p_rc.set_defaults(func=cmd_radio_cut)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")
     p_plan.set_defaults(func=lambda _a: cmd_not_yet("plan"))
