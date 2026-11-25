@@ -17,6 +17,7 @@ from pipeline.narration import build_radio_cut, generate_narration
 from pipeline.plan import build_plan, format_plan
 from pipeline.script import draft_storyboard
 from pipeline.second_language import run_second_language
+from pipeline.showcase import build_showcase
 from pipeline.shots import export_clips_job, run_shots_stage
 from pipeline.smoke import run_smoke_tests, run_tts_sample, verify_live_models
 from pipeline.validate import validate_storyboard
@@ -259,6 +260,12 @@ def cmd_second_language(_args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_showcase(_args: argparse.Namespace) -> int:
+    info = build_showcase(PROJECT_ROOT)
+    print(json.dumps(info, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_preflight(_args: argparse.Namespace) -> int:
     """Check tools and committed inputs; never print or read .env values."""
     problems: list[str] = []
@@ -419,6 +426,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Ceiling: Afaan Oromo narration in one TTS call, split locally, both exports.",
     )
     p_second.set_defaults(func=cmd_second_language)
+
+    p_show = sub.add_parser(
+        "showcase", help="Copy film and evidence into the static HF Space folder; no upload."
+    )
+    p_show.set_defaults(func=cmd_showcase)
 
     return parser
 

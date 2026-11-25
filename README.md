@@ -44,6 +44,7 @@ Both have burned-in English subtitles, the ACE-Step score ducked under Amharic n
 | `assemble` | Rebuild the two final exports from cached inputs. |
 | `report-costs` | Rebuild `COSTS.md` tables from real `runs.jsonl` rows. |
 | `second-language` | Ceiling: Afaan Oromo narration in one TTS call, split locally, outputs `film_*_om.mp4`. |
+| `showcase` | Copy film, storyboard and costs into `space/`; publishing to Hugging Face is manual. |
 
 `film` also accepts `--skip-narration`, `--skip-keyframes`, `--skip-music`, `--skip-shots`, `--import-dir`, `--steps` and `--delay-sec`. Both `assemble` and `film` accept `--allow-stale-narration` for a director-approved provisional cut; without it, stale narration fails loudly.
 

@@ -36,3 +36,9 @@
 - Second language: Afaan Oromo, Tigrinya or Somali is still to be chosen by the director; no translated text will be invented or sent to a free endpoint without asking. Hypothesis and measurement plan go in `EXPERIMENTS.md`; model failures go in `FAILURES.md`.
 - CLI packaging: the working `run.py` becomes a reusable command-line tool with documented arguments and a clean-clone test. Hypothesis: a stranger can rebuild both exports from `storyboard.json` without reading the source code.
 - Deliberately **not** chosen for now: lyrics/lyric video, open-vs-frontier benchmark, LoRA consistency experiment and post-publication audience measurement.
+
+## Publication plan (decided 2026-11-25, nothing published yet)
+- **Showcase:** the director chose a **Hugging Face Space** with placeholder handle `YOUR_USERNAME/heritage-short`. `space/index.html` and `space/README.md` are committed; `py run.py showcase` copies the two MP4s, storyboard, cost report and keyframe sheet into `space/`. The command never reads `HF_TOKEN` and uploads nothing.
+- **Public post:** the director chose **YouTube** after the final film is approved. Draft caption (not yet posted): *"The Heritage Short — an AI-generated film. A quiet fictional tribute to a grandmother in the Ethiopian highlands. Amharic narration with English subtitles; images, voice and music made with generative models; directed and edited by a human. AI-generated film."*
+- **AI label wording:** **"AI-generated film"**, matching the disclosure printed in the Space. The film's own end card says "Made with AI · A fictional tribute to quiet morning hands" and was approved earlier.
+- **Gate:** no upload and no public post until the director explicitly approves the final export and the actual account/handle to use.

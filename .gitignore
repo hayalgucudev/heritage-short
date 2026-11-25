@@ -19,3 +19,9 @@ outputs/final/
 # Ignore downloaded Kaggle zip bundles (director's choice, 2026-11-25).
 # The approved ACE-Step WAV and the 10 narration WAVs are force-added so a clean clone needs no model calls.
 *.zip
+
+# Generated showcase copies; refresh with `py run.py showcase` before uploading the Space.
+space/assets/
+space/costs.md
+space/storyboard.json
+space/keyframes.html

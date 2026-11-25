@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Heritage Short — AI-generated film</title>
+  <style>
+    :root { color-scheme: dark; --bg:#161310; --ink:#f6efe3; --muted:#c2b49f; --accent:#e6a85c; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { padding:3rem 1.25rem 2rem; text-align:center; border-bottom:1px solid #3a3128; }
+    h1 { margin:0 0 .4rem; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:.02em; }
+    .tag { color:var(--accent); font-weight:600; text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; }
+    p.lead { max-width:56rem; margin:1rem auto 0; color:var(--muted); }
+    main { max-width:64rem; margin:0 auto; padding:2rem 1.25rem 4rem; }
+    .films { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:2rem; align-items:start; }
+    figure { margin:0; background:#211c17; border:1px solid #3a3128; border-radius:12px; padding:1rem; }
+    video { width:100%; height:auto; border-radius:8px; background:#000; display:block; }
+    figcaption { color:var(--muted); font-size:.9rem; margin-top:.75rem; }
+    .links { margin-top:2.5rem; display:flex; flex-wrap:wrap; gap:.75rem; }
+    a { color:var(--bg); background:var(--accent); border-radius:999px; padding:.6rem 1rem; text-decoration:none; font-weight:600; }
+    a.secondary { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+    .disclosure { margin-top:3rem; padding:1rem; border-left:3px solid var(--accent); color:var(--muted); }
+    footer { text-align:center; color:var(--muted); font-size:.85rem; padding:2rem 1.25rem; border-top:1px solid #3a3128; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="tag">AI-generated film</div>
+    <h1>The Heritage Short</h1>
+    <p class="lead">A quiet, fictional tribute to a grandmother in the Ethiopian highlands. Amharic narration, burned-in English subtitles, and an original AI-composed score. Made and directed by a human, with generative models for images, voice and music.</p>
+  </header>
+  <main>
+    <section class="films" aria-label="Film exports">
+      <figure>
+        <video controls preload="metadata" src="assets/film_9x16.mp4"></video>
+        <figcaption><strong>Vertical 9:16</strong> — 608×1080, 24 fps, for mobile viewing.</figcaption>
+      </figure>
+      <figure>
+        <video controls preload="metadata" src="assets/film_16x9.mp4"></video>
+        <figcaption><strong>Widescreen 16:9</strong> — 1280×720, 24 fps, for desktop viewing.</figcaption>
+      </figure>
+    </section>
+    <div class="links">
+      <a href="storyboard.json">Storyboard JSON</a>
+      <a class="secondary" href="costs.md">Cost report</a>
+      <a class="secondary" href="keyframes.html">Keyframe contact sheet</a>
+    </div>
+    <div class="disclosure">
+      <strong>AI disclosure:</strong> This is an AI-generated film. No real person's face or voice was used. The character and village are fictional. Images were generated with FLUX, motion with local FFmpeg Ken Burns moves, narration with Gemini TTS, and the score with ACE-Step. See the repository's ETHICS.md for model licences and consent records.
+    </div>
+  </main>
+  <footer>Built from a single locked storyboard.json · Regenerate with <code>py run.py film</code></footer>
+</body>
+</html>
