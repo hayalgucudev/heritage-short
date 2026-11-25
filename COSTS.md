@@ -11,21 +11,23 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **61**
-- Non-cache model/FFmpeg calls: **55**
+- Real logged records: **75**
+- Non-cache model/FFmpeg calls: **69**
 - Failed calls: **7**
-- Total logged latency: **638,307 ms** (10.6 min)
+- Total logged latency: **670,482 ms** (11.2 min)
 
 ### By stage
 
 | Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
 | --- | --- | --- | --- | --- | --- |
+| assemble | 4 | 0 | 0 | 17,757 | 0_local_ffmpeg x4 |
 | keyframes | 15 | 0 | 0 | 148,599 | 1_cloudflare_flux_call x15 |
 | music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
 | narration | 18 | 5 | 2 | 68,368 | 0_cache_hit x5, 1_gemini_tts_call x16, 1_gemini_tts_call_failed x2 |
 | radio_cut | 1 | 0 | 0 | 2,967 | 0_local_ffmpeg x1 |
 | reference_sheet | 6 | 0 | 0 | 59,005 | 1_cloudflare_flux_call x6 |
 | script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
+| shots | 10 | 0 | 0 | 14,418 | 0_local_ffmpeg x10 |
 | smoke_flux | 1 | 0 | 0 | 8,846 | 1_cloudflare_flux_call x1 |
 | smoke_text | 1 | 0 | 1 | 13,533 | 1_gemini_text_call_failed x1 |
 | smoke_tts | 1 | 0 | 0 | 5,093 | 1_gemini_tts_call x1 |
@@ -42,8 +44,9 @@
 | gemini-3.5-flash | 1 | 60,356 |
 | gemini-3.6-flash | 1 | 33,900 |
 | gemini-3.7-flash | 1 | 21,871 |
+| ffmpeg-9.1 | 5 | 20,724 |
+| Wan-AI/Wan2.2-TI2V-5B | 10 | 14,418 |
 | gemini-3.8-flash-lite-tts | 5 | 14,179 |
-| ffmpeg-9.1 | 1 | 2,967 |
 | cloudflare-models-search | 1 | 558 |
 | gemini-models-list | 1 | 408 |
 | gemini-2.5-flash | 1 | 386 |
@@ -53,6 +56,8 @@
 
 | Stage | Shot | Calls | Latency (ms) |
 | --- | --- | --- | --- |
+| assemble | 16:9 | 2 | 9,524 |
+| assemble | 9:16 | 2 | 8,233 |
 | keyframes | shot_01 | 1 | 10,233 |
 | keyframes | shot_02 | 5 | 48,359 |
 | keyframes | shot_03 | 2 | 22,779 |
@@ -82,6 +87,16 @@
 | reference_sheet | ref_real_seed_02 | 1 | 11,422 |
 | reference_sheet | ref_real_seed_03 | 1 | 10,434 |
 | script | all | 5 | 316,424 |
+| shots | shot_01 | 1 | 1,417 |
+| shots | shot_02 | 1 | 1,449 |
+| shots | shot_03 | 1 | 1,428 |
+| shots | shot_04 | 1 | 1,456 |
+| shots | shot_05 | 1 | 1,434 |
+| shots | shot_06 | 1 | 1,419 |
+| shots | shot_07 | 1 | 1,464 |
+| shots | shot_08 | 1 | 1,473 |
+| shots | shot_09 | 1 | 1,417 |
+| shots | shot_10 | 1 | 1,461 |
 | smoke_flux | smoke | 1 | 8,846 |
 | smoke_text | smoke | 1 | 13,533 |
 | smoke_tts | smoke | 1 | 5,093 |

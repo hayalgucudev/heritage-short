@@ -193,7 +193,8 @@ def _loudnorm_filter(m: dict[str, str]) -> str:
     return (
         "loudnorm=I=-14:TP=-1:LRA=11:"
         f"measured_I={m['i']}:measured_TP={m['tp']}:measured_LRA={m['lra']}:"
-        f"measured_thresh={m['thresh']}:offset={m['offset']}:linear=true"
+        f"measured_thresh={m['thresh']}:offset={m['offset']}:linear=true,"
+        "aresample=48000"
     )
 
 
@@ -299,8 +300,15 @@ def assemble_film(
     schema_path: Path,
     runs_path: Path,
     manifest_path: Path,
+    *,
+    allow_stale_narration: bool = False,
 ) -> list[dict[str, Any]]:
-    """Build film_9x16.mp4 and film_16x9.mp4 from cached stage outputs."""
+    """Build film_9x16.mp4 and film_16x9.mp4 from cached stage outputs.
+
+    allow_stale_narration is only for a director-approved provisional cut. The
+    export hash still uses the *expected* narration hashes, so fixing the TTS
+    later automatically invalidates and rebuilds both finals.
+    """
     sb = validate_storyboard(storyboard_path, schema_path)
     manifest = contracts.load_manifest(manifest_path)
     artifacts = manifest.get("artifacts", {})
@@ -312,6 +320,7 @@ def assemble_film(
     narration_paths: list[Path] = []
     narration_hashes: list[str] = []
     slots: list[float] = []
+    stale_narration: list[str] = []
     for shot in sb["shots"]:
         sid = shot["id"]
         clip = project_root / "outputs" / "clips" / f"{sid}.mp4"
@@ -335,11 +344,14 @@ def assemble_film(
         clip_paths.append(clip)
 
         n_hash = contracts.narration_hash(sb, shot)
-        if artifacts.get(wav.relative_to(project_root).as_posix(), {}).get("input_hash") != n_hash:
+        got_narration = artifacts.get(wav.relative_to(project_root).as_posix(), {}).get("input_hash")
+        if got_narration != n_hash and not allow_stale_narration:
             raise ValueError(
                 f"Narration {sid} is stale. Regenerate it before the final edit "
                 "(shots 07-10 are expected to be stale until the TTS quota resets)."
             )
+        if got_narration != n_hash:
+            stale_narration.append(sid)
         narration_hashes.append(n_hash)
         narration_paths.append(wav)
         slots.append(max(float(shot["duration_sec"]), probe_duration_sec(wav)))
@@ -382,7 +394,11 @@ def assemble_film(
                 stage="assemble",
                 shot_id=aspect,
                 model="ffmpeg-9.1",
-                parameters={"aspect": aspect, "duration_sec": probe_duration_sec(out)},
+                parameters={
+                    "aspect": aspect,
+                    "duration_sec": probe_duration_sec(out),
+                    "stale_narration": stale_narration,
+                },
                 latency_ms=0,
                 cost_or_quota="0_cache_hit",
                 cache_hit=True,
@@ -391,7 +407,12 @@ def assemble_film(
                 output_path=rel,
             )
         return [
-            {"aspect": a, "file": o.relative_to(project_root).as_posix(), "cache_hit": True}
+            {
+                "aspect": a,
+                "file": o.relative_to(project_root).as_posix(),
+                "cache_hit": True,
+                "stale_narration": stale_narration,
+            }
             for a, o, _ in planned
         ]
 
@@ -437,6 +458,7 @@ def assemble_film(
                 "aspect": aspect,
                 "duration_sec": duration,
                 "loudnorm_measured": measured,
+                "stale_narration": stale_narration,
             },
             latency_ms=latency_ms,
             cost_or_quota="0_local_ffmpeg",
@@ -453,6 +475,7 @@ def assemble_film(
                 "latency_ms": latency_ms,
                 "duration_sec": duration,
                 "input_hash": digest,
+                "stale_narration": stale_narration,
             }
         )
     return results

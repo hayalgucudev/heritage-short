@@ -30,3 +30,8 @@
 1. **Why share hash recipes between the stages and `plan`?** If the dry run used its own copy of the cache formulas it could claim a hit when the stage would actually regenerate; one `contracts.py` makes the promise true by construction.
 2. **What does a Ken Burns fallback do?** It is a deterministic FFmpeg zoom over the approved still — real motion with no extra GPU cost, used if Wan is skipped or fails after 3 attempts, so the film can still be finished.
 3. **What did the local assembly smoke test prove?** With temporary files only, both exports rendered 73.0 s at 24 fps, and measured audio was **-14.32 LUFS / -0.97 dBTP**, matching the target; no final deliverable was rendered before the director's gate.
+
+## Provisional cut — be able to explain this
+1. **Why did the final film still have two voices?** The director confirmed the User Test 1 problem was voices. Shots 07-10 were made on flash-lite TTS because of a 10/day cap; the fix needs 4 calls after ~11:00 EAT on 26 Nov. The provisional cut exists only so visual feedback could happen early, and every log row names the four stale shots.
+2. **Why does using stale audio not break caching?** The export hash is computed from the *expected* narration hashes, not the stale files' hashes. When the correct TTS is generated, its hash matches the expected one and the finals rebuild automatically; nothing else does.
+3. **What was measured on the delivered provisional files?** Both MP4s: 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR, **-14.32 LUFS / -0.95 dBTP**. Ten local Ken Burns clips took 1,417-1,473 ms each, with zero model calls.

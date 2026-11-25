@@ -167,6 +167,7 @@ ASSEMBLE_SETTINGS: dict[str, Any] = {
     "loudnorm_i": -14,
     "loudnorm_tp": -1,
     "loudnorm_lra": 11,
+    "output_sample_rate": 48000,
 }
 
 

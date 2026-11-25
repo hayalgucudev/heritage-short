@@ -42,7 +42,7 @@ Both have burned-in English subtitles, the ACE-Step score ducked under Amharic n
 | `assemble` | Rebuild the two final exports from cached inputs. |
 | `report-costs` | Rebuild `COSTS.md` tables from real `runs.jsonl` rows. |
 
-`film` also accepts `--skip-narration`, `--skip-keyframes`, `--skip-music`, `--skip-shots`, `--import-dir`, `--steps` and `--delay-sec`.
+`film` also accepts `--skip-narration`, `--skip-keyframes`, `--skip-music`, `--skip-shots`, `--import-dir`, `--steps` and `--delay-sec`. Both `assemble` and `film` accept `--allow-stale-narration` for a director-approved provisional cut; without it, stale narration fails loudly.
 
 ## Gates and heavy jobs
 The director must explicitly approve the story, storyboard, radio cut, reference sheet, keyframes, clips, score and final edit. The Wan 2.2 Kaggle notebook (`notebooks/wan_clips_kaggle.ipynb`) is prepared but is **not run automatically**; the floor works with local Ken Burns clips. No real person's face or voice is used — see `ETHICS.md`.

@@ -95,6 +95,12 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** Pass-1 measurement `input_i=-22.55`, `input_tp=-1.37`, `input_lra=12.90`. Measured on the rendered exports: **-14.32 LUFS, -0.97 dBTP** for both 9:16 and 16:9; both 73.0 s at 24 fps. Render latency 6,485 ms (9:16) and 7,835 ms (16:9), locally measured.
 - **Decision:** The audio chain is accepted for the floor. Visual subtitle placement and end-card text remain unverified by this assistant (no image input) and need the director's check on a real frame; no final film has been rendered behind the final-edit gate.
 
+## EXP-015 — Director-approved provisional visual cut (2026-11-25)
+- **Hypothesis:** A provisional cut with the still-stale voices is useful enough to get early visual/subtitle feedback, even though shots 07-10 will be replaced after the TTS quota resets.
+- **Change:** Added an explicit `assemble --allow-stale-narration` flag (default off). Built 10 local Ken Burns clips (`py run.py shots`, 10 x `0_local_ffmpeg`, latencies 1,417-1,473 ms) and rendered both finals. The export hash still uses the *expected* narration hashes, so a later TTS fix invalidates both exports automatically.
+- **Result:** `outputs/final/film_9x16.mp4` (608x1080) and `film_16x9.mp4` (1280x720), both H.264 + AAC 48 kHz stereo, 24 fps CFR, **73.0 s**. Measured audio **-14.32 LUFS / -0.95 dBTP**. `runs.jsonl` records `stale_narration=[shot_07, shot_08, shot_09, shot_10]` on both rows. `plan` now reports 31 cache hits and 7 regenerations.
+- **Decision:** Provisional only. Director to give User Test 2 feedback on the visuals; voices are confirmed as the User Test 1 problem and will be fixed at ~11:00 EAT on 2026-11-26. No story text changed.
+
 
 
 

@@ -319,6 +319,102 @@
       "input_hash": "8a50c3522f1e48e614ceb20dc86c227e485ebee7a7e5e447a2d277e5d5f6c739",
       "status": "ok",
       "updated_at": "2026-11-25T12:22:20.854783+00:00"
+    },
+    "outputs/clips/shot_01.mp4": {
+      "file_name": "shot_01.mp4",
+      "stage": "shots",
+      "shot_id": "shot_01",
+      "input_hash": "9938ca7a6aaaeb1a5bb099501fbd74823c6af0b185b289e4f52251a38ec01921",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:14.080547+00:00"
+    },
+    "outputs/clips/shot_02.mp4": {
+      "file_name": "shot_02.mp4",
+      "stage": "shots",
+      "shot_id": "shot_02",
+      "input_hash": "d017039b9cbbe22513dea62644e52b48d82909df5dc754aacd9fc3e6a73c5a9d",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:15.567475+00:00"
+    },
+    "outputs/clips/shot_03.mp4": {
+      "file_name": "shot_03.mp4",
+      "stage": "shots",
+      "shot_id": "shot_03",
+      "input_hash": "481ea2b607a3e4762f7e056bd02dfa24c79e66f7498b19f4b956eab2f04679ae",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:17.032906+00:00"
+    },
+    "outputs/clips/shot_04.mp4": {
+      "file_name": "shot_04.mp4",
+      "stage": "shots",
+      "shot_id": "shot_04",
+      "input_hash": "b4f0aa2dd16ca31dce11be88a23493c17b33db902ac617cd7a9b9231bb96df0e",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:18.526632+00:00"
+    },
+    "outputs/clips/shot_05.mp4": {
+      "file_name": "shot_05.mp4",
+      "stage": "shots",
+      "shot_id": "shot_05",
+      "input_hash": "eee48da91cc8c3b5dfd881e5127c57c966300f9dd3e07ccbcbf3c60459fd5819",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:19.996876+00:00"
+    },
+    "outputs/clips/shot_06.mp4": {
+      "file_name": "shot_06.mp4",
+      "stage": "shots",
+      "shot_id": "shot_06",
+      "input_hash": "3e2eee49dd7ba58094dcf6718b5bb4588e81a8e8c26979f153f11edd61af3389",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:21.452271+00:00"
+    },
+    "outputs/clips/shot_07.mp4": {
+      "file_name": "shot_07.mp4",
+      "stage": "shots",
+      "shot_id": "shot_07",
+      "input_hash": "44334e511cbe802cc61b41a9e70e9dd39dc234e3075a1cb79bf8c45d4f84a4d6",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:22.953901+00:00"
+    },
+    "outputs/clips/shot_08.mp4": {
+      "file_name": "shot_08.mp4",
+      "stage": "shots",
+      "shot_id": "shot_08",
+      "input_hash": "2055c37bfe49ced530e62f50387556ee74d1e74b85e66432e24863d8c25068f9",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:24.467861+00:00"
+    },
+    "outputs/clips/shot_09.mp4": {
+      "file_name": "shot_09.mp4",
+      "stage": "shots",
+      "shot_id": "shot_09",
+      "input_hash": "5cd74bb321a38bee058f1f78e85bdf8f68b263d0db54f971d043103e24603040",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:25.923168+00:00"
+    },
+    "outputs/clips/shot_10.mp4": {
+      "file_name": "shot_10.mp4",
+      "stage": "shots",
+      "shot_id": "shot_10",
+      "input_hash": "2ff5b5d6dc63c4d2ff33d6a198ed0cd5dc5480fd632dd173d722cc65a6e5bbf7",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:41:27.421797+00:00"
+    },
+    "outputs/final/film_9x16.mp4": {
+      "file_name": "film_9x16.mp4",
+      "stage": "assemble",
+      "shot_id": "9:16",
+      "input_hash": "bb1a52aeeb56da9d4b21255169f7ce2bd008f40389b81bdaae0c0804066bcd67",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:42:36.448135+00:00"
+    },
+    "outputs/final/film_16x9.mp4": {
+      "file_name": "film_16x9.mp4",
+      "stage": "assemble",
+      "shot_id": "16:9",
+      "input_hash": "5c09169775599d2fabf0bbc7bb102e28fd32c183c336303ed2ad84f80e94d3e0",
+      "status": "ok",
+      "updated_at": "2026-11-25T12:42:41.076005+00:00"
     }
   }
 }

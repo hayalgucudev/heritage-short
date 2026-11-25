@@ -182,8 +182,15 @@ def cmd_clips_export(_args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_assemble(_args: argparse.Namespace) -> int:
-    rows = assemble_film(PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH, RUNS_PATH, MANIFEST_PATH)
+def cmd_assemble(args: argparse.Namespace) -> int:
+    rows = assemble_film(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        allow_stale_narration=args.allow_stale_narration,
+    )
     print(json.dumps(rows, indent=2, ensure_ascii=False))
     return 0
 
@@ -224,7 +231,12 @@ def cmd_film(args: argparse.Namespace) -> int:
             import_dir=Path(args.import_dir) if args.import_dir else None,
         )
     summary["assemble"] = assemble_film(
-        PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH, RUNS_PATH, MANIFEST_PATH
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        allow_stale_narration=args.allow_stale_narration,
     )
     print(json.dumps(summary, indent=2, ensure_ascii=False))
     return 0
@@ -311,6 +323,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_ce.set_defaults(func=cmd_clips_export)
 
     p_asm = sub.add_parser("assemble", help="Build both final MP4 exports from cached stage outputs.")
+    p_asm.add_argument(
+        "--allow-stale-narration",
+        action="store_true",
+        help="Director-approved provisional cut using narration that has not been regenerated yet.",
+    )
     p_asm.set_defaults(func=cmd_assemble)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")
@@ -320,6 +337,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_film.add_argument("--import-dir", default=None, help="Optional Wan clip import folder.")
     p_film.add_argument("--steps", type=int, default=4, help="FLUX inference steps.")
     p_film.add_argument("--delay-sec", type=float, default=13.0, help="Pause between live TTS calls.")
+    p_film.add_argument(
+        "--allow-stale-narration",
+        action="store_true",
+        help="Director-approved provisional cut using unre-generated narration.",
+    )
     for flag, name in (
         ("--skip-narration", "skip_narration"),
         ("--skip-keyframes", "skip_keyframes"),

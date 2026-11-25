@@ -113,6 +113,11 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Verification:** Temporary-only smoke render (no deliverable, no `runs.jsonl` writes) produced 9:16 and 16:9 MP4s, both 73.0 s; measured final audio **-14.32 LUFS, -0.97 dBTP**. Production code now raises with FFmpeg stderr instead of hiding it.
 - **Status / Lesson:** These were real failures, not hypothetical ones. This assistant cannot view PNG/video frames in this session; text placement and the end card still need the director's visual check.
 
+## 021 — No Wan clip output found when asked about the clips gate (2026-11-25)
+- **What happened:** Asked whether to run the Wan Kaggle job, the director replied *"I already saved the kaggle output in music/"*. I checked `outputs/music/` and found only `candidate_01_seed777.wav`, `music_job.json` and `music_run_metadata.json` — the ACE-Step score, not video clips. `outputs/clips/` did not exist and no Wan zip was in Downloads.
+- **What I did:** Did not guess a clip source or invent a Wan result. Recorded the ambiguity here, treated it as **no Wan clips available**, and used the local Ken Burns fallback for the provisional cut. The Wan notebook remains prepared but unrun.
+- **Lesson / Open question:** Please tell me if the Wan clips are somewhere else and give the exact folder. If they arrive later, `py run.py shots --import-dir <folder>` will replace only the 10 clips and both finals; everything else stays cached.
+
 
 
 

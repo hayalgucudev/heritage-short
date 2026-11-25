@@ -7,7 +7,9 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-HANDWRITTEN_MARKER = "## Production keyframes run"
+# Split at the start of our own generated section, so repeated runs are stable
+# and everything the director wrote by hand above it is always preserved.
+HANDWRITTEN_MARKER = "## Measured totals (from `runs.jsonl`)"
 
 
 def _records(runs_path: Path) -> list[dict[str, Any]]:
