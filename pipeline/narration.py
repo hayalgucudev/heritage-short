@@ -46,6 +46,12 @@ def probe_duration_sec(media_path: Path) -> float:
     return round(float(res.stdout.strip()), 3)
 
 
+def _voice_from_tts_style(tts_style: str) -> str:
+    """Extract the prebuilt voice name from storyboard tts_style (e.g. 'Kore, ...')."""
+    head = tts_style.split(",", 1)[0].strip()
+    return head or "Kore"
+
+
 def generate_narration(
     project_root: Path,
     storyboard_path: Path,
@@ -53,8 +59,9 @@ def generate_narration(
     runs_path: Path,
     manifest_path: Path,
     *,
-    voice: str = "Aoede",
+    voice: str | None = None,
     only_shot: str | None = None,
+    pacing_delay_sec: float = 0.0,
 ) -> list[dict[str, Any]]:
     """Generate one WAV file per shot with deterministic per-shot hash caching."""
     sb = validate_storyboard(storyboard_path, schema_path)
@@ -71,12 +78,14 @@ def generate_narration(
 
     gemini_key: str | None = None
     results: list[dict[str, Any]] = []
+    api_calls_made = 0
 
     for shot in sb["shots"]:
         sid = shot["id"]
         if only_shot and sid != only_shot:
             continue
 
+        shot_voice = voice or _voice_from_tts_style(shot.get("tts_style", "Kore"))
         narration_text = shot["narration"].strip()
         planned_sec = float(shot["duration_sec"])
         wav_path = out_dir / f"{sid}.wav"
@@ -87,7 +96,7 @@ def generate_narration(
             stage="narration",
             model=tts_model,
             prompt=narration_text,
-            params={"voice": voice, "no_wrapper": True},
+            params={"voice": shot_voice, "no_wrapper": True},
         )
 
         cached_entry = artifacts.get(rel_wav, {})
@@ -102,7 +111,7 @@ def generate_narration(
                 stage="narration",
                 shot_id=sid,
                 model=tts_model,
-                parameters={"voice": voice, "no_wrapper": True, "duration_sec": measured_sec},
+                parameters={"voice": shot_voice, "no_wrapper": True, "duration_sec": measured_sec},
                 latency_ms=0,
                 cost_or_quota="0_cache_hit",
                 cache_hit=True,
@@ -113,6 +122,7 @@ def generate_narration(
             results.append(
                 {
                     "shot_id": sid,
+                    "voice": shot_voice,
                     "file": rel_wav,
                     "planned_sec": planned_sec,
                     "measured_sec": measured_sec,
@@ -122,6 +132,9 @@ def generate_narration(
                 }
             )
             continue
+
+        if api_calls_made > 0 and pacing_delay_sec > 0:
+            time.sleep(pacing_delay_sec)
 
         if gemini_key is None:
             load_env(project_root)
@@ -137,12 +150,13 @@ def generate_narration(
                     "generationConfig": {
                         "responseModalities": ["AUDIO"],
                         "speechConfig": {
-                            "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}
+                            "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": shot_voice}}
                         },
                     },
                 },
                 max_total_sec=60.0,
             )
+            api_calls_made += 1
             latency_ms = int((time.perf_counter() - t0) * 1000)
             inline = resp.json()["candidates"][0]["content"]["parts"][0]["inlineData"]
             audio_bytes = base64.b64decode(inline["data"])
@@ -167,7 +181,7 @@ def generate_narration(
                 shot_id=sid,
                 model=tts_model,
                 parameters={
-                    "voice": voice,
+                    "voice": shot_voice,
                     "no_wrapper": True,
                     "mimeType": mime,
                     "duration_sec": measured_sec,
@@ -182,6 +196,7 @@ def generate_narration(
             results.append(
                 {
                     "shot_id": sid,
+                    "voice": shot_voice,
                     "file": rel_wav,
                     "planned_sec": planned_sec,
                     "measured_sec": measured_sec,
@@ -198,7 +213,7 @@ def generate_narration(
                 stage="narration",
                 shot_id=sid,
                 model=tts_model,
-                parameters={"voice": voice, "no_wrapper": True},
+                parameters={"voice": shot_voice, "no_wrapper": True},
                 latency_ms=latency_ms,
                 cost_or_quota="1_gemini_tts_call_failed",
                 cache_hit=False,

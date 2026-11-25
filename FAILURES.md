@@ -37,5 +37,11 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What we tried:** Replaced the heavy server-side `responseSchema` constraint with `responseMimeType: "application/json"` plus explicit JSON structure in the prompt, relying on local `validate.py` (`jsonschema`) to enforce exact schema compliance.
 - **What fixed it:** `gemini-3.6-flash` succeeded in `33,900 ms` with the lighter JSON-only request and passed `validate.py` cleanly (`10 shots`).
 
+## 008 — HTTP 429 quota exceeded on `gemini-3.8-flash-tts` at `shot_06`
+- **What broke:** While generating `Aoede` narration back-to-back (`shot_01`–`shot_05` succeeded in 17 seconds), `shot_06` failed with `HTTP 429` (`You exceeded your current quota`). Error truncation at `300` chars in `_post_with_retry` hid the exact quota metric name (`PerMinute` vs `PerDay`).
+- **What we tried:** Preserved `shot_01`–`shot_05` (`Aoede`) in `outputs/narration_aoede/`, expanded HTTP error capture in `pipeline/smoke.py` to `1,200` chars, and added pacing delay between TTS calls in `pipeline/narration.py`.
+- **Status:** Testing 1 `Kore` shot (`shot_01`) first to verify whether the 429 was a per-minute rate limit or a daily quota cap.
+
+
 
 

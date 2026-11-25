@@ -53,11 +53,11 @@ def _post_with_retry(
         )
         if resp.status_code in (429, 500, 502, 503, 504):
             raise requests.HTTPError(
-                f"HTTP {resp.status_code}: {resp.text[:300]}", response=resp
+                f"HTTP {resp.status_code}: {resp.text[:1200]}", response=resp
             )
         if resp.status_code >= 400:
             raise NonRetryableHTTPError(
-                f"HTTP {resp.status_code}: {resp.text[:500]}"
+                f"HTTP {resp.status_code}: {resp.text[:1200]}"
             )
         return resp
 

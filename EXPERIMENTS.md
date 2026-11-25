@@ -18,13 +18,13 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Hypothesis:** Removing the English style instruction (`"Speak in a calm, warm, unhurried storytelling voice in Amharic: "`) from `contents` (note: Gemini `speechConfig.voiceConfig` has no separate style-instruction field) will eliminate English bleed/extra pauses and drop single-sentence duration from `14.32 s` to natural length (~3–6 s).
 - **Change:** Prompt text: stripped English prefix, sending only the raw Amharic sentence (identical model `gemini-3.8-flash-tts`, identical voice `Aoede`).
 - **Result:** Succeeded in `3,930 ms` (`outputs/smoke/amharic_tts_nowrapper.wav`), duration **`5.20 s`** (most natural single-sentence length: `9.12 s` shorter than the `14.32 s` baseline with the exact same voice and model). Director listened and confirmed: *"no English, correct words, natural pace, but a bit robotic."*
-- **Decision:** **Winner / Production default.** Use `gemini-3.8-flash-tts` + `Aoede` with **no English wrapper** in spoken text, paired with short sentences and simple punctuation for warmth/pacing.
+- **Decision:** Adopted `--no-wrapper` pure Amharic text permanently for all narration (see `EXP-004` for voice selection).
 
 ## EXP-004 — Voice Warmth Check Without Wrapper (`Aoede` vs `Kore`, `--no-wrapper`)
 - **Hypothesis:** Testing `Kore` with `--no-wrapper` (no English instruction) may sound warmer than `Aoede` while keeping natural ~5 s single-sentence pacing.
 - **Change:** `voiceName`: `Aoede` -> `Kore` (identical model `gemini-3.8-flash-tts`, identical `--no-wrapper` raw Amharic text).
-- **Result:** Succeeded in `3,515 ms` (`outputs/smoke/amharic_tts_kore_nowrapper.wav`), duration **`5.04 s`** (slightly faster latency and `0.16 s` shorter than `Aoede` `--no-wrapper` at `5.20 s`).
-- **Decision:** Non-blocking — `Aoede` stays default unless director selects `Kore` after listening.
+- **Result:** Succeeded in `3,515 ms` (`outputs/smoke/amharic_tts_kore_nowrapper.wav`), duration **`5.04 s`** (slightly faster latency and `0.16 s` shorter than `Aoede` `--no-wrapper` at `5.20 s`). Director listened to both and confirmed `Kore` sounded better.
+- **Decision:** **Winner / Production voice.** Switched all 10 shots in `storyboard.json` to `Kore` (`gemini-3.8-flash-tts`, no English wrapper). The 5 earlier `Aoede` clips (`shot_01`–`shot_05`) were archived in `outputs/narration_aoede/` for the record.
 
 
 
