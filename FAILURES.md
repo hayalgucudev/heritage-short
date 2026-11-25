@@ -78,6 +78,12 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What we tried:** Replaced the `shot_09` line with natural Amharic aligned to the visual (`"ጎረቤቶቿን ቡና ትጋብዛለች።"` / *"She invites the neighbours\nto share coffee."*).
 - **What fixed it / Status:** `storyboard.json` updated and re-validated. Only `shot_09.wav` is invalidated by its input hash; regeneration of `shot_09` (along with `shot_07`, `shot_08`, `shot_10`) is deferred until `gemini-3.8-flash-tts` daily quota resets after `11:00 EAT` on 2026-11-26.
 
+## 016 — Previous coding agent (Antigravity CLI) exhausted starter quota on both accounts
+- **What broke:** The previous coding agent (**Antigravity CLI**, **starter quota**) ran out of quota on **both** of its accounts. Its message said the **baseline quota refreshes on 2 December 2026**.
+- **What we did NOT do:** I did **not** rotate accounts to get around the quota limit.
+- **What changed instead:** I moved to **OpenCode with a free model** and continued the project from the on-disk state (`storyboard.json`, `outputs/manifest.json`, `runs.jsonl`, and the markdown logs).
+- **Status / Lesson:** This is a tooling/quota handoff, not a model-output failure. Do not budget on the Antigravity starter quota before 2026-12-02; keep using cache hits, small drafts, and the free tiers already logged in this file. All cost numbers remain sourced from `runs.jsonl` only.
+
 
 
 
