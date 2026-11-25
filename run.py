@@ -6,11 +6,16 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
+from pipeline.assemble import assemble_film
+from pipeline.costs import build_cost_report
 from pipeline.keyframes import generate_keyframes, generate_reference_sheet
 from pipeline.music import run_music_stage
 from pipeline.narration import build_radio_cut, generate_narration
+from pipeline.plan import build_plan, format_plan
 from pipeline.script import draft_storyboard
+from pipeline.shots import export_clips_job, run_shots_stage
 from pipeline.smoke import run_smoke_tests, run_tts_sample, verify_live_models
 from pipeline.validate import validate_storyboard
 
@@ -150,12 +155,85 @@ def cmd_keyframes(args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_not_yet(name: str) -> int:
-    print(
-        f"Command '{name}' is scaffolded and will be implemented in its upcoming stage.",
-        file=sys.stderr,
+def cmd_plan(_args: argparse.Namespace) -> int:
+    plan = build_plan(PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH, MANIFEST_PATH)
+    print(format_plan(plan))
+    return 0
+
+
+def cmd_shots(args: argparse.Namespace) -> int:
+    rows = run_shots_stage(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        import_dir=Path(args.import_dir) if args.import_dir else None,
+        only_shot=args.shot,
+        force=args.force,
     )
-    return 2
+    print(json.dumps(rows, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_clips_export(_args: argparse.Namespace) -> int:
+    info = export_clips_job(PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH)
+    print(json.dumps(info, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_assemble(_args: argparse.Namespace) -> int:
+    rows = assemble_film(PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH, RUNS_PATH, MANIFEST_PATH)
+    print(json.dumps(rows, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_film(args: argparse.Namespace) -> int:
+    """One-command reproducible build. Every stage checks its own cache first."""
+    summary: dict[str, Any] = {}
+    if not args.skip_narration:
+        summary["narration"] = generate_narration(
+            PROJECT_ROOT,
+            STORYBOARD_PATH,
+            SCHEMA_PATH,
+            RUNS_PATH,
+            MANIFEST_PATH,
+            pacing_delay_sec=args.delay_sec,
+        )
+    if not args.skip_keyframes:
+        summary["keyframes"] = generate_keyframes(
+            PROJECT_ROOT,
+            STORYBOARD_PATH,
+            SCHEMA_PATH,
+            RUNS_PATH,
+            MANIFEST_PATH,
+            steps=args.steps,
+            use_reference=False,
+        )
+    if not args.skip_music:
+        summary["music"] = run_music_stage(
+            PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH, RUNS_PATH, MANIFEST_PATH
+        )
+    if not args.skip_shots:
+        summary["shots"] = run_shots_stage(
+            PROJECT_ROOT,
+            STORYBOARD_PATH,
+            SCHEMA_PATH,
+            RUNS_PATH,
+            MANIFEST_PATH,
+            import_dir=Path(args.import_dir) if args.import_dir else None,
+        )
+    summary["assemble"] = assemble_film(
+        PROJECT_ROOT, STORYBOARD_PATH, SCHEMA_PATH, RUNS_PATH, MANIFEST_PATH
+    )
+    print(json.dumps(summary, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_report_costs(_args: argparse.Namespace) -> int:
+    info = build_cost_report(RUNS_PATH, PROJECT_ROOT / "COSTS.md")
+    print(json.dumps(info, indent=2, ensure_ascii=False))
+    return 0
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -223,14 +301,36 @@ def build_parser() -> argparse.ArgumentParser:
     p_kf.add_argument("--out-name", default=None, help="Optional output filename when running a single --shot.")
     p_kf.set_defaults(func=cmd_keyframes)
 
+    p_sh = sub.add_parser("shots", help="Import Wan clips or make local Ken Burns fallback clips.")
+    p_sh.add_argument("--import-dir", default=None, help="Folder with shot_NN.mp4 + wan_run_metadata.json.")
+    p_sh.add_argument("--shot", default=None, help="Optional single shot id.")
+    p_sh.add_argument("--force", action="store_true", help="Ignore cache and rebuild the clip.")
+    p_sh.set_defaults(func=cmd_shots)
+
+    p_ce = sub.add_parser("clips-export", help="Package keyframes + motion prompts for the Kaggle Wan notebook.")
+    p_ce.set_defaults(func=cmd_clips_export)
+
+    p_asm = sub.add_parser("assemble", help="Build both final MP4 exports from cached stage outputs.")
+    p_asm.set_defaults(func=cmd_assemble)
+
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")
-    p_plan.set_defaults(func=lambda _a: cmd_not_yet("plan"))
+    p_plan.set_defaults(func=cmd_plan)
 
     p_film = sub.add_parser("film", help="Run full film pipeline from storyboard.json.")
-    p_film.set_defaults(func=lambda _a: cmd_not_yet("film"))
+    p_film.add_argument("--import-dir", default=None, help="Optional Wan clip import folder.")
+    p_film.add_argument("--steps", type=int, default=4, help="FLUX inference steps.")
+    p_film.add_argument("--delay-sec", type=float, default=13.0, help="Pause between live TTS calls.")
+    for flag, name in (
+        ("--skip-narration", "skip_narration"),
+        ("--skip-keyframes", "skip_keyframes"),
+        ("--skip-music", "skip_music"),
+        ("--skip-shots", "skip_shots"),
+    ):
+        p_film.add_argument(flag, action="store_true", dest=name)
+    p_film.set_defaults(func=cmd_film)
 
     p_costs = sub.add_parser("report-costs", help="Generate COSTS.md tables from runs.jsonl.")
-    p_costs.set_defaults(func=lambda _a: cmd_not_yet("report-costs"))
+    p_costs.set_defaults(func=cmd_report_costs)
 
     return parser
 

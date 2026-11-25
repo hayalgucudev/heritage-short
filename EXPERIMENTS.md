@@ -89,6 +89,12 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** `candidates_ready`, 1 candidate, measured `60.0 s` (`pcm_s16le`, 48 kHz, stereo), `input_hash=40539b99…`, `cache_hit=false`, one `1_kaggle_acestep_call` row in `runs.jsonl` with `latency_ms=null` (not measured, so not invented).
 - **Decision:** Approved by director for the floor. If the 3-candidate Kaggle zip is imported later, only the score/mix/final assembly depend on that change.
 
+## EXP-014 — Local smoke test of the two-pass loudnorm and dual export (2026-11-25)
+- **Hypothesis:** A single unnormalised sidechained mix plus FFmpeg two-pass `loudnorm=I=-14:TP=-1:LRA=11` can hit the deliverable loudness target in both aspect ratios without model calls.
+- **Change:** No model calls and no deliverables. Temporary files only: 10 Ken Burns clips from the approved keyframes, one 73.0 s ducked mix, per-aspect ASS subtitles, then both exports. Three bugs were found and fixed (see `FAILURES.md` 020).
+- **Result:** Pass-1 measurement `input_i=-22.55`, `input_tp=-1.37`, `input_lra=12.90`. Measured on the rendered exports: **-14.32 LUFS, -0.97 dBTP** for both 9:16 and 16:9; both 73.0 s at 24 fps. Render latency 6,485 ms (9:16) and 7,835 ms (16:9), locally measured.
+- **Decision:** The audio chain is accepted for the floor. Visual subtitle placement and end-card text remain unverified by this assistant (no image input) and need the director's check on a real frame; no final film has been rendered behind the final-edit gate.
+
 
 
 

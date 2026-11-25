@@ -106,6 +106,13 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What we did:** Did **not** guess a seed or latency. Wrote metadata with `seed=null`, `latency_ms=null` and an explicit `seed_note` explaining that `candidate_01_seed777.wav` uses the storyboard base seed as a filename label only. Registered the WAV through `py run.py music`, which logged a real 60.0 s duration from `ffprobe`.
 - **Status / Lesson:** Director approved this single candidate as the floor score (EXP-013). Future notebook runs must keep `music_run_metadata.json` in the exported zip so costs and latencies stay real.
 
+## 020 — Three FFmpeg assembly bugs found in a local smoke test (2026-11-25)
+- **Bug A, fontconfig crash:** `drawtext=font=Arial` made FFmpeg exit with `Fontconfig error: Cannot load default config file`. The build has fontconfig compiled in but this Windows machine has no fontconfig config. Tried and rejected: `fontfile=C:/Windows/Fonts/arial.ttf` and `fontfile=C\:/...` — both produced `No option name near ...` because the drive colon is a filtergraph delimiter. **Fix:** resolve a real font file and emit `fontfile='C\:/Windows/Fonts/arial.ttf':` (quoted plus escaped colon), verified with a one-frame drawtext test.
+- **Bug B, subtitle scale:** Generating an SRT and using `force_style` left libass using its default 288-unit PlayRes, so a measured `MarginV=210` would have placed subtitles ~73% up a 9:16 frame. **Fix:** write a per-aspect ASS file with `PlayResX/PlayResY` set to the real export size, so FontSize and MarginV are real pixels.
+- **Bug C, silent 3.72 s soundtrack:** The audio mix looked successful but probed as **3.72 s instead of 73 s**. Step-by-step isolation showed the padded narration concat was 73.0 s, `sidechaincompress` output was only 60 s because the score WAV is 60 s, and `amix=inputs=2:duration=first` then stopped at 3.72 s. **Fix:** `apad=whole_dur=73` the score before ducking and use `amix=duration=longest`; the mix then probed 73.0 s.
+- **Verification:** Temporary-only smoke render (no deliverable, no `runs.jsonl` writes) produced 9:16 and 16:9 MP4s, both 73.0 s; measured final audio **-14.32 LUFS, -0.97 dBTP**. Production code now raises with FFmpeg stderr instead of hiding it.
+- **Status / Lesson:** These were real failures, not hypothetical ones. This assistant cannot view PNG/video frames in this session; text placement and the end card still need the director's visual check.
+
 
 
 

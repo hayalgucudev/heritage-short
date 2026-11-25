@@ -9,6 +9,85 @@
 - I moved to **OpenCode with a free model**; this changed the coding tool, not the film pipeline or its measured costs.
 - Consequence: do not rely on that starter quota before 2026-12-02. Continue to protect quota with cache hits, cheap drafts and the free tiers recorded in `FAILURES.md`; every figure in the tables below still comes from `runs.jsonl`.
 
-## Production keyframes run (measured from `runs.jsonl`, 2026-11-25)
-- Stage `keyframes`, model `@cf/black-forest-labs/flux-2-klein-4b`, 10 shots (`shot_01`–`shot_10`): **10 calls**, each `1_cloudflare_flux_call`, **0 cache hits**, all `status=ok`.
-- Latencies: **98,724 ms total (~98.7 s)**; fastest `7,737 ms` (`shot_04`), slowest `11,896 ms` (`shot_06`). Full per-shot table is in `EXP-012` in `EXPERIMENTS.md`; `py run.py report-costs` will aggregate all logged stages when that command is built.
+## Measured totals (from `runs.jsonl`)
+
+- Real logged records: **61**
+- Non-cache model/FFmpeg calls: **55**
+- Failed calls: **7**
+- Total logged latency: **638,307 ms** (10.6 min)
+
+### By stage
+
+| Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
+| --- | --- | --- | --- | --- | --- |
+| keyframes | 15 | 0 | 0 | 148,599 | 1_cloudflare_flux_call x15 |
+| music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
+| narration | 18 | 5 | 2 | 68,368 | 0_cache_hit x5, 1_gemini_tts_call x16, 1_gemini_tts_call_failed x2 |
+| radio_cut | 1 | 0 | 0 | 2,967 | 0_local_ffmpeg x1 |
+| reference_sheet | 6 | 0 | 0 | 59,005 | 1_cloudflare_flux_call x6 |
+| script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
+| smoke_flux | 1 | 0 | 0 | 8,846 | 1_cloudflare_flux_call x1 |
+| smoke_text | 1 | 0 | 1 | 13,533 | 1_gemini_text_call_failed x1 |
+| smoke_tts | 1 | 0 | 0 | 5,093 | 1_gemini_tts_call x1 |
+| smoke_tts_experiment | 4 | 0 | 0 | 14,506 | 1_gemini_tts_call x4 |
+| verify_models | 2 | 0 | 0 | 966 | 0_neurons_metadata x1, 0_tokens_metadata x1 |
+
+### By model
+
+| Model | Calls | Latency (ms) |
+| --- | --- | --- |
+| @cf/black-forest-labs/flux-2-klein-4b | 22 | 216,450 |
+| gemini-3.8-flash | 2 | 213,444 |
+| gemini-3.8-flash-tts | 18 | 73,788 |
+| gemini-3.5-flash | 1 | 60,356 |
+| gemini-3.6-flash | 1 | 33,900 |
+| gemini-3.7-flash | 1 | 21,871 |
+| gemini-3.8-flash-lite-tts | 5 | 14,179 |
+| ffmpeg-9.1 | 1 | 2,967 |
+| cloudflare-models-search | 1 | 558 |
+| gemini-models-list | 1 | 408 |
+| gemini-2.5-flash | 1 | 386 |
+| ACE-Step/ACE-Step-v1.5 | 1 | 0 |
+
+### By stage and shot
+
+| Stage | Shot | Calls | Latency (ms) |
+| --- | --- | --- | --- |
+| keyframes | shot_01 | 1 | 10,233 |
+| keyframes | shot_02 | 5 | 48,359 |
+| keyframes | shot_03 | 2 | 22,779 |
+| keyframes | shot_04 | 1 | 7,737 |
+| keyframes | shot_05 | 1 | 8,849 |
+| keyframes | shot_06 | 1 | 11,896 |
+| keyframes | shot_07 | 1 | 10,735 |
+| keyframes | shot_08 | 1 | 8,118 |
+| keyframes | shot_09 | 1 | 9,656 |
+| keyframes | shot_10 | 1 | 10,237 |
+| music | candidate_01 | 1 | 0 |
+| narration | shot_01 | 2 | 6,403 |
+| narration | shot_02 | 3 | 9,252 |
+| narration | shot_03 | 2 | 6,647 |
+| narration | shot_04 | 2 | 9,590 |
+| narration | shot_05 | 2 | 7,637 |
+| narration | shot_06 | 2 | 10,403 |
+| narration | shot_07 | 2 | 10,514 |
+| narration | shot_08 | 1 | 2,617 |
+| narration | shot_09 | 1 | 2,453 |
+| narration | shot_10 | 1 | 2,852 |
+| radio_cut | all | 1 | 2,967 |
+| reference_sheet | ref_01 | 1 | 9,064 |
+| reference_sheet | ref_02 | 1 | 10,286 |
+| reference_sheet | ref_03 | 1 | 9,296 |
+| reference_sheet | ref_real_seed_01 | 1 | 8,503 |
+| reference_sheet | ref_real_seed_02 | 1 | 11,422 |
+| reference_sheet | ref_real_seed_03 | 1 | 10,434 |
+| script | all | 5 | 316,424 |
+| smoke_flux | smoke | 1 | 8,846 |
+| smoke_text | smoke | 1 | 13,533 |
+| smoke_tts | smoke | 1 | 5,093 |
+| smoke_tts_experiment | smoke | 4 | 14,506 |
+| verify_models | smoke | 2 | 966 |
+
+## Evidence rule
+
+Every number above is computed from `runs.jsonl` at generation time. No cost or latency is estimated or invented. Rebuild with `py run.py report-costs`.
