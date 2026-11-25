@@ -129,6 +129,12 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Result:** Three real calls, cache miss, latencies **13,044 / 11,721 / 14,496 ms**. `plan` went from 29 hits / 9 regenerations to **34 hits / 4 regenerations** — only the four known TTS shots remain. Both finals stayed cache hits, so the approved edit was untouched.
 - **Decision:** Kept. This is a quota-cleanliness fix, not a visual change; it makes the clean-clone one-command test predictable. No new keyframe, clip or export was generated.
 
+## EXP-021 — Verifying the notebook repairs on real GPUs (2026-11-25)
+- **Hypothesis:** The notebook fixes made from pasted tracebacks will hold on a fresh GPU session: pinned versions will let Wan import, guards will fail loudly instead of cascading, and the ACE-Step Colab run will make all three candidates.
+- **Change:** The director reran `acestep_music_colab.ipynb` on Colab and `wan_clips_kaggle.ipynb` on Kaggle; I patched only the download cell and cell 1's error message afterward. I also ran `py run.py clips-export` locally to create the missing job zip.
+- **Result:** Colab ACE-Step succeeded on a T4: DiT load **10.1 s**, **5.9 GB** used, three candidates in **13,842 / 7,113 / 6,965 ms**, metadata written; only `files.download` failed (browser JS). Kaggle Wan printed the three pinned versions and **`WanImageToVideoPipeline import: OK`** (the pin fix works), and cells 3/5/6 raised the intended clear errors. Cell 1 still failed because no job dataset was mounted; `clips-export` produced a **7,796,471-byte** zip. No Wan clip, no GPU latency for Wan, no new score imported.
+- **Decision:** Keep the pins and guards — they changed my mind about "locally compiled" being enough; a real run distinguishes a dependency fix from a plausible-looking patch. The Wan job zip is gitignored and rebuilt by one local command. The delivered film is unchanged.
+
 
 
 
