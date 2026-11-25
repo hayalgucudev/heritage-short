@@ -52,8 +52,13 @@ def _post_with_retry(
             url, headers=headers, json=json_body, files=files, timeout=req_timeout
         )
         if resp.status_code in (429, 500, 502, 503, 504):
+            body = resp.text[:1200]
+            if resp.status_code == 429 and (
+                "per day" in body.lower() or "perday" in body.lower()
+            ):
+                raise NonRetryableHTTPError(f"HTTP 429 (Daily Quota): {body}")
             raise requests.HTTPError(
-                f"HTTP {resp.status_code}: {resp.text[:1200]}", response=resp
+                f"HTTP {resp.status_code}: {body}", response=resp
             )
         if resp.status_code >= 400:
             raise NonRetryableHTTPError(

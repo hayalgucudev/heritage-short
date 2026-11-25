@@ -47,6 +47,13 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What we tried:** Replaced those exact lines and updated their English subtitles in `storyboard.json`, while holding `shot_09` for a revised line matching the updated solo-Grandmother framing.
 - **What fixed it / Lesson:** Even fluent-looking low-resource script output from an LLM requires native-speaker verification before locking TTS audio; per-shot hash caching ensured only the modified shots regenerate.
 
+## 010 — `gemini-3.8-flash-tts` Free Tier daily cap is 10 requests/day (`RESOURCE_EXHAUSTED`)
+- **What broke:** After completing `Kore` narration for `shot_01`–`shot_06` (`3.56 s`–`4.64 s` each), `shot_07` failed with `HTTP 429 RESOURCE_EXHAUSTED`: `Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10, model: gemini-3.8-flash-tts, description: Generate content requests per day limit exceeded on Free Tier. Please retry in 23h47m25s.`
+- **What we learned:** The free tier on `gemini-3.8-flash-tts` allows only **10 requests per day** (the earlier `shot_06` 429 was hitting this rolling/daily quota ceiling, not just RPM).
+- **What we fixed in code:** Updated `_post_with_retry` in `pipeline/smoke.py` to treat `"per day"` / `PerDay` 429 quota errors as non-retryable so we fail fast instead of burning retries.
+- **Status:** `shot_01`–`shot_06` (`Kore`) are saved and cached; paused at `shot_07` awaiting director choice between testing `gemini-3.8-flash-lite-tts` / `gemini-3.1-flash-tts-preview` or proceeding with keyframes/character sheet today while waiting for tomorrow's 24h reset.
+
+
 
 
 
