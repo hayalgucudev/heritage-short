@@ -37,13 +37,19 @@ def _post_with_retry(
     headers: dict[str, str],
     json_body: dict[str, Any] | None = None,
     files: dict[str, Any] | None = None,
-    timeout: int = 60,
+    timeout: int | tuple[int, int] = (10, 50),
+    max_total_sec: float = 60.0,
 ) -> requests.Response:
-    """POST with retries on transient 429/5xx HTTP errors and network failures."""
+    """POST with retries on transient 429/5xx HTTP errors within a hard 60s per-call cap."""
+    deadline = time.monotonic() + max_total_sec
 
     def _do_post() -> requests.Response:
+        remaining = deadline - time.monotonic()
+        if remaining <= 1.0:
+            raise TimeoutError(f"Hard {max_total_sec:.0f}s call timeout reached before attempt.")
+        req_timeout = (min(10.0, remaining), max(1.0, remaining))
         resp = requests.post(
-            url, headers=headers, json=json_body, files=files, timeout=timeout
+            url, headers=headers, json=json_body, files=files, timeout=req_timeout
         )
         if resp.status_code in (429, 500, 502, 503, 504):
             raise requests.HTTPError(
@@ -55,24 +61,20 @@ def _post_with_retry(
             )
         return resp
 
-    def _wrapped() -> requests.Response:
-        try:
-            return _do_post()
-        except NonRetryableHTTPError:
-            raise
-
-    # Only retry transient errors; re-raise NonRetryableHTTPError immediately if caught.
     last_exc: Exception | None = None
     for attempt in range(1, 4):
         try:
-            return _wrapped()
+            return _do_post()
         except NonRetryableHTTPError:
             raise
         except Exception as exc:  # noqa: BLE001
             last_exc = exc
             if attempt >= 3:
                 break
-            time.sleep(2.0 * (2 ** (attempt - 1)))
+            delay = 2.0 * (2 ** (attempt - 1))
+            if time.monotonic() + delay >= deadline:
+                break
+            time.sleep(delay)
     assert last_exc is not None
     raise last_exc
 

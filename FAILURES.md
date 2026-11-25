@@ -23,7 +23,19 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What fixed it:** Sending **pure Amharic text only** (`--no-wrapper`) fixed word accuracy and natural pacing (`5.20 s`), though the director noted the voice still sounds slightly robotic — so scripts will use short sentences and simple punctuation, and warmth will be tested directly in the radio-cut audience test.
 
 ## 005 — Both `gemini-3.8-flash` and `gemini-3.7-flash` returned HTTP 503 (`UNAVAILABLE`) in Stage 2
-- **What broke:** During `run.py draft-storyboard`, `gemini-3.8-flash` failed after 3 exponential-backoff attempts (`199,911 ms`, `HTTP 503: high demand`), and the pre-approved fallback `gemini-3.7-flash` also failed after 3 attempts (`21,871 ms`, `HTTP 503: high demand`).
+- **What broke:** During `run.py draft-storyboard`, `gemini-3.8-flash` failed after 3 exponential-backoff attempts (`199,911 ms`, `HTTP 503: high demand`), and the pre-approved fallback `gemini-3.7-flash` also failed after 3 attempts (`21,871 ms`, `HTTP 503: high demand`). The `90 s` per-attempt timeout allowed `gemini-3.8-flash` retries to block for over 3 minutes.
 - **What we tried:** Verified both errors in `runs.jsonl` and stopped without silently substituting another model.
-- **Status:** Waiting for director approval to target `gemini-2.5-flash` (or `gemini-3.6-flash` / `gemini-3.5-flash`).
+- **What fixed it:** Added a hard `60 s` wall-clock timeout cap per call (`max_total_sec=60.0` in `pipeline/smoke.py` `_post_with_retry`) so overloaded models cannot stall for minutes.
+
+## 006 — `gemini-2.5-flash` returned HTTP 404 (`NOT_FOUND` for new users)
+- **What broke:** Even though `gemini-2.5-flash` appeared in `v1beta/models` during `verify-models`, calling it in `draft-storyboard` returned HTTP 404 (`386 ms`): `"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash"`.
+- **What we tried:** Verified the error in `runs.jsonl` and removed `gemini-2.5-flash` from candidate models.
+- **Status:** Logged as a live-tier retirement discrepancy (`verify-models` still lists retired models for existing users while blocking new keys).
+
+## 007 — `gemini-3.5-flash` hit the 60s hard read timeout on nested `responseSchema`
+- **What broke:** Fallback `gemini-3.5-flash` timed out cleanly at `60,356 ms` (`ReadTimeoutError`, confirming the 60s hard cap works) when generating the 10-shot storyboard with a large nested `responseSchema`.
+- **What we tried:** Replaced the heavy server-side `responseSchema` constraint with `responseMimeType: "application/json"` plus explicit JSON structure in the prompt, relying on local `validate.py` (`jsonschema`) to enforce exact schema compliance.
+- **Status:** Waiting for director approval to run with `gemini-3.5-flash-lite` / `gemini-3.6-flash` / `gemini-3.8-flash`.
+
+
 

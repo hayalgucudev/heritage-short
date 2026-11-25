@@ -31,8 +31,8 @@ STRICT RULES (must obey every single one):
 1. Story & Privacy: A fictionalized, stylized tribute to "Grandmother" in "the village". NEVER invent or include real people's names, real village/city names, addresses, phone numbers, or private family details. Only use "Grandmother" (አያቴ) and "the village" (መንደሩ).
 2. Ending feeling: Quiet gratitude and warmth — showing how small daily acts of care (waking early, lighting the hearth, roasting and pouring morning coffee, baking injera, tending the courtyard, welcoming neighbors, blessing the day) quietly hold a family together across generations.
 3. Shot count & timing: Create EXACTLY 10 shots (shot_01 through shot_10), each 6.0 to 7.5 seconds long, so shots + 3.0s end_card = 65 to 75 seconds total.
-4. Narration (Amharic): Write natural, idiomatic Amharic in SHORT sentences with SIMPLE punctuation (። and ፣ only — no exclamation marks, colons, or English words). Keep each shot's narration concise enough to speak calmly in ~5 to 6.5 seconds.
-5. Subtitles (English): Faithful, poetic English translation of each shot's Amharic narration. Maximum 2 lines (use \\n between lines), and EVERY line MUST be <= 38 characters so it fits safely inside mobile 9:16 margins.
+4. Narration (Amharic): Write natural, idiomatic Amharic in VERY SHORT, SIMPLE sentences (about 5 to 9 words per shot, max 2 short sentences), using simple punctuation only (። and ፣ — no exclamation marks, colons, or English words). Short sentences keep the synthetic voice calm, warm, and unhurried instead of robotic.
+5. Subtitles (English): Faithful, warm English meaning of each shot's Amharic narration. Maximum 2 lines (use \\n between lines), and EVERY line MUST be <= 38 characters so it fits safely inside mobile 9:16 margins.
 6. Character & Style consistency:
    - Use this exact `style_block`: "{FIXED_STYLE_BLOCK}"
    - Use this exact `character.description`: "{CHARACTER_DESCRIPTION}"
@@ -44,6 +44,12 @@ STRICT RULES (must obey every single one):
 11. `models`: Set `script` to "gemini-3.8-flash", `tts` to "gemini-3.8-flash-tts", `keyframes` to "@cf/black-forest-labs/flux-2-klein-4b", `video` to "Wan-AI/Wan2.2-TI2V-5B", `music` to "ACE-Step/ACE-Step-v1.5".
 12. `end_card`: `{{"text": "Made with AI · A fictional tribute to quiet morning hands", "duration_sec": 3.0}}`.
 13. `music`: Warm instrumental Ethiopian-inspired acoustic folk score (`tempo_bpm`: 72, `key`: "D major", `duration_sec`: 75, `style`: "acoustic folk instrumental", `mood`: "warm, grateful, unhurried, nostalgic", `instruments`: "krar plucked strings, gentle bamboo flute, soft felt piano", `texture`: "warm organic acoustic", `caption`: "Warm acoustic Ethiopian-inspired folk instrumental with gentle krar strings, soft bamboo flute, and subtle felt piano, unhurried morning courtyard mood, organic warm texture, no vocals").
+
+Return ONE JSON object with these exact top-level keys:
+`version`, `title`, `language`, `audience`, `ending_feeling`, `aspect_ratios`, `models`, `style_block`, `character`, `music`, `end_card`, `shots`.
+Each item in `shots` (10 items: `shot_01`..`shot_10`) must have ONLY these exact keys:
+`id`, `duration_sec`, `narration`, `subtitle_en`, `tts_style`, `image_prompt`, `image_seed`, `video_motion_prompt`, `video_seed`, `sfx_ambience`, `story_reason`.
+Set `audience` to "Family and community on WhatsApp/TikTok (9:16), classmates and reviewers on desktop (16:9)", `ending_feeling` to "Quiet gratitude and warmth", `version` to "1.0", `language` to "amharic", `aspect_ratios` to ["9:16", "16:9"], `character.name` to "Grandmother", `character.reference_seed` to 1024, `music.seed` to 777, and `tts_style` on each shot to "Aoede, no English wrapper in spoken text".
 """
 
 # Gemini responseSchema matching schema/storyboard.schema.json
@@ -238,10 +244,9 @@ def draft_storyboard(
                     "generationConfig": {
                         "temperature": 0.4,
                         "responseMimeType": "application/json",
-                        "responseSchema": GEMINI_STORYBOARD_SCHEMA,
                     },
                 },
-                timeout=45,
+                max_total_sec=60.0,
             )
             latency_ms = int((time.perf_counter() - t0) * 1000)
             raw_json_text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
