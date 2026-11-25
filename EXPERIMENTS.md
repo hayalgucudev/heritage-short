@@ -52,6 +52,29 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
   - `shot_02_ref.png`: Clean face and hands, **100% facial/outfit consistency** — **however**, `flux-2-klein-4b`'s `input_image_0` behaved like an image-to-image edit, preserving her front-facing pose and clay cup from `ref_real_seed1025.png` and placing the hearth fire behind her instead of showing her tending the embers.
 - **Decision:** *Pending director verdict* (whether to generate action shots with verbatim description + `--no-ref`, reserve `input_image_0` only for front-facing/close-up shots, or test pose-override phrasing in `input_image_0`).
 
+## EXP-009 — `shot_02` pose-override instruction with reference conditioning (EXP-008 option C)
+- **Hypothesis:** Adding an explicit pose override ("now kneeling in profile…, no cup in her hands") while keeping `input_image_0=ref_real_seed1025.png` will keep Grandmother's identity **and** let her perform the hearth action, fixing EXP-008's frozen cup pose.
+- **Change:** Only the prompt changed versus EXP-008's `shot_02_ref` test — verbatim instruction `"the same woman as in the reference image, now kneeling in profile beside a clay hearth, tending glowing embers, no cup in her hands"` plus the fixed style block. Model `@cf/black-forest-labs/flux-2-klein-4b`, `seed=102`, `steps=4`, and the same reference PNG were held constant.
+- **Prompt rationale (one line):** the phrase names the reference for identity but explicitly cancels its front-facing cup pose, so the model should keep the face while changing the action.
+- **Result:** `outputs/keyframes/shot_02_exp009_ref.png`, latency **`9,038 ms`** (`cache_hit=false`, `1_cloudflare_flux_call`). `storyboard.json` was not edited; a temporary copy of the storyboard supplied the test prompt.
+- **Visual result:** *Pending director verdict.* This assistant cannot inspect PNG content, so it does not claim any finger count or pose match it did not see. The images were opened in the browser for the director.
+- **Decision:** Pending — will choose conditioned vs no-reference vs framing change only after the director's own viewing.
+
+## EXP-010 — `shot_02` re-seeded no-reference with hands-protecting phrasing
+- **Hypothesis:** Changing only the seed and adding an object-in-hand/partial-shadow instruction will remove the **4-finger hand defect** the director found in `shot_02_noref.png`.
+- **Change:** `seed=102 -> 112`; prompt adds "holding a short wooden stirrer above the coals and partly in shadow, relaxed fingers"; no reference image. Model and `steps=4` held constant. This is attempt 2 of 3 under the hands policy in FAILURES.md entry 018.
+- **Prompt rationale (one line):** a held object plus shadow gives the model an excuse to hide individual fingers, which is safer than asking for an open, fully visible hand.
+- **Result:** `outputs/keyframes/shot_02_seed112_noref.png`, latency **`9,927 ms`** (`cache_hit=false`, `1_cloudflare_flux_call`).
+- **Visual result:** *Pending director's finger count.* No anatomical count is asserted by this assistant.
+- **Decision:** Pending; if still defective, attempt 3 may change framing, then FFmpeg Ken Burns over a clean still.
+
+## EXP-011 — `shot_03` no-reference face comparison against the locked reference
+- **Hypothesis:** A no-reference keyframe using the verbatim character description may match the locked reference face well enough to avoid `input_image_0` pose-freezing on action shots.
+- **Change:** `shot_03` generated with `use_reference=False`, unchanged `image_seed=103` and unchanged original prompt; compared by the director against `ref_real_seed1025.png`.
+- **Result:** `outputs/keyframes/shot_03_noref_seed103.png`, latency **`11,439 ms`** (`cache_hit=false`, `1_cloudflare_flux_call`).
+- **Visual result:** *Director will judge the images personally.* This assistant makes **no claim** about face similarity because it cannot see the PNGs.
+- **Decision:** Pending director verdict; no production keyframes are generated until story is locked.
+
 
 
 

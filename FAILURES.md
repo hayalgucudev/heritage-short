@@ -93,6 +93,13 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Files changed:** `notebooks/acestep_music.ipynb` (one-pass fresh-session install + assertions + real `run_info` in metadata) and new `notebooks/acestep_music_colab.ipynb` (same pinned contract with `/content` paths and `files.download`).
 - **Status / Lesson:** The notebooks are written to match the verified pins but were **not executed in this local session** (no GPU here); the numbers above are the director's Kaggle measurements, not invented ones. Lesson: pin the *whole* dependency triangle, and never print success without checking the loaded object.
 
+## 018 — Hand-anatomy failure in `shot_02_noref.png` (EXP-008 follow-up)
+- **What broke:** Director's visual check of `outputs/keyframes/shot_02_noref.png` (generated with `seed=102`, no reference) found **only 4 fingers on one hand**. This is a real anatomy defect, not a style preference.
+- **Director's decision:** Option C — keep testing reference conditioning, but add a measurement; regenerate the no-reference version with **another seed** and compare.
+- **Hands policy adopted for all future keyframes:** hands must be **holding an object, partly in shadow, or out of frame**; **max 3 attempts** per shot; after 3 failures **change the framing**; final fallback is deterministic **FFmpeg Ken Burns pan/zoom over the clean still** rather than spending more GPU quota.
+- **What was generated (EXP-009 follow-up):** (1) `shot_02` conditioned on `ref_real_seed1025.png`, `seed=102`, pose-override instruction; (2) `shot_02` no-reference with a new seed and object-in-hand/shadow phrasing; (3) `shot_03` no-reference with its original prompt and `seed=103` for an honest face comparison. All are test files with distinct names; `storyboard.json` was not changed.
+- **Status:** Generation and latencies are logged in `runs.jsonl`; **visual verdict is pending the director**. This assistant cannot see PNG content in this session, so it will not claim any finger count or face similarity it did not observe.
+
 
 
 
