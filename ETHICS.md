@@ -3,6 +3,7 @@
 ## 1. Real-Person Consent & Privacy Record
 - **Subject choice:** Fictionalized, stylized family elder (`"Grandmother"` in `"the village"`).
 - **Real likeness or voice:** **None.** No real person's face, photograph, or cloned voice is used anywhere in the pipeline. Voiceover is synthetic AI narration only.
+- **Approved character reference:** `outputs/keyframes/ref_real_seed1025.png` is an AI-generated fictional composite; no photo of any real person was used as input, and no real person's likeness appears anywhere in the film.
 - **Privacy boundary:** No real full names, exact addresses, phone numbers, or private family anecdotes are included in `storyboard.json` or sent to any cloud AI endpoint.
 
 ## 2. Public AI Disclosure

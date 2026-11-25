@@ -20,7 +20,7 @@
     "name": "Grandmother",
     "reference_seed": 1024,
     "description": "a fictional composite elderly Ethiopian highland grandmother in her seventies with warm weathered brown skin, kind dark eyes, silver-white hair tucked neatly under a cream-colored woven cotton headwrap, wearing a simple white handwoven cotton dress and shawl with subtle earth-toned border trim",
-    "selected_reference_image": null
+    "selected_reference_image": "outputs/keyframes/ref_real_seed1025.png"
   },
   "music": {
     "tempo_bpm": 72,

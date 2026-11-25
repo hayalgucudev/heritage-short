@@ -13,8 +13,17 @@
 ## User Tests
 *(To be recorded verbatim with timestamps and resulting pipeline/edit changes.)*
 
-### User Test 1 (Floor Draft)
-- *Pending Floor completion.*
+### User Test 1 (Floor Draft — Provisional Radio Cut)
+- **Viewer feedback (verbatim):** `"it is good, but the shots after 7 are not good"`
+- **Context at time of test:**
+  - Shots `07`, `08`, and `10` used `gemini-3.8-flash-lite-tts` (`Kore`), a different TTS model from shots `01`–`06` (`gemini-3.8-flash-tts`, `Kore`).
+  - The tested `radio_cut.mp4` still contained the old `shot_09` narration line (`"ጎረቤቶች ወደ ቤት ገብተው፣ ሰላምታ ይለዋወጣሉ።"`), before the solo-Grandmother narration fix.
+- **Hypotheses to investigate:**
+  1. Voice model difference (`gemini-3.8-flash-lite-tts` sounding unnatural next to `gemini-3.8-flash-tts`).
+  2. Stale `shot_09` text misaligned with the intended scene.
+  3. Weaker second half of the story arc.
+  4. Empty silence gaps (~`2.4 s`–`3.5 s` of padding inside each `7.0 s` slot).
+- **Status / Follow-up:** **Pending.** Asking the viewers specifically what they meant before making any story or storyboard text changes.
 
 ### User Test 2 (Polished Cut)
 - *Pending Quality completion.*
