@@ -84,6 +84,15 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What changed instead:** I moved to **OpenCode with a free model** and continued the project from the on-disk state (`storyboard.json`, `outputs/manifest.json`, `runs.jsonl`, and the markdown logs).
 - **Status / Lesson:** This is a tooling/quota handoff, not a model-output failure. Do not budget on the Antigravity starter quota before 2026-12-02; keep using cache hits, small drafts, and the free tiers already logged in this file. All cost numbers remain sourced from `runs.jsonl` only.
 
+## 017 — ACE-Step 1.5 dependency conflict and false "Models initialized." success on Kaggle
+- **What broke:** A fresh Kaggle session could not load ACE-Step 1.5. `transformers 5.20.2` was installed, which is **outside the repo's declared `>=4.51,<4.58` range**. Downgrading `transformers` alone then broke `diffusers 0.42.0`, because that version imports `resolve_revision`, a symbol added in `huggingface_hub 1.26.0`; but `transformers 4.57.x` requires `huggingface_hub` **below 1.0**. Three mutually incompatible constraints.
+- **What we tried:** `pip install -e .` (editable install of the ACE-Step repo) **failed twice**; we abandoned it instead of retrying a third time.
+- **What fixed it:** Pinned **`transformers==4.57.6` + `huggingface_hub==0.36.2` + `diffusers==0.35.2`**, and put the cloned repo on `sys.path` instead of installing it. Verified with `from diffusers.models import AutoencoderOobleck` (the import that had broken). The director reported the Kaggle run then worked.
+- **Second bug:** The old notebook printed `"Models initialized."` unconditionally, even when loading had failed — a false success signal. It now asserts `dit_handler.model is not None` before printing anything, and treats the optional language-model planner as non-fatal (`llm_handler = None` when it fails; `generate_music` skips the LM when `llm_initialized` is false).
+- **Measured on the successful run (reported by the director, not re-run locally here):** T4 detected at **14.6 GB**; about **7.6 GB** GPU memory used after loading; **10.1 GB** model download in about **22 s**; three 60 s candidates in **12.6 s**, **6.0 s** and **6.0 s**; `llm_initialized=False` and generation still worked.
+- **Files changed:** `notebooks/acestep_music.ipynb` (one-pass fresh-session install + assertions + real `run_info` in metadata) and new `notebooks/acestep_music_colab.ipynb` (same pinned contract with `/content` paths and `files.download`).
+- **Status / Lesson:** The notebooks are written to match the verified pins but were **not executed in this local session** (no GPU here); the numbers above are the director's Kaggle measurements, not invented ones. Lesson: pin the *whole* dependency triangle, and never print success without checking the loaded object.
+
 
 
 
