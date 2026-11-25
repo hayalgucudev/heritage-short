@@ -39,6 +39,14 @@
       "input_hash": "0a3a3ba1af126ab5d7c9ac0a9884044e6fae776cda2cf7b0644272842545f250",
       "status": "ok",
       "updated_at": "2026-11-25T07:42:07.552615+00:00"
+    },
+    "outputs/smoke/amharic_tts_kore_nowrapper.wav": {
+      "file_name": "amharic_tts_kore_nowrapper.wav",
+      "stage": "smoke_tts_experiment",
+      "shot_id": "smoke",
+      "input_hash": "5d7a4c265478249158e918c752ce58945afd466998b9654e41f5d8bedcaa5cc3",
+      "status": "ok",
+      "updated_at": "2026-11-25T07:46:27.523311+00:00"
     }
   }
 }

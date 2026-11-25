@@ -128,7 +128,8 @@
           "image_seed": { "type": "integer", "minimum": 0 },
           "video_motion_prompt": { "type": "string", "minLength": 5 },
           "video_seed": { "type": "integer", "minimum": 0 },
-          "sfx_ambience": { "type": "string" }
+          "sfx_ambience": { "type": "string" },
+          "story_reason": { "type": "string", "minLength": 5 }
         }
       }
     }

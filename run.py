@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from pipeline.script import draft_storyboard
 from pipeline.smoke import run_smoke_tests, run_tts_sample, verify_live_models
 from pipeline.validate import validate_storyboard
 
@@ -57,6 +58,21 @@ def cmd_smoke_tts(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_draft_storyboard(args: argparse.Namespace) -> int:
+    sb = draft_storyboard(
+        PROJECT_ROOT,
+        STORYBOARD_PATH,
+        SCHEMA_PATH,
+        RUNS_PATH,
+        MANIFEST_PATH,
+        primary_model=args.model,
+        fallback_model=args.fallback_model,
+        force=args.force,
+    )
+    print(f"Drafted and validated {STORYBOARD_PATH.name} ({len(sb['shots'])} shots, model={sb['models']['script']}).")
+    return 0
+
+
 def cmd_not_yet(name: str) -> int:
     print(
         f"Command '{name}' is scaffolded and will be implemented in its upcoming stage.",
@@ -95,6 +111,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Send only the raw narration text without the English style prefix.",
     )
     p_stts.set_defaults(func=cmd_smoke_tts)
+
+    p_ds = sub.add_parser("draft-storyboard", help="Draft storyboard.json via Gemini structured JSON.")
+    p_ds.add_argument("--model", default="gemini-3.8-flash")
+    p_ds.add_argument("--fallback-model", default="gemini-3.7-flash")
+    p_ds.add_argument("--force", action="store_true", help="Ignore cache and regenerate storyboard.json.")
+    p_ds.set_defaults(func=cmd_draft_storyboard)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")
     p_plan.set_defaults(func=lambda _a: cmd_not_yet("plan"))

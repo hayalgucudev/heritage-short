@@ -17,11 +17,13 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **What we tried:** Fixed `_post_with_retry` in `pipeline/smoke.py` so HTTP 429/5xx raises inside the retry loop (2s, 4s backoff), and logged the error to `runs.jsonl` without crashing the remaining TTS and FLUX smoke tests.
 - **What fixed it / Status:** `gemini-3.8-flash-tts` and `@cf/black-forest-labs/flux-2-klein-4b` both succeeded; `gemini-3.8-flash` remains marked for retry, with director pre-approval (`2B`) to fall back automatically to `gemini-3.7-flash` if `gemini-3.8-flash` returns 503 after 3 retries (logged to `FAILURES.md` and `runs.jsonl`).
 
-## 004 — Baseline Amharic TTS (`gemini-3.8-flash-tts`, voice `Aoede`) poor quality / 14.32s duration
-- **What broke:** Director listened to `outputs/smoke/amharic_tts_test.wav` (one 10-word Amharic sentence) and found the Amharic delivery unacceptable (duration was `14.32 s`, suggesting overly slow/robotic pacing or misreading of the instruction wrapper).
-- **What we are trying:** Before deciding whether to switch primary narration to English, running two controlled 1-variable experiments (`EXP-001`: different prebuilt voice `Kore`; `EXP-002`: `gemini-3.8-flash-lite-tts`) on the exact same sentence.
-- **Status:** Pending execution and director listening verdict.
+## 004 — Baseline Amharic TTS (`gemini-3.8-flash-tts`, voice `Aoede`) bloated by English style wrapper
+- **What broke:** Sending `"Speak in a calm, warm, unhurried storytelling voice in Amharic: <text>"` inside `contents` caused the TTS model to stumble over / absorb the English prefix, bloating a single 10-word sentence to `14.32 s` with awkward pacing.
+- **What we tried:** Tested `Kore` (`EXP-001`: `7.08 s`), `gemini-3.8-flash-lite-tts` (`EXP-002`: `6.00 s`), and removing the English wrapper completely (`EXP-003`: `5.20 s`) since Gemini's `speechConfig.voiceConfig` has no separate style field.
+- **What fixed it:** Sending **pure Amharic text only** (`--no-wrapper`) fixed word accuracy and natural pacing (`5.20 s`), though the director noted the voice still sounds slightly robotic — so scripts will use short sentences and simple punctuation, and warmth will be tested directly in the radio-cut audience test.
 
-
-
+## 005 — Both `gemini-3.8-flash` and `gemini-3.7-flash` returned HTTP 503 (`UNAVAILABLE`) in Stage 2
+- **What broke:** During `run.py draft-storyboard`, `gemini-3.8-flash` failed after 3 exponential-backoff attempts (`199,911 ms`, `HTTP 503: high demand`), and the pre-approved fallback `gemini-3.7-flash` also failed after 3 attempts (`21,871 ms`, `HTTP 503: high demand`).
+- **What we tried:** Verified both errors in `runs.jsonl` and stopped without silently substituting another model.
+- **Status:** Waiting for director approval to target `gemini-2.5-flash` (or `gemini-3.6-flash` / `gemini-3.5-flash`).
 
