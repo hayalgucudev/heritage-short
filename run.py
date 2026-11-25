@@ -51,6 +51,7 @@ def cmd_smoke_tts(args: argparse.Namespace) -> int:
         tts_model=args.tts_model,
         tts_voice=args.tts_voice,
         out_rel_path=args.out,
+        no_wrapper=args.no_wrapper,
     )
     print(json.dumps(summary, indent=2, ensure_ascii=False))
     return 0
@@ -88,6 +89,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_stts.add_argument("--tts-model", required=True)
     p_stts.add_argument("--tts-voice", required=True)
     p_stts.add_argument("--out", required=True)
+    p_stts.add_argument(
+        "--no-wrapper",
+        action="store_true",
+        help="Send only the raw narration text without the English style prefix.",
+    )
     p_stts.set_defaults(func=cmd_smoke_tts)
 
     p_plan = sub.add_parser("plan", help="Dry-run hash check showing what would regenerate.")

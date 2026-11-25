@@ -455,19 +455,22 @@ def run_tts_sample(
     out_rel_path: str,
     text: str = SMOKE_AMHARIC_TEXT,
     stage_name: str = "smoke_tts_experiment",
+    no_wrapper: bool = False,
 ) -> dict[str, Any]:
-    """Generate one TTS test WAV using the exact smoke prompt wrapper (1-variable test)."""
+    """Generate one TTS test WAV (1-variable controlled experiment)."""
     load_env(project_root)
     gemini_key = require_env("GEMINI_API_KEY")
 
     tts_instruction = (
-        f"Speak in a calm, warm, unhurried storytelling voice in Amharic: {text}"
+        text
+        if no_wrapper
+        else f"Speak in a calm, warm, unhurried storytelling voice in Amharic: {text}"
     )
     tts_hash = compute_stage_hash(
         stage=stage_name,
         model=tts_model,
         prompt=tts_instruction,
-        params={"voice": tts_voice},
+        params={"voice": tts_voice, "no_wrapper": no_wrapper},
     )
     wav_path = project_root / out_rel_path
     wav_path.parent.mkdir(parents=True, exist_ok=True)
@@ -529,7 +532,12 @@ def run_tts_sample(
             stage=stage_name,
             shot_id="smoke",
             model=tts_model,
-            parameters={"voice": tts_voice, "mimeType": mime, "duration_sec": duration_sec},
+            parameters={
+                "voice": tts_voice,
+                "no_wrapper": no_wrapper,
+                "mimeType": mime,
+                "duration_sec": duration_sec,
+            },
             latency_ms=latency_tts,
             cost_or_quota="1_gemini_tts_call",
             status="ok",

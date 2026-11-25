@@ -15,6 +15,30 @@
       "input_hash": "fa0c88ef7cceb852c466d819fac8292a9ffc178bec8370603b3c94b8ab7066be",
       "status": "ok",
       "updated_at": "2026-11-25T07:31:37.906030+00:00"
+    },
+    "outputs/smoke/amharic_tts_kore.wav": {
+      "file_name": "amharic_tts_kore.wav",
+      "stage": "smoke_tts_experiment",
+      "shot_id": "smoke",
+      "input_hash": "b81fc70024db14343341ca96a15e534b18618673a0a8e0e30f3881744330487b",
+      "status": "ok",
+      "updated_at": "2026-11-25T07:41:59.696509+00:00"
+    },
+    "outputs/smoke/amharic_tts_lite.wav": {
+      "file_name": "amharic_tts_lite.wav",
+      "stage": "smoke_tts_experiment",
+      "shot_id": "smoke",
+      "input_hash": "69704f2fc0b7c1b2d9b5eb19fea74808c3a572c611e73176c44e3cae16ae6385",
+      "status": "ok",
+      "updated_at": "2026-11-25T07:42:03.309248+00:00"
+    },
+    "outputs/smoke/amharic_tts_nowrapper.wav": {
+      "file_name": "amharic_tts_nowrapper.wav",
+      "stage": "smoke_tts_experiment",
+      "shot_id": "smoke",
+      "input_hash": "0a3a3ba1af126ab5d7c9ac0a9884044e6fae776cda2cf7b0644272842545f250",
+      "status": "ok",
+      "updated_at": "2026-11-25T07:42:07.552615+00:00"
     }
   }
 }
