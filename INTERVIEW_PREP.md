@@ -155,3 +155,8 @@ Say: *"Only one clip and both exports rebuilt; the exports are 73 s at -14.02 LU
 Say: *"The final `py run.py film` logged 33 rows — 10 narration, 10 keyframes, 1 music, 10 shots, 2 exports — every one a cache hit."*
 Say: *"No model or TTS call was made and both MP4 hashes were unchanged: that is the one-command regeneration proof."*
 Say: *"COSTS.md now reads 152 records, 104 non-cache calls, 7 failures and 967,733 ms, all computed from runs.jsonl."*
+
+### Final clean-clone proof — three lines to memorise
+Say: *"I cloned final `main` at 05a8b81 with no `.env`, installed only requirements.txt, and `preflight` said ready."*
+Say: *"Plain `run.py film` gave 21 cache hits and 12 local FFmpeg rows with zero model calls, and both MP4 hashes matched."*
+Say: *"The earlier clone proof was from an older commit; EXP-031 proves the exact code being submitted."*

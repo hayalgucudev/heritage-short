@@ -193,3 +193,11 @@
 - **What changes what:** nothing in the film. Both MP4 hashes and their duration/loudness readings are identical to the previous rebuild, so no downstream stage was invalidated.
 - **Alternative and risk:** I could have shown the existing files instead, but that would not prove the command. The risk was a hidden hash mismatch triggering a paid call; `plan` had already reported 38 hits / 0 regenerations, and the log confirms zero misses.
 - **Be able to explain this:** "The final `py run.py film` was a complete cache hit: 33 log rows, no model calls, and the two MP4s have the same hashes as before."
+
+## Final clean-clone proof (2026-11-26)
+- **What I did:** cloned the final `main` from GitHub into a fresh folder, made a new venv, installed the three requirements, and ran plain `run.py film` with no `.env`.
+- **Why:** an earlier clone test used an older commit; the one-command promise had to be proved on the exact code being submitted.
+- **What it read and wrote:** read only the cloned repository and its committed cache assets; wrote derived clips, two MP4s and log rows inside the throwaway clone. Nothing in the submitted repository changed except these notes.
+- **What changes what:** nothing upstream. All 10 narration WAVs, 10 keyframes and the score were cache hits; only the gitignored local clips and exports were rebuilt, byte-for-byte identically.
+- **Alternative and risk:** I could have assumed the older clone proof still applied, but the final shot_10 keyframe and subtitle settings had changed since then. The risk was a false reproducibility claim; the real clone removed it.
+- **Be able to explain this:** "I cloned the final commit with no keys, ran one command, and got both films with the same hashes; only local FFmpeg work was needed."
