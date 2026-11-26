@@ -14,7 +14,7 @@
 ## User Tests
 *(To be recorded verbatim with timestamps and resulting pipeline/edit changes.)*
 
-- **Sample-size caveat (recorded honestly, 2026-11-25):** the brief asks for at least three people from the intended audience at **each** of the two tests. Test 1 currently records **one** viewer and Test 2 records **the director**. This gap is not hidden; if more people watch the cut, their exact words and the resulting changes will be appended below with timestamps.
+- **Sample-size caveat (updated honestly, 2026-11-26):** the brief asks for at least three people from the intended audience at **each** of the two tests. Test 1 records **one** viewer and no additional Test 1 response has arrived. Test 2 records **the director**, **one additional viewer who gave all six answers**, and several **unattributed comments** relayed by the director. The three-per-test threshold is **still not met**; this gap is not hidden and no sample is implied that was not actually collected. If more people watch a cut, their exact words and any resulting change will be appended below with timestamps.
 
 ### How to collect the remaining three responses (director, 2026-11-25)
 - Show **(1)** `outputs/final/radio_cut.mp4` and **(2)** `outputs/final/film_9x16.mp4` (add `film_16x9.mp4` if they watch on a desktop) to three people from the intended audience — family/community or classmates.
@@ -26,8 +26,8 @@
 - For the near-final picture also ask: "Can you read every subtitle line on a phone?" and "What do you think the last three seconds say?"
 - Send the exact words to the coding agent. They will be appended below with timestamps, plus any storyboard or edit change that resulted. **Do not record a real person's face or voice into the repository.**
 
-### Ready-to-paste response slots — ADDITIONAL VIEWERS, NOT YET COLLECTED
-**Every bracket below is an empty placeholder. Nothing in this section is a real response until you replace it with the viewer's exact words.** The brief needs at least three viewers per test; Test 1 currently has one and Test 2 has the director, so two more each are the minimum. Three slots per test give margin.
+### Response slots — ADDITIONAL VIEWERS (PARTIALLY FILLED 2026-11-26)
+**The Test 2 / Additional viewer 1 slot below contains a real response exactly as supplied by the director. All other brackets are still empty placeholders and are NOT real responses.** The brief needs at least three viewers per test; Test 1 still has only one, and Test 2 now has the director, one viewer with six answers, and unattributed comments noted after the slots.
 
 #### Test 1 — radio cut (show `outputs/final/radio_cut.mp4`)
 - **Additional viewer 1 — NOT YET COLLECTED**
@@ -64,16 +64,22 @@
   - What changed because of this response: `[NOT YET COLLECTED]`
 
 #### Test 2 — visual cut (show `outputs/final/film_9x16.mp4`)
-- **Additional viewer 1 — NOT YET COLLECTED**
-  - Role or first name only: `[NOT YET COLLECTED]`
-  - Timestamp/date: `[NOT YET COLLECTED]`
-  - Q1 "What did you understand the story to be?" — verbatim: `[NOT YET COLLECTED]`
-  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `[NOT YET COLLECTED]`
-  - Q3 "What did you feel at the end?" — verbatim: `[NOT YET COLLECTED]`
-  - Q4 "What is one thing you would change?" — verbatim: `[NOT YET COLLECTED]`
-  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `[NOT YET COLLECTED]`
-  - Q6 "What do you think the last three seconds say?" — verbatim: `[NOT YET COLLECTED]`
-  - What changed because of this response: `[NOT YET COLLECTED]`
+- **Additional viewer 1 — real response recorded 2026-11-26**
+  - Role or first name only: `[not supplied by director — no name or private detail recorded]`
+  - Timestamp/date: `2026-11-26; exact clock time not supplied`
+  - Q1 "What did you understand the story to be?" — verbatim: `about a lovely granny`
+  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `on 00:33`
+  - Q3 "What did you feel at the end?" — verbatim: `happy`
+  - Q4 "What is one thing you would change?" — verbatim: `the amharic pronounciation is deformed`
+  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `yes`
+  - Q6 "What do you think the last three seconds say?" — verbatim: `that it is AI produced and made to warm my morning`
+  - **Formal summary (not a quote; for the report):** the viewer read the film as a warm portrait of a grandmother, felt happiness at the end, could read the subtitles on a phone, and understood the end card as an AI disclosure with a warm morning feeling. They located a break in the thread around 00:33 and asked for the Amharic pronunciation to be improved.
+  - What changed because of this response: **no storyboard or edit change has been made.** The director supplied the words on 2026-11-26 and asked only that they be recorded formally. The pronunciation criticism and the 00:33 break are open issues, not claimed fixes.
+
+- **Unattributed additional comments (director relayed, 2026-11-26; viewer count and names not supplied)**
+  - Verbatim as relayed: `about the image inconsistency`; `the video being not normal (too much ai generated)`; `the jebena being something else`; `the place inconsistency`.
+  - **Formal summary (not a quote; for the report):** other viewers noticed inconsistent images across shots, a visible "too AI-generated" quality to the motion, a jebena depicted as a different vessel, and inconsistent location details. These are criticisms of the delivered cut, not approved fixes.
+  - What changed because of these comments: **nothing yet.** They corroborate the already-documented unresolved shot_07 prop/pour defect and the accepted Ken Burns-over-stills motion limitation (`FAILURES.md` 032–035, `EXPERIMENTS.md` EXP-026–030). No keyframe, prompt, seed or export was changed in response, and no visual success is claimed.
 
 - **Additional viewer 2 — NOT YET COLLECTED**
   - Role or first name only: `[NOT YET COLLECTED]`
@@ -133,8 +139,8 @@
 - **Director's final choice for shot_10:** use seed 1113, the head-and-shoulders crop with no visible hands, so the four-finger problem is avoided by framing rather than by another model call.
 - **Director's choice of method:** abandon image editing after the only available image-edit model returned `Invalid credential` twice (`FAILURES.md` 034). No edited image exists and no `runs.jsonl` row was invented.
 - **What changed because of these tests:** the 9:16 subtitle `MarginV` moved from 180 to 340 so the two-line block sits higher, the end-card tribute text was enlarged and brightened, and both exports were re-rendered. Whether the subtitles clear the cups is the director's visual check; the assistant cannot view images.
-- No publication. The user-test viewer slots earlier in this file remain untouched and unfilled.
+- No publication. On 2026-11-26 the director supplied six answers from one additional Test 2 viewer and relayed further visual criticisms; those are recorded verbatim in the response slots above. The remaining slots are still empty and the three-per-test threshold is not met.
 
 ### Final one-command verification (2026-11-26)
 - After the visual decisions, I ran `py run.py film` once on `demo`. It logged 33 cache-hit rows with zero model calls and left both exports byte-identical (EXP-030). This is the recorded proof for the walkthrough; no further visual change has been made since.
-- The six empty viewer slots earlier in this file remain untouched. `REPORT.pdf` is still intentionally stale and must not be submitted before the real viewer words are added and the report is re-rendered.
+- The supplied viewer words were added on 2026-11-26 and `REPORT.pdf` was re-rendered from `REPORT.md`. The remaining empty slots are genuinely unfilled; no viewer response was invented and the sample gap is stated in `REPORT.md` §2.

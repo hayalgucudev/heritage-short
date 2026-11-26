@@ -39,9 +39,10 @@ The files are prepared in `space/` — `index.html`, `README.md`, `storyboard.js
 
 ## Gates before anything goes live
 
-- [ ] Three additional viewers per user test give verbatim responses recorded in `DESIGN.md`.
+- [ ] Three additional viewers per user test give verbatim responses recorded in `DESIGN.md`. **PARTIAL on 2026-11-26:** the director supplied six answers from one additional Test 2 viewer and relayed further unattributed visual criticisms; they are recorded verbatim in `DESIGN.md` and in `REPORT.md` §2. Test 1 still has no additional viewer and Test 2 has one named-by-response viewer, so the three-per-test threshold is NOT met.
 - [ ] The walkthrough video is recorded and under five minutes.
 - [ ] The director explicitly says "publish" and names the account/handle.
 - [ ] The platform AI-disclosure setting is enabled.
+- [x] `REPORT.pdf` re-rendered from `REPORT.md` after the supplied viewer words were added (2026-11-26).
 - [x] Oromo ceiling CLOSED AS FAILED, native-speaker check MOOT: no variant exists and none will be published.
 - [ ] Optional Wan 2.2 clips are not claimed: no Wan clip or GPU latency exists.

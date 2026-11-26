@@ -95,7 +95,7 @@ Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache fl
 
 **3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card, then open `film_16x9.mp4`. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz stereo, measured -14.02 LUFS / -0.98 dBTP, with all ten voices audible, burned-in English subtitles inside the vertical safe area and a 3-second 'Made with AI' end card. Be honest about motion: these are FFmpeg Ken Burns pans and zooms over approved AI-generated stills, not AI-generated video."*
 
-**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. Six verbatim viewer responses and the re-render of REPORT.pdf are still pending; nothing is published until I approve the account and give an explicit publish instruction."*
+**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. The viewer words supplied on 26 Nov are recorded verbatim in DESIGN.md and REPORT.pdf has been re-rendered; the three-per-test sample gap is still stated honestly. Nothing is published until I approve the account and give an explicit publish instruction."*
 
 ### Recording checklist (keep the video under five minutes)
 - Record at 1280×720 or higher with **PowerShell + the repo folder** visible; never show `.env` or any key value.
@@ -166,4 +166,4 @@ Say: *"The earlier clone proof was from an older commit; EXP-031 proves the exac
 ### The merged walkthrough script — three lines to memorise
 Say: *"The five-minute script lives in INTERVIEW_PREP.md lines 69 to 106; it shows preflight, storyboard, one live rebuild, the log row and both exports."*
 Say: *"Deleting shot_02's clip moves plan from 38/0 to 35/3, all local FFmpeg; one 1.4-second rebuild returns it to 38/0 with zero quota."*
-Say: *"I state the true specs and admit the film is Ken Burns over AI stills, with viewer words and publication still pending."*
+Say: *"I state the true specs and admit the film is Ken Burns over AI stills; the supplied viewer words are logged and re-rendered, publication is still pending."*
