@@ -11,23 +11,23 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **95**
-- Non-cache model/FFmpeg calls: **89**
+- Real logged records: **119**
+- Non-cache model/FFmpeg calls: **104**
 - Failed calls: **7**
-- Total logged latency: **788,261 ms** (13.1 min)
+- Total logged latency: **967,733 ms** (16.1 min)
 
 ### By stage
 
 | Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
 | --- | --- | --- | --- | --- | --- |
-| assemble | 14 | 0 | 0 | 77,087 | 0_local_ffmpeg x14 |
-| keyframes | 15 | 0 | 0 | 148,599 | 1_cloudflare_flux_call x15 |
+| assemble | 16 | 0 | 0 | 87,220 | 0_local_ffmpeg x16 |
+| keyframes | 27 | 0 | 0 | 316,453 | 1_cloudflare_flux_call x27 |
 | music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
 | narration | 22 | 5 | 2 | 82,071 | 0_cache_hit x5, 1_gemini_tts_call x20, 1_gemini_tts_call_failed x2 |
 | radio_cut | 2 | 0 | 0 | 5,580 | 0_local_ffmpeg x2 |
 | reference_sheet | 9 | 0 | 0 | 98,266 | 1_cloudflare_flux_call x9 |
 | script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
-| shots | 12 | 0 | 0 | 17,290 | 0_local_ffmpeg x12 |
+| shots | 13 | 9 | 0 | 18,775 | 0_cache_hit x9, 0_local_ffmpeg x13 |
 | smoke_flux | 1 | 0 | 0 | 8,846 | 1_cloudflare_flux_call x1 |
 | smoke_text | 1 | 0 | 1 | 13,533 | 1_gemini_text_call_failed x1 |
 | smoke_tts | 1 | 0 | 0 | 5,093 | 1_gemini_tts_call x1 |
@@ -38,14 +38,14 @@
 
 | Model | Calls | Latency (ms) |
 | --- | --- | --- |
-| @cf/black-forest-labs/flux-2-klein-4b | 25 | 255,711 |
+| @cf/black-forest-labs/flux-2-klein-4b | 37 | 423,565 |
 | gemini-3.8-flash | 2 | 213,444 |
+| ffmpeg-9.1 | 18 | 92,800 |
 | gemini-3.8-flash-tts | 22 | 87,491 |
-| ffmpeg-9.1 | 16 | 82,667 |
 | gemini-3.5-flash | 1 | 60,356 |
 | gemini-3.6-flash | 1 | 33,900 |
 | gemini-3.7-flash | 1 | 21,871 |
-| Wan-AI/Wan2.2-TI2V-5B | 12 | 17,290 |
+| Wan-AI/Wan2.2-TI2V-5B | 13 | 18,775 |
 | gemini-3.8-flash-lite-tts | 5 | 14,179 |
 | cloudflare-models-search | 1 | 558 |
 | gemini-models-list | 1 | 408 |
@@ -56,18 +56,18 @@
 
 | Stage | Shot | Calls | Latency (ms) |
 | --- | --- | --- | --- |
-| assemble | 16:9 | 7 | 39,237 |
-| assemble | 9:16 | 7 | 37,850 |
+| assemble | 16:9 | 8 | 44,870 |
+| assemble | 9:16 | 8 | 42,350 |
 | keyframes | shot_01 | 1 | 10,233 |
 | keyframes | shot_02 | 5 | 48,359 |
 | keyframes | shot_03 | 2 | 22,779 |
 | keyframes | shot_04 | 1 | 7,737 |
 | keyframes | shot_05 | 1 | 8,849 |
 | keyframes | shot_06 | 1 | 11,896 |
-| keyframes | shot_07 | 1 | 10,735 |
+| keyframes | shot_07 | 7 | 97,605 |
 | keyframes | shot_08 | 1 | 8,118 |
 | keyframes | shot_09 | 1 | 9,656 |
-| keyframes | shot_10 | 1 | 10,237 |
+| keyframes | shot_10 | 7 | 91,221 |
 | music | candidate_01 | 1 | 0 |
 | narration | shot_01 | 2 | 6,403 |
 | narration | shot_02 | 3 | 9,252 |
@@ -96,7 +96,7 @@
 | shots | shot_07 | 1 | 1,464 |
 | shots | shot_08 | 1 | 1,473 |
 | shots | shot_09 | 1 | 1,417 |
-| shots | shot_10 | 1 | 1,461 |
+| shots | shot_10 | 2 | 2,946 |
 | smoke_flux | smoke | 1 | 8,846 |
 | smoke_text | smoke | 1 | 13,533 |
 | smoke_tts | smoke | 1 | 5,093 |

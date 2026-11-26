@@ -308,9 +308,9 @@
       "file_name": "shot_10.png",
       "stage": "keyframes",
       "shot_id": "shot_10",
-      "input_hash": "b37b9475cd84109938c60260ecd14a7d46e58495d3264501fb888a87fdbf42a3",
+      "input_hash": "c63db91ccfe57e5b77b0694bcd2ed4f270402a1f7a21cd1d4577c94312e735fb",
       "status": "ok",
-      "updated_at": "2026-11-25T12:15:47.448951+00:00"
+      "updated_at": "2026-11-26T11:00:08.259855+00:00"
     },
     "outputs/music/candidate_01_seed777.wav": {
       "file_name": "candidate_01_seed777.wav",
@@ -396,25 +396,25 @@
       "file_name": "shot_10.mp4",
       "stage": "shots",
       "shot_id": "shot_10",
-      "input_hash": "2ff5b5d6dc63c4d2ff33d6a198ed0cd5dc5480fd632dd173d722cc65a6e5bbf7",
+      "input_hash": "d13afb47496aa4603fe9a68c22b8f26a2782011f6c56a56d5c054e64ff30189d",
       "status": "ok",
-      "updated_at": "2026-11-25T12:41:27.421797+00:00"
+      "updated_at": "2026-11-26T11:00:10.008653+00:00"
     },
     "outputs/final/film_9x16.mp4": {
       "file_name": "film_9x16.mp4",
       "stage": "assemble",
       "shot_id": "9:16",
-      "input_hash": "79596c8216ed0aa4594dd212208bcec1ea5ad01bf17fc2c4704991c6b91cb60c",
+      "input_hash": "270de3b28b628d530f60c740644e225bcdd4c11e150b69c43d41a8a30f3f5e58",
       "status": "ok",
-      "updated_at": "2026-11-26T09:07:37.500484+00:00"
+      "updated_at": "2026-11-26T11:00:16.501641+00:00"
     },
     "outputs/final/film_16x9.mp4": {
       "file_name": "film_16x9.mp4",
       "stage": "assemble",
       "shot_id": "16:9",
-      "input_hash": "4841f5e42c2006c930427cb650eace2be71b7b279d3fa7b7871c56b4a6cb272d",
+      "input_hash": "1bf40e390b59dc8df7a2ff77980be9833233c06feed9889c38d5d7ce2af7fd8d",
       "status": "ok",
-      "updated_at": "2026-11-26T09:07:42.841888+00:00"
+      "updated_at": "2026-11-26T11:00:22.186662+00:00"
     },
     "outputs/keyframes/shot_07_seed1070.png": {
       "file_name": "shot_07_seed1070.png",
