@@ -29,16 +29,16 @@
 ## Stage 6 & 7: Clips, plan and assembly — be able to explain this
 1. **Why share hash recipes between the stages and `plan`?** If the dry run used its own copy of the cache formulas it could claim a hit when the stage would actually regenerate; one `contracts.py` makes the promise true by construction.
 2. **What does a Ken Burns fallback do?** It is a deterministic FFmpeg zoom over the approved still — real motion with no extra GPU cost, used if Wan is skipped or fails after 3 attempts, so the film can still be finished.
-3. **What did the local assembly smoke test prove?** With temporary files only, both exports rendered 73.0 s at 24 fps, and measured audio was **-14.32 LUFS / -0.97 dBTP**, matching the target; no final deliverable was rendered before the director's gate.
+3. **What did the local assembly smoke test prove?** With temporary files only, both exports rendered 73.0 s at 24 fps, and measured audio was **-14.32 LUFS / -0.97 dBTP (HISTORICAL smoke-test value; final delivery measured -14.02 LUFS / -0.98 dBTP)**, matching the target at that stage; no final deliverable was rendered before the director's gate.
 
 ## Provisional cut — be able to explain this
 1. **Why did the film once have two voices?** The director confirmed the User Test 1 problem was voices. Shots 07-10 were made on flash-lite TTS because of a 10/day cap; on 26 Nov they were regenerated on `gemini-3.8-flash-tts` with 4 calls (3,214 / 3,375 / 2,805 / 4,309 ms). The provisional cut existed only so visual feedback could happen early; old log rows still name the four stale shots.
 2. **Why does using stale audio not break caching?** The export hash is computed from the *expected* narration hashes, not the stale files' hashes. When the correct TTS is generated, its hash matches the expected one and the finals rebuild automatically; nothing else does.
-3. **What was measured on the delivered provisional files (before the audio fix)?** Both MP4s: 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR, **-14.32 LUFS / -0.95 dBTP**. Ten local Ken Burns clips took 1,417-1,473 ms each, with zero model calls.
+3. **What was measured on the delivered provisional files (before the audio fix)?** Both MP4s: 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR, **-14.32 LUFS / -0.95 dBTP (HISTORICAL provisional-cut value, not the delivered film)**. Ten local Ken Burns clips took 1,417-1,473 ms each, with zero model calls.
 
 ## The missing-voice bug — be able to explain this
 1. **How did I find it?** The director said "the voice is not available after the first shot". I measured the volume of each 7 s slot in the delivered MP4: shots 09 and 10 were at -50.7 and -91.0 dB. The source WAVs were all normal, so I compared three filter graphs: plain mix, split-then-duck, and the original.
-2. **What was the fix?** The voice label was consumed twice by FFmpeg without `asplit=2`, which silently truncated the second consumer. After the split, all ten slots measure -20.3 to -16.2 dB and the film measures **-14.01 LUFS / -0.99 dBTP**. I bumped `code_version` to 2 so the cache rebuilt the exports.
+2. **What was the fix?** The voice label was consumed twice by FFmpeg without `asplit=2`, which silently truncated the second consumer. After the split, all ten slots measure -20.3 to -16.2 dB and the film then measured **-14.01 LUFS / -0.99 dBTP (HISTORICAL; final delivery measured -14.02 LUFS / -0.98 dBTP)**. I bumped `code_version` to 2 so the cache rebuilt the exports.
 3. **What did this change about my process?** FFmpeg returned success on a broken mix. From now on, a render is not "verified" until the delivered file's own audio is measured slot by slot, not just its length and codec.
 
 ## CLI packaging — be able to explain this
@@ -49,7 +49,7 @@
 ## Second-language ceiling — be able to explain this
 1. **Why one TTS call instead of ten?** The 10/day cap and the 4-call voice fix leave only 6 calls before the deadline. One long narration call plus local splitting fits, at the cost of a timing-alignment risk that must be measured.
 2. **How are the 10 shot files made?** FFmpeg detects pauses in the long WAV and cuts at the nine longest ones; if that fails it falls back to word-count proportions. Each piece is padded to its 7-second slot. A smoke test with a synthetic WAV produced 10 audible slots and both 73.0 s exports.
-3. **What has not happened yet?** No real Afaan Oromo translation or TTS call has been made, and the family/community native-speaker check is pending. The alternate film must not be published until that check is recorded.
+3. **What did not happen?** Four Afaan Oromo **translation** calls were made on 2026-11-26 and all four failed; no TTS call and no `_om` film exist. The director closed the ceiling as failed and ruled the native-speaker check **moot**; no Oromo variant will be published.
 
 ## Showcase and post — be able to explain this
 1. **Why keep the Space folder but ignore its copies?** The HTML and metadata are stable; the MP4s and cost table change after the final voice fix. `py run.py showcase` refreshes them, so the Space cannot silently show an old film.
@@ -63,7 +63,7 @@
 
 ## Sound and subtitle polish — be able to explain this
 1. **What changed and why?** Arial Bold subtitles 10% larger, a restyled but still 3-second AI end card, and a seeded pink-noise room tone at about -40 dB mean. It serves the film criteria (clear narration, readable subtitles, careful mix) and cost zero quota.
-2. **What did the measurement teach me?** My first ambience gain measured -54.1 dB mean — technically present but inaudible. I raised it to -40.2 dB and re-measured the exports: -14.04 LUFS, -0.99 dBTP, all ten slots audible. EXP-019 records both numbers.
+2. **What did the measurement teach me?** My first ambience gain measured -54.1 dB mean — technically present but inaudible. I raised it to -40.2 dB and re-measured the exports: **-14.04 LUFS / -0.99 dBTP (HISTORICAL polish-stage value; final delivery measured -14.02 LUFS / -0.98 dBTP)**, all ten slots audible. EXP-019 records both numbers.
 3. **What is still unverified?** I cannot view frames in this session, so I have not judged the subtitle placement or the end-card design by eye. The director must check both before the final-edit gate is approved.
 
 ## 5-minute walkthrough script (rehearsed 2026-11-25, shot_02)
@@ -83,7 +83,7 @@ Say: *"Preflight checks FFmpeg and committed inputs without keys. The dry run ma
 Remove-Item outputs\clips\shot_02.mp4 -Force
 .\.venv\Scripts\python.exe run.py shots --shot shot_02
 ```
-Expected real output from rehearsal: `cache_hit: false`, `source: ken_burns`, `duration_sec: 7.0`, `latency_ms: 1452`, `input_hash: d017039b9cbbe22513dea62644e52b48d82909df5dc754aacd9fc3e6a73c5a9d`. Say: *"I deleted one derived clip. The stage rebuilt only that clip from the approved still, with local FFmpeg — no model call, no quota."*
+Expected real output from rehearsal: `cache_hit: false`, `source: ken_burns`, `duration_sec: 7.0`, `latency_ms: 1420`, `input_hash: d017039b9cbbe22513dea62644e52b48d82909df5dc754aacd9fc3e6a73c5a9d`. Say: *"I deleted one derived clip. The stage rebuilt only that clip from the approved still, with local FFmpeg — no model call, no quota."*
 
 **3:00–3:45 — Show the evidence.**
 ```powershell
@@ -94,7 +94,7 @@ Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache fl
 
 **3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz, measured -14.02 LUFS / -0.98 dBTP, with all ten voices audible after the model fix, the mix fix and the room-tone polish."*
 
-**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo version now spends one translation call and one TTS call. Nothing is published until I approve it."*
+**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. Nothing is published until I approve it."*
 
 ### Recording checklist (keep the video under five minutes)
 - Record at 1280×720 or higher with **PowerShell + the repo folder** visible; never show `.env` or any key value.
@@ -109,19 +109,19 @@ Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache fl
 ### Diagnosing the Oromo timeout (three lines to memorise)
 Say: *"A free DNS, TCP and TLS probe showed the Gemini endpoint answers in about 200 ms, so the network was never the problem."*
 Say: *"`runs.jsonl` shows `gemini-3.8-flash` failed every time — two 503s and two timeouts — while `gemini-3.6-flash` once succeeded in 33.9 seconds."*
-Say: *"I stopped rather than spend a third blind call; changing the model or the 60-second cap is a separate decision with its own evidence."*
+Say: *"I stopped after the fourth failed attempt; the director closed the ceiling as failed, so there is no more call, no model switch and no Oromo film."*
 
 
 ### The second-language ceiling, honestly
 Say: *"I tried the translation four times — twice on 3.8-flash and twice on 3.6-flash, the last after a key change; all failed with timeouts or 503."*
 Say: *"The endpoint was reachable in about 200 ms, so I did not blame the network — I recorded the model failures instead of inventing a translation."*
-Say: *"No Oromo film exists and nothing was published; the native-speaker check is still pending and the floor film is unaffected."*
+Say: *"No Oromo film exists and nothing was published; the native-speaker check is moot, the ceiling is closed as failed, and the floor film is unaffected."*
 
 
 ### The submitted report (three lines to memorise)
 Say: *"`REPORT.pdf` is rendered from `REPORT.md`, so there is only one source of truth for the numbers."*
 Say: *"Every figure traces back to `runs.jsonl`, `COSTS.md`, `DESIGN.md`, `EXPERIMENTS.md` or `FAILURES.md`."*
-Say: *"I verified the extracted PDF text, including the minus signs and the three failed Oromo attempts, before submitting."*
+Say: *"REPORT.md is the source of truth; REPORT.pdf is intentionally stale and will be re-rendered only after the viewer words are appended from DESIGN.md."*
 
 
 ### Rehearsed live step — three lines to memorise
@@ -140,3 +140,8 @@ Say: *"I publish only after you approve the account and the remaining three view
 Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC, measured -14.02 LUFS and -0.98 dBTP."*
 Say: *"The 95 log rows, 89 calls, 7 failures and 788,261 ms in COSTS.md match runs.jsonl exactly."*
 Say: *"plan reports 38 cache hits and zero regenerations; nothing upstream would be rebuilt."*
+
+### Documentation cleanup — three lines to memorise
+Say: *"The Oromo ceiling is closed as failed after four translation calls; the native-speaker check is moot and no Oromo film exists."*
+Say: *"Older -14.01, -14.04 and -14.32 readings are labelled historical; the delivered film measures -14.02 LUFS / -0.98 dBTP."*
+Say: *"REPORT.pdf is intentionally stale and will be re-rendered only after the real viewer words are added from DESIGN.md."*
