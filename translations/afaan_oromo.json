@@ -1,7 +1,8 @@
 {
   "language": "Afaan Oromo",
   "source_field": "subtitle_en",
-  "text_model": "gemini-3.8-flash",
+  "text_model": "gemini-3.6-flash",
+  "model_rationale": "Switched on 2026-11-26 with director approval: runs.jsonl shows gemini-3.8-flash never succeeded (two HTTP 503 high-demand errors and two read timeouts), while gemini-3.6-flash succeeded in 33,900 ms. A free DNS/TCP/TLS probe ruled out network failure (FAILURES.md 029). **Attempted on 2026-11-26 and rejected: this model also returned HTTP 503 high demand (FAILURES.md 030).** No Afaan Oromo output exists; do not treat this choice as validated. TTS model is unchanged.",
   "tts_model": "gemini-3.8-flash-tts",
   "voice": "Kore",
   "translation_prompt": "Translate each of the following 10 English subtitle lines into natural, spoken Afaan Oromo. Keep the meaning warm and unhurried. Keep any names and place names unchanged. Do not add explanations, stage directions or extra sentences. Return ONLY a JSON array of exactly 10 strings, one per line, in the same order. Lines:\n{lines}",

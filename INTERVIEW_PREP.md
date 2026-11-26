@@ -110,3 +110,9 @@ Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache fl
 Say: *"A free DNS, TCP and TLS probe showed the Gemini endpoint answers in about 200 ms, so the network was never the problem."*
 Say: *"`runs.jsonl` shows `gemini-3.8-flash` failed every time — two 503s and two timeouts — while `gemini-3.6-flash` once succeeded in 33.9 seconds."*
 Say: *"I stopped rather than spend a third blind call; changing the model or the 60-second cap is a separate decision with its own evidence."*
+
+
+### The second-language ceiling, honestly
+Say: *"I tried the translation twice on 3.8-flash and once on 3.6-flash; all three failed, with read timeouts and a 503."*
+Say: *"The endpoint was reachable in about 200 ms, so I did not blame the network — I recorded the model failures instead of inventing a translation."*
+Say: *"No Oromo film exists and nothing was published; the native-speaker check is still pending and the floor film is unaffected."*

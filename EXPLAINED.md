@@ -123,3 +123,12 @@
 - **What changes what:** nothing in the film, the manifest or the cache. The finding changes the *next decision*: a third identical retry is not justified by a network fault. If we later switch the text model, only the translation stage invalidates — TTS, splitting, subtitles and both `_om` exports would then regenerate.
 - **Alternative and risk:** I could have switched `text_model` to `gemini-3.6-flash` immediately, since logs show it once succeeded in 33.9 s, or raised the 60 s retry cap. Both spend quota and change a locked config, so I did not do either without your approval. The risk of the probe itself was a misleading result from a local firewall; the `github.com` control made that interpretable.
 - **Be able to explain this:** "I checked DNS, TCP and TLS without calling the API. The endpoint answered in about 200 ms total, so the timeout is not the network — the configured text model has failed every time it was used, while an older model once worked."
+
+
+## Trying the older text model (2026-11-26)
+- **What you approved:** change one field — the translation model — to `gemini-3.6-flash`, because the log showed it had once worked, then use the one-translation + one-TTS budget.
+- **Why:** after the connectivity check, the model was the only evidence-backed thing left to change. One field meant the smallest possible blast radius.
+- **What it read and wrote:** it read the same locked fictional lines and the config, and wrote **nothing** — no translation JSON, no WAV, no MP4, no new log row. The only repo change is the config field and its honest rationale.
+- **What would have changed what:** a successful translation would have invalidated the translation hash, then the long TTS, then the ten local splits and both `_om` exports. The English film would not have changed at all. Since the call failed, none of that happened.
+- **Alternative and risk:** I did not try a third model or raise the timeout; each is another quota decision. The risk was that a historically successful free-tier model is still unavailable today — which is exactly what happened (HTTP 503 high demand).
+- **Be able to explain this:** "I changed one model name because the logs supported it, and it still returned 503. I stopped after the approved attempt rather than shopping for a model that happens to be free at that second."
