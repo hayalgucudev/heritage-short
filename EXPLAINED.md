@@ -99,3 +99,10 @@
 - **What changes what:** the new WAV hashes feed `assemble`, which feeds the two MP4s and their subtitles. No keyframe, clip, style block or score changed, so nothing else was regenerated. After the rebuild `plan` reports **38 cache hits and 0 regenerations** — the cleanest state the repo has had.
 - **Alternative and risk:** I could have kept the provisional cut and saved four calls, but the listener had already rejected it. The risk was another quota failure; the pipeline's retry/backoff was used and all four calls succeeded on the first attempt in this run. I measured the delivered files instead of trusting FFmpeg's exit code: both are 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR, **-14.02 LUFS / -0.98 dBTP**, with all ten 7-second slots between **-21.3 and -16.2 dB**.
 - **Be able to explain this:** "The viewer said the voices changed. I regenerated only the four wrong ones on the original model, let the hash chain force the finals to rebuild, and measured all ten slots in the delivered MP4. No story text changed."
+
+
+## Afaan Oromo attempt (2026-11-26)
+- **What I did:** after the four voices were fixed, I ran the approved `second-language` command. It reads the locked fictional story text from `translations/afaan_oromo.json` (no real family details) and was meant to write one translated JSON, one long TTS WAV and two `_om` MP4s.
+- **Why:** this is the director's chosen ceiling item — the same film for viewers who do not understand Amharic. It was worth two model calls to test, but only after the floor was finished.
+- **What happened:** the translation request timed out after 54.2 s. The retry helper's hard 60 s cap stopped further attempts. No translation was produced, so the pipeline correctly did **not** make the TTS call. No files were written and nothing was published.
+- **Alternative and risk:** I did not retry or switch models because the approval was for exactly two calls and the instruction was to stop on failure. I also did not claim a native-speaker result — that check is still yours. The honest failure is recorded in `FAILURES.md` 028; a retry needs your approval.

@@ -161,7 +161,8 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Status:** the director chose on 2026-11-25 to **defer the Wan rerun until after tomorrow's scheduled TTS and Oromo jobs**, because Wan is optional and the floor already works. The zip is ready locally. **No Wan clip or GPU latency exists yet**; the film still uses the local Ken Burns fallback.
 
 
-
-
-
-
+## 028 — Afaan Oromo translation call timed out (2026-11-26)
+- **What I ran:** `py run.py second-language` at 12:11 EAT on 2026-11-26, after confirming the TTS fix had succeeded (`plan`: 38 cache hits / 0 regenerations; both assemble rows `stale_narration: []`). This was the director-approved spend of exactly two model calls.
+- **What broke:** the **first** call — Gemini text translation of the ten locked fictional lines — failed with `requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=54.21401089988649)`. `pipeline/smoke.py::_post_with_retry` retries transient errors inside a hard 60 s per-call cap; the last attempt consumed 54.2 s and no further attempt was made.
+- **What did NOT happen:** no translation JSON was produced, the Gemini TTS call was **never made**, `outputs/second_language/` stayed empty, and no `outputs/narration_om/`, `film_9x16_om.mp4` or `film_16x9_om.mp4` exists. Nothing was published. `runs.jsonl` has **no row** for this failed call because `pipeline/second_language.py` logs only after a successful response — a real logging gap, not evidence that no request was attempted.
+- **What fixed it / status:** nothing yet. Per instruction I stopped instead of retrying or inventing a fallback. A retry needs a fresh director approval. No claim about translation quality, native-speaker checking or viewer comprehension is made, and the Afaan Oromo variant must not be published.
