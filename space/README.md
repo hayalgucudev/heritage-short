@@ -9,4 +9,4 @@ pinned: false
 
 # The Heritage Short
 
-Static showcase for the reproducible AI short film. Replace `YOUR_USERNAME/heritage-short` in the Space settings before publishing. Nothing here is uploaded automatically.
+Static showcase files for the reproducible AI short film. **Not published (optional).** No Hugging Face Space was created, no handle was chosen, and nothing is uploaded automatically. The film uses FFmpeg Ken Burns motion over AI-generated stills; no AI-generated video is used.

@@ -35,7 +35,7 @@ The timed script, recording checklist and three-line memory notes are in `INTERV
 
 ## Hugging Face Space (static showcase)
 
-The files are prepared in `space/` — `index.html`, `README.md`, `storyboard.json`, `costs.md`, `keyframes.html` and both MP4s. **Nothing has been uploaded.** To publish, the director must create the Space, replace `YOUR_USERNAME/heritage-short` with the real handle, upload the folder, and confirm the public URL. The page already carries the "AI-generated film" tag and an AI disclosure paragraph.
+The files are prepared in `space/` — `index.html`, `README.md`, `storyboard.json`, `costs.md`, `keyframes.html` and both MP4s. **Nothing has been uploaded.** The Space is **optional and NOT published**; the `YOUR_USERNAME` placeholder was replaced by a "not published (optional)" marker in `space/README.md` and `DESIGN.md`. Publishing is not planned before the deadline. The page already carries the "AI-generated film" tag and an AI disclosure paragraph.
 
 ## Gates before anything goes live
 
@@ -43,5 +43,5 @@ The files are prepared in `space/` — `index.html`, `README.md`, `storyboard.js
 - [ ] The walkthrough video is recorded and under five minutes.
 - [ ] The director explicitly says "publish" and names the account/handle.
 - [ ] The platform AI-disclosure setting is enabled.
-- [ ] The Afaan Oromo variant stays private: its ceiling experiment was closed as failed and no native-speaker check exists.
+- [x] Oromo ceiling CLOSED AS FAILED, native-speaker check MOOT: no variant exists and none will be published.
 - [ ] Optional Wan 2.2 clips are not claimed: no Wan clip or GPU latency exists.
