@@ -45,7 +45,7 @@
 
 ## Ceiling projects chosen by the director (2026-11-25)
 - The director picked exactly **two**, to be planned now and **built only after the floor is finished**: **(a) the same film in a second language** and **(e) packaging the pipeline as a CLI others can use**.
-- Second language: **Afaan Oromo**, chosen by the director on 2026-11-25. The director consented to sending only the locked fictional story text to Gemini; no real family details are included. Hypothesis and measurement plan go in `EXPERIMENTS.md` (EXP-017); model failures go in `FAILURES.md`.
+- Second language: **Afaan Oromo**, chosen by the director on 2026-11-25. The director consented to sending only the locked fictional story text to Gemini; no real family details are included. Hypothesis and measurement plan go in `EXPERIMENTS.md` (EXP-017); model failures go in `FAILURES.md`. **Closed as failed by the director on 2026-11-26** after four failed translation calls (028, 030, 031); no `_om` export exists and no native-speaker result was obtained.
 - CLI packaging: the working `run.py` becomes a reusable command-line tool with documented arguments and a clean-clone test. Hypothesis: a stranger can rebuild both exports from `storyboard.json` without reading the source code.
 - Deliberately **not** chosen for now: lyrics/lyric video, open-vs-frontier benchmark, LoRA consistency experiment and post-publication audience measurement.
 

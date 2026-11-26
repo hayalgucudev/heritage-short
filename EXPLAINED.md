@@ -151,3 +151,12 @@
 - **What changes what:** before deletion `plan` was 38 hits / 0 regenerations; after deletion it was 35 hits / 3 regenerations — the clip, both finals and the radio cut, all local FFmpeg. After regeneration it was back to 38 hits / 0 regenerations. Nothing upstream moved, so this is safe to show on camera.
 - **Alternative and risk:** I did not delete a keyframe or a WAV, because that would be a model input and could spend quota. The only risk was leaving a derived clip missing; the same command restored it, and ffprobe verified 7.0 s at 24 fps.
 - **Be able to explain this:** "I deleted one derived clip and the plan showed three things would rebuild — that clip and the two exports. One local FFmpeg call in 1.4 seconds brought the plan back to all cache hits."
+
+
+## Closing the Oromo ceiling and drafting the post (2026-11-26)
+- **What you approved:** close the second-language ceiling as a failed experiment and prepare publication text without publishing.
+- **Why:** a negative result is worth more than an open "pending" claim, and the post is worth 20 marks in Assignment 2. Both need evidence in writing rather than an assumption.
+- **What it read and wrote:** it read `EXPERIMENTS.md`, `DESIGN.md`, `REPORT.md` and the prepared `space/` page. It wrote `PUBLISH_DRAFT.md` and small closure notes in those documents. Zero quota; no key, no model call and no upload.
+- **What changes what:** the film, cache and `runs.jsonl` are unchanged. `PUBLISH_DRAFT.md` is inert until you act on it. I re-rendered `REPORT.pdf` because `REPORT.md` gained the closure sentence, so the Markdown and PDF still say the same thing.
+- **Alternative and risk:** I did not publish or switch the Space placeholder to a real handle because that is your account decision. The risk of a draft is that it could be mistaken for a live post, so the file starts and ends with NOT PUBLISHED gates, and it keeps the AI label in the title, description and page.
+- **Be able to explain this:** "Four translation calls failed, so I closed the ceiling as a negative result instead of leaving it vague. The post text is ready but nothing is live until I approve it."

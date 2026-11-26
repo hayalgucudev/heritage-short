@@ -128,3 +128,9 @@ Say: *"I verified the extracted PDF text, including the minus signs and the thre
 Say: *"Before recording I show plan: 38 cache hits, zero regenerations."*
 Say: *"I delete only the derived clip for shot_02; plan then shows three local rebuilds — that clip and both exports — with zero quota."*
 Say: *"One FFmpeg call in 1.4 seconds restores it, a new runs.jsonl row appears, and plan returns to 38 cache hits."*
+
+
+### Publication status — three lines to memorise
+Say: *"The Afaan Oromo ceiling was closed as failed after four translation calls; no Oromo film exists and no quality claim was made."*
+Say: *"PUBLISH_DRAFT.md contains the YouTube and Space text with the AI-generated film label, but nothing has been uploaded."*
+Say: *"I publish only after you approve the account and the remaining three viewer responses are recorded."*
