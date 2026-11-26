@@ -199,7 +199,7 @@
 - **Why:** the brief grades audience reflection from evidence in writing, and verbatim words are stronger evidence than my paraphrase. Keeping both a verbatim quote and a formal summary respects the rubric while making the report readable.
 - **What it read and wrote:** read the director's message and the existing test sections; wrote `DESIGN.md`, `REPORT.md`, `REPORT.pdf`, `INTERVIEW_PREP.md` and `PUBLISH_DRAFT.md`. No film, model, keyframe, narration line, seed, cache or log changed.
 - **What changes what:** the PDF now matches the Markdown; the walkthrough closing line and publication gates no longer claim the words are missing. The regular report is regenerated from `REPORT.md` whenever that file changes.
-- **Alternative and risk:** I could have rewritten the sentences as polished prose only, but that would destroy the evidence. I could have invented names, timestamps or extra viewers, but that would be dishonest; the remaining empty slots and the three-per-test gap are left visible.
+- **Alternative and risk:** I could have rewritten the sentences as polished prose only, but that would destroy the evidence. I could have invented names, timestamps or a per-test viewer split, but that would be dishonest; when the director later said more than three people gave feedback, I recorded that statement without inventing who watched which cut.
 - **Be able to explain this:** "I kept what the viewer said exactly, added a formal summary separately, recorded that pronunciation and visual criticisms remain open, and re-rendered the PDF from one source of truth."
 
 ## Final clean-clone proof (2026-11-26)
