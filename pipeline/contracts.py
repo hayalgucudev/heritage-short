@@ -162,10 +162,18 @@ ASSEMBLE_SETTINGS: dict[str, Any] = {
     # Bump when the FFmpeg filter graph changes even if storyboard inputs do not.
     # v2 adds asplit=2 so the voice sidechain cannot truncate the final 2 slots.
     # v3: +10% Arial Bold subtitles, restyled 3 s end card, quiet seeded room tone.
-    "code_version": 3,
+    # v4: 9:16 subtitles lifted to about 65-70% of frame height; end-card headline
+    # doubled, tribute enlarged and brightened. These view settings are the single
+    # source of truth consumed by assemble.py, so a visual edit cannot be a cache hit.
+    "code_version": 4,
     "subtitle_bold": True,
     "subtitle_size_scale": 1.10,
-    "endcard_style_version": 2,
+    "subtitle_margin_v": {"9:16": 340, "16:9": 52},
+    "endcard_style_version": 3,
+    "endcard_font_px": {"9:16": 18, "16:9": 28},
+    "endcard_headline_multiplier": 3.6,
+    "endcard_tribute_multiplier": 1.5,
+    "endcard_tribute_color": "0xF0E6D2",
     "ambience": {
         "source": "local_anoisesrc_pink",
         "seed": 20261126,

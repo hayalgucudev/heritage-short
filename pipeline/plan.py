@@ -16,6 +16,7 @@ DEPENDENCY_MAP = [
     "music.caption / tempo_bpm / key / seed -> score -> ducking -> both final exports",
     "shot N video_motion_prompt / video_seed -> clip N -> both final exports",
     "end_card.text / duration_sec -> end card -> both final exports",
+    "ASSEMBLE_SETTINGS (subtitle_margin_v, endcard_* sizes/colour, code_version) -> subtitles + end card -> both final exports",
 ]
 
 

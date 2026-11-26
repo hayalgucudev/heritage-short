@@ -19,9 +19,12 @@ from pipeline.validate import validate_storyboard
 # aspect: (width, height, subtitle_font_px, subtitle_margin_v_px, endcard_font_px)
 # Subtitle sizes were raised 10% (32->35, 40->44) per director approval. The
 # longest line is 33 chars: measured 587 px in Arial Bold 35 px, inside 608 px.
+# 9:16 MarginV 340 puts the two-line block at about 62-69% of the frame height,
+# clear of platform UI. MarginV and end-card sizes come from ASSEMBLE_SETTINGS
+# so `plan` hashes the exact values that FFmpeg draws.
 ASPECTS: dict[str, tuple[int, int, int, int, int]] = {
-    "9:16": (608, 1080, 35, 180, 18),
-    "16:9": (1280, 720, 44, 52, 28),
+    "9:16": (608, 1080, 35, contracts.ASSEMBLE_SETTINGS["subtitle_margin_v"]["9:16"], contracts.ASSEMBLE_SETTINGS["endcard_font_px"]["9:16"]),
+    "16:9": (1280, 720, 44, contracts.ASSEMBLE_SETTINGS["subtitle_margin_v"]["16:9"], contracts.ASSEMBLE_SETTINGS["endcard_font_px"]["16:9"]),
 }
 FPS = 24
 
@@ -279,14 +282,16 @@ def _render_aspect(
     tribute_path = card_dir / "endcard_tribute.txt"
     headline_path.write_text(headline, encoding="utf-8")
     tribute_path.write_text(tribute, encoding="utf-8")
-    headline_size, tribute_size = round(end_font * 1.8), round(end_font * 1.1)
+    settings = contracts.ASSEMBLE_SETTINGS
+    headline_size = round(end_font * settings["endcard_headline_multiplier"])
+    tribute_size = round(end_font * settings["endcard_tribute_multiplier"])
     parts.append(
         f"[endraw]drawbox=x=(w-260)/2:y=h/2+6:w=260:h=2:color=0x9a7b55@0.85:t=fill,"
         f"drawtext={_font_prefix(bold=True)}textfile={headline_path.relative_to(project_root).as_posix()}:"
         f"expansion=none:fontcolor=white:fontsize={headline_size}:"
         "x=(w-text_w)/2:y=h/2-text_h-18,"
         f"drawtext={_font_prefix()}textfile={tribute_path.relative_to(project_root).as_posix()}:"
-        f"expansion=none:fontcolor=0xCBB99A:fontsize={tribute_size}:"
+        f"expansion=none:fontcolor={settings['endcard_tribute_color']}:fontsize={tribute_size}:"
         "x=(w-text_w)/2:y=h/2+22[end]"
     )
     parts.append(f"{concat_labels}[end]concat=n={len(clip_paths) + 1}:v=1:a=0[cat]")
