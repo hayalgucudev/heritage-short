@@ -142,3 +142,12 @@
 - **What changes what:** the PDF is a derivative of the Markdown. Editing `REPORT.md` later means re-rendering the PDF; the film, `runs.jsonl`, cache and manifest are unaffected. I did not add a new `run.py` command without your approval.
 - **Alternative and risk:** I rejected Word because you chose PDF. The risk was broken Unicode — the report uses en dashes, minus signs and arrows — so I registered Windows Segoe UI fonts and verified the extracted text: 3 pages, 11,980 characters, zero replacement characters, and all bullet and numbered items present.
 - **Be able to explain this:** "The PDF is generated from the Markdown report, not typed twice. I checked the extracted text so the measured numbers were not silently mangled by the font."
+
+
+## Rehearsing the live walkthrough step (2026-11-26)
+- **What I did:** deleted only the derived `outputs/clips/shot_02.mp4`, showed `plan`, regenerated that one clip with `py run.py shots --shot shot_02`, and showed `plan` again.
+- **Why:** Assignment 2 is graded on a ≤5 minute walkthrough with one shot regenerated live. Rehearsing removes the risk of a surprise on recording day and demonstrates the dependency map with real output.
+- **What it read and wrote:** it read the locked storyboard, the cached keyframe and the manifest, and wrote one 480x480 H.264 clip, one manifest entry and one `runs.jsonl` row (1,420 ms, `0_local_ffmpeg`). No key, no model, no quota.
+- **What changes what:** before deletion `plan` was 38 hits / 0 regenerations; after deletion it was 35 hits / 3 regenerations — the clip, both finals and the radio cut, all local FFmpeg. After regeneration it was back to 38 hits / 0 regenerations. Nothing upstream moved, so this is safe to show on camera.
+- **Alternative and risk:** I did not delete a keyframe or a WAV, because that would be a model input and could spend quota. The only risk was leaving a derived clip missing; the same command restored it, and ffprobe verified 7.0 s at 24 fps.
+- **Be able to explain this:** "I deleted one derived clip and the plan showed three things would rebuild — that clip and the two exports. One local FFmpeg call in 1.4 seconds brought the plan back to all cache hits."

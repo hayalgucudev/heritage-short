@@ -156,3 +156,10 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Change:** one field in `translations/afaan_oromo.json` (`text_model`); no prompts, story text, TTS model or code changed. One approved run of `run.py second-language`.
 - **Result:** HTTP 503 "This model is currently experiencing high demand" after retries. No translation JSON, no TTS call, no `_om` exports, no new `runs.jsonl` row.
 - **Decision:** hypothesis **rejected** — a single past success is not a reliable capacity guarantee on a free tier. This changed my mind about "pick the model with a historical success". I stopped rather than cycling models again; the remaining time goes to the finished floor, user tests and submission.
+
+
+## EXP-025 — Walkthrough rehearsal: what does deleting one derived clip invalidate?
+- **Hypothesis:** deleting `outputs/clips/shot_02.mp4` will invalidate only that clip and the downstream exports, never an upstream model stage.
+- **Change:** deleted just that derived MP4, ran `py run.py shots --shot shot_02`, then re-ran `plan`. No prompts, seeds, keyframes, narration or score changed; zero quota.
+- **Result:** `plan` moved from **38 hits / 0 regenerations** to **35 hits / 3 regenerations**: `shots/shot_02` plus the two finals and the radio cut, all labelled `0_local_ffmpeg`. Regeneration took **1,420 ms** and produced one `runs.jsonl` row (`cache_hit: false`, `status: ok`, same `input_hash` `d017039b…c5a9d`). ffprobe confirmed H.264, 480x480, 24 fps, 7.000000 s. `plan` returned to **38 hits / 0 regenerations**.
+- **Decision:** this is the live step for the recorded walkthrough. It proves the dependency map visually in a few seconds and costs nothing; the director can safely show it on camera.

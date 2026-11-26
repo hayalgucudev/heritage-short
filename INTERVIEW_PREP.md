@@ -122,3 +122,9 @@ Say: *"No Oromo film exists and nothing was published; the native-speaker check 
 Say: *"`REPORT.pdf` is rendered from `REPORT.md`, so there is only one source of truth for the numbers."*
 Say: *"Every figure traces back to `runs.jsonl`, `COSTS.md`, `DESIGN.md`, `EXPERIMENTS.md` or `FAILURES.md`."*
 Say: *"I verified the extracted PDF text, including the minus signs and the three failed Oromo attempts, before submitting."*
+
+
+### Rehearsed live step — three lines to memorise
+Say: *"Before recording I show plan: 38 cache hits, zero regenerations."*
+Say: *"I delete only the derived clip for shot_02; plan then shows three local rebuilds — that clip and both exports — with zero quota."*
+Say: *"One FFmpeg call in 1.4 seconds restores it, a new runs.jsonl row appears, and plan returns to 38 cache hits."*
