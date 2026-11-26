@@ -104,3 +104,9 @@ Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache fl
 - Pause the recording while the ~1.5 s render runs if you want, then show the single new `runs.jsonl` row and the `plan` cache hit.
 - If you speak the hard decision, use this one line: *"FFmpeg reported success while the last two shots were silent; I only caught it by measuring each slot, so slot-level measurement is now mandatory."*
 - Stop at 5:00. The walkthrough is graded on the architecture, one hard decision and one live regeneration — not on extra polish.
+
+
+### Diagnosing the Oromo timeout (three lines to memorise)
+Say: *"A free DNS, TCP and TLS probe showed the Gemini endpoint answers in about 200 ms, so the network was never the problem."*
+Say: *"`runs.jsonl` shows `gemini-3.8-flash` failed every time — two 503s and two timeouts — while `gemini-3.6-flash` once succeeded in 33.9 seconds."*
+Say: *"I stopped rather than spend a third blind call; changing the model or the 60-second cap is a separate decision with its own evidence."*

@@ -144,6 +144,8 @@ Target: **>= 10 controlled experiments** (changing ONE variable at a time, recor
 - **Decision:** Accepted as the final cut; the listener's "Voices" complaint is closed at the source rather than by tweaking the mix. It changed my mind about accepting a free-tier fallback as "good enough" — the operationally cheap shortcut cost a second quota window and a full rebuild, so model continuity is now treated as a release gate. No visual change was made and no new quota spend is planned for Wan.
 
 
-
-
-
+## EXP-023 — Is the Afaan Oromo failure a network block?
+- **Hypothesis:** the two translation read timeouts were caused by loss of connectivity to `generativelanguage.googleapis.com`.
+- **Change:** no code or model change. A free DNS + TCP + TLS probe was run locally, with `github.com` as a control, and `runs.jsonl` was checked for earlier calls to the same text model. Zero model calls and zero quota.
+- **Result:** Gemini DNS 11.4 ms, TCP 78.9 ms, TLS 113.2 ms (`TLSv1.3`); control DNS 5.8 ms, TCP 95.4 ms, TLS 104.9 ms. Four TTS calls on the same host had succeeded ~25 minutes earlier. The configured `gemini-3.8-flash` text model has no success in 94 logged rows — two HTTP 503 "high demand" errors plus the two timeouts — while `gemini-3.6-flash` succeeded once in 33.9 s.
+- **Decision:** hypothesis **rejected**; the fault is request/model-side, not network-side. It changed my mind about blaming the endpoint. I did not spend quota on a third blind retry; the next step (different text model or a longer retry cap) is a separate, director-approved experiment.
