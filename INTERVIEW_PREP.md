@@ -172,6 +172,12 @@ Say: *"The dry run showed 35 hits and 3 regenerations: one TTS call plus two loc
 Say: *"The submitted hashes stayed 375467a8... and 03697d27..., and the clone was deleted after the evidence was captured."*
 
 
+### Space publication failure — three lines to memorise
+Say: *"I prepared the static Space and the director approved publishing to hayalgucudev/heritage-short, but Hugging Face returned 403 because the token cannot create under that namespace."*
+Say: *"No Space was created and no MP4 was uploaded; whoami showed the token belongs to an account without rights over that namespace, and I never printed the token."*
+Say: *"FAILURES.md 036 records the block; the staged package is ready for an approved handle, a different token, or a decision to skip the Space."*
+
+
 ### Publication status — three lines to memorise
 Say: *"The Afaan Oromo ceiling was closed as failed after four translation calls; no Oromo film exists and no quality claim was made."*
 Say: *"PUBLISH_DRAFT.md contains the YouTube and Space text with the AI-generated film label, but nothing has been uploaded."*

@@ -218,6 +218,14 @@
 - **Alternative and risk:** I could have kept the old zero-quota clip-deletion demo, but a reviewer could say the storyboard was never changed. The one-call risk was contained by the disposable clone; the real film could not be damaged.
 - **Be able to explain this:** "I changed one narration line in a throwaway clone, spent one approved TTS call, saw exactly one model row, rebuilt only the dependent outputs locally, and left the submitted film byte-identical."
 
+## Hugging Face Space publication blocked (2026-11-26)
+- **What I did:** after explicit director approval, I staged the Space assets, installed `huggingface_hub` locally and attempted to create and upload a static Space at `hayalgucudev/heritage-short`. I loaded `HF_TOKEN` from `.env` without printing it.
+- **Why:** Assignment 2 needs public MP4 links that open without login; the repo's `outputs/final/` is gitignored, so a public static Space is the intended carrier.
+- **What it read and wrote:** read `space/` and the final MP4s; attempted one remote Space creation and upload. The remote call failed, so nothing was uploaded. Locally I corrected `space/README.md`, added `FAILURES.md` 036 and committed those truthful notes.
+- **What changes what:** no public link exists yet. The staged `space/` package can be uploaded again to an approved handle without changing the film, cache or logs.
+- **Alternative and risk:** I could have guessed a different namespace or used tenx attachments, but the director must choose the public identity. The risk was accidental public exposure; it did not occur because the permission check refused the request.
+- **Be able to explain this:** "The upload failed with 403 before any file was public; I logged it, corrected the README, and need an approved handle within the token's rights before retrying."
+
 ## Final clean-clone proof (2026-11-26)
 - **What I did:** cloned the final `main` from GitHub into a fresh folder, made a new venv, installed the three requirements, and ran plain `run.py film` with no `.env`.
 - **Why:** an earlier clone test used an older commit; the one-command promise had to be proved on the exact code being submitted.
