@@ -132,3 +132,12 @@
 - **What would have changed what:** a successful translation would have invalidated the translation hash, then the long TTS, then the ten local splits and both `_om` exports. The English film would not have changed at all. Since the call failed, none of that happened.
 - **Alternative and risk:** I did not try a third model or raise the timeout; each is another quota decision. The risk was that a historically successful free-tier model is still unavailable today — which is exactly what happened (HTTP 503 high demand).
 - **Be able to explain this:** "I changed one model name because the logs supported it, and it still returned 503. I stopped after the approved attempt rather than shopping for a model that happens to be free at that second."
+
+
+## Rendering the report as a PDF (2026-11-26)
+- **What you approved:** convert `REPORT.md` to PDF for submission.
+- **Why:** the report is graded on evidence in writing; a PDF is a single attachment that a human marker can open without a repository. It costs no model quota.
+- **What it read and wrote:** read `REPORT.md` only and wrote `REPORT.pdf` (3 A4 pages). I installed `reportlab` and `pypdf` into the local `.venv` for rendering and verification; no `.env` value was used. I also corrected three stale counts in the Markdown while doing this: the report now says 24 experiments, 30 failures and three failed Oromo attempts.
+- **What changes what:** the PDF is a derivative of the Markdown. Editing `REPORT.md` later means re-rendering the PDF; the film, `runs.jsonl`, cache and manifest are unaffected. I did not add a new `run.py` command without your approval.
+- **Alternative and risk:** I rejected Word because you chose PDF. The risk was broken Unicode — the report uses en dashes, minus signs and arrows — so I registered Windows Segoe UI fonts and verified the extracted text: 3 pages, 11,980 characters, zero replacement characters, and all bullet and numbered items present.
+- **Be able to explain this:** "The PDF is generated from the Markdown report, not typed twice. I checked the extracted text so the measured numbers were not silently mangled by the font."

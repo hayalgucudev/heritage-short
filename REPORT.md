@@ -1,6 +1,6 @@
 # The Heritage Short — Codebase and Report
 
-**Draft for submission (Markdown).** Every number below comes from `runs.jsonl`, `COSTS.md`, `DESIGN.md`, `EXPERIMENTS.md` or `FAILURES.md` in this repository. Nothing is estimated or invented. Prepared 2026-11-25 and updated 2026-11-26 after the four voice re-takes; the Afaan Oromo run was attempted but its translation call timed out; that failure is recorded as a failure, not a result.
+**Draft for submission (Markdown; rendered as `REPORT.pdf`).** Every number below comes from `runs.jsonl`, `COSTS.md`, `DESIGN.md`, `EXPERIMENTS.md` or `FAILURES.md` in this repository. Nothing is estimated or invented. Prepared 2026-11-25 and updated 2026-11-26 after the four voice re-takes; the Afaan Oromo run was attempted three times and failed each time at translation; those failures are recorded as failures, not results.
 
 ---
 
@@ -60,8 +60,8 @@ Two ceiling items were chosen by the director, and a small polish item was added
 | :--- | :--- |
 | Audience, intent, verbatim quotes, sample-size caveat | `DESIGN.md` |
 | Stage contracts, caching and the dependency map | `ARCHITECTURE.md` |
-| Eighteen hypothesis/change/result experiments | `EXPERIMENTS.md` |
-| Twenty-five real failures and their fixes | `FAILURES.md` |
+| Twenty-four hypothesis/change/result experiments | `EXPERIMENTS.md` |
+| Thirty real failures and their fixes | `FAILURES.md` |
 | Measured latency, quota and list-price notes | `COSTS.md` (`py run.py report-costs`) |
 | Consent, AI disclosure and model licences | `ETHICS.md` |
 | One line per model or FFmpeg call | `runs.jsonl` |

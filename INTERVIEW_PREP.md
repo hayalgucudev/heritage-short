@@ -116,3 +116,9 @@ Say: *"I stopped rather than spend a third blind call; changing the model or the
 Say: *"I tried the translation twice on 3.8-flash and once on 3.6-flash; all three failed, with read timeouts and a 503."*
 Say: *"The endpoint was reachable in about 200 ms, so I did not blame the network — I recorded the model failures instead of inventing a translation."*
 Say: *"No Oromo film exists and nothing was published; the native-speaker check is still pending and the floor film is unaffected."*
+
+
+### The submitted report (three lines to memorise)
+Say: *"`REPORT.pdf` is rendered from `REPORT.md`, so there is only one source of truth for the numbers."*
+Say: *"Every figure traces back to `runs.jsonl`, `COSTS.md`, `DESIGN.md`, `EXPERIMENTS.md` or `FAILURES.md`."*
+Say: *"I verified the extracted PDF text, including the minus signs and the three failed Oromo attempts, before submitting."*
