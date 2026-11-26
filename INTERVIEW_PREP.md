@@ -66,7 +66,7 @@
 2. **What did the measurement teach me?** My first ambience gain measured -54.1 dB mean — technically present but inaudible. I raised it to -40.2 dB and re-measured the exports: **-14.04 LUFS / -0.99 dBTP (HISTORICAL polish-stage value; final delivery measured -14.02 LUFS / -0.98 dBTP)**, all ten slots audible. EXP-019 records both numbers.
 3. **What is still unverified?** I cannot view frames in this session, so I have not judged the subtitle placement or the end-card design by eye. The director must check both before the final-edit gate is approved.
 
-## 5-minute walkthrough script (rehearsed 2026-11-25, shot_02)
+## 5-minute walkthrough script (rehearsed 2026-11-25, final wording merged 2026-11-26, shot_02)
 **0:00–0:30 — Intro.** Open the repo and say: *"This is The Heritage Short. The story is locked in `storyboard.json`. One command, `py run.py film`, rebuilds both films. Every stage checks a hash of its inputs, so only changed things regenerate."*
 
 **0:30–1:15 — Prove the environment is safe.**
@@ -85,16 +85,17 @@ Remove-Item outputs\clips\shot_02.mp4 -Force
 ```
 Expected real output from rehearsal: `cache_hit: false`, `source: ken_burns`, `duration_sec: 7.0`, `latency_ms: 1420`, `input_hash: d017039b9cbbe22513dea62644e52b48d82909df5dc754aacd9fc3e6a73c5a9d`. Say: *"I deleted one derived clip. The stage rebuilt only that clip from the approved still, with local FFmpeg — no model call, no quota."*
 
-**3:00–3:45 — Show the evidence.**
+**3:00–3:45 — Show the evidence and restore the cache.**
 ```powershell
 Get-Content runs.jsonl -Tail 1
 .\.venv\Scripts\python.exe run.py plan | Select-String 'shots/shot_02'
+.\.venv\Scripts\python.exe run.py plan | Select-String 'Checked'
 ```
-Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache flag and hash. The plan now calls shot_02 a cache hit, which proves the manifest agrees with the file."*
+Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache flag and hash. The plan now calls shot_02 a cache hit, which proves the manifest agrees with the file. The full plan is back to **38 hits / 0 regenerations** — one local FFmpeg call restored the cache with zero quota."*
 
-**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz, measured -14.02 LUFS / -0.98 dBTP, with all ten voices audible after the model fix, the mix fix and the room-tone polish."*
+**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card, then open `film_16x9.mp4`. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz stereo, measured -14.02 LUFS / -0.98 dBTP, with all ten voices audible, burned-in English subtitles inside the vertical safe area and a 3-second 'Made with AI' end card. Be honest about motion: these are FFmpeg Ken Burns pans and zooms over approved AI-generated stills, not AI-generated video."*
 
-**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. Nothing is published until I approve it."*
+**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. Six verbatim viewer responses and the re-render of REPORT.pdf are still pending; nothing is published until I approve the account and give an explicit publish instruction."*
 
 ### Recording checklist (keep the video under five minutes)
 - Record at 1280×720 or higher with **PowerShell + the repo folder** visible; never show `.env` or any key value.
@@ -160,3 +161,9 @@ Say: *"COSTS.md now reads 152 records, 104 non-cache calls, 7 failures and 967,7
 Say: *"I cloned final `main` at 05a8b81 with no `.env`, installed only requirements.txt, and `preflight` said ready."*
 Say: *"Plain `run.py film` gave 21 cache hits and 12 local FFmpeg rows with zero model calls, and both MP4 hashes matched."*
 Say: *"The earlier clone proof was from an older commit; EXP-031 proves the exact code being submitted."*
+
+
+### The merged walkthrough script — three lines to memorise
+Say: *"The five-minute script lives in INTERVIEW_PREP.md lines 69 to 106; it shows preflight, storyboard, one live rebuild, the log row and both exports."*
+Say: *"Deleting shot_02's clip moves plan from 38/0 to 35/3, all local FFmpeg; one 1.4-second rebuild returns it to 38/0 with zero quota."*
+Say: *"I state the true specs and admit the film is Ken Burns over AI stills, with viewer words and publication still pending."*
