@@ -194,6 +194,14 @@
 - **Alternative and risk:** I could have shown the existing files instead, but that would not prove the command. The risk was a hidden hash mismatch triggering a paid call; `plan` had already reported 38 hits / 0 regenerations, and the log confirms zero misses.
 - **Be able to explain this:** "The final `py run.py film` was a complete cache hit: 33 log rows, no model calls, and the two MP4s have the same hashes as before."
 
+## Recording the supplied viewer feedback (2026-11-26)
+- **What I did:** the director supplied six answers from one additional visual-cut viewer and relayed further comments about inconsistent images, the motion looking "too AI", the jebena and the place. I pasted the exact words into `DESIGN.md`, added clearly labelled formal summaries, rewrote `REPORT.md` §2, re-rendered `REPORT.pdf` and committed the change.
+- **Why:** the brief grades audience reflection from evidence in writing, and verbatim words are stronger evidence than my paraphrase. Keeping both a verbatim quote and a formal summary respects the rubric while making the report readable.
+- **What it read and wrote:** read the director's message and the existing test sections; wrote `DESIGN.md`, `REPORT.md`, `REPORT.pdf`, `INTERVIEW_PREP.md` and `PUBLISH_DRAFT.md`. No film, model, keyframe, narration line, seed, cache or log changed.
+- **What changes what:** the PDF now matches the Markdown; the walkthrough closing line and publication gates no longer claim the words are missing. The regular report is regenerated from `REPORT.md` whenever that file changes.
+- **Alternative and risk:** I could have rewritten the sentences as polished prose only, but that would destroy the evidence. I could have invented names, timestamps or extra viewers, but that would be dishonest; the remaining empty slots and the three-per-test gap are left visible.
+- **Be able to explain this:** "I kept what the viewer said exactly, added a formal summary separately, recorded that pronunciation and visual criticisms remain open, and re-rendered the PDF from one source of truth."
+
 ## Final clean-clone proof (2026-11-26)
 - **What I did:** cloned the final `main` from GitHub into a fresh folder, made a new venv, installed the three requirements, and ran plain `run.py film` with no `.env`.
 - **Why:** an earlier clone test used an older commit; the one-command promise had to be proved on the exact code being submitted.

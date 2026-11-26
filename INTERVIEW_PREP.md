@@ -163,6 +163,12 @@ Say: *"Plain `run.py film` gave 21 cache hits and 12 local FFmpeg rows with zero
 Say: *"The earlier clone proof was from an older commit; EXP-031 proves the exact code being submitted."*
 
 
+### The supplied viewer feedback — three lines to memorise
+Say: *"I pasted the director's six answers verbatim into DESIGN.md and rewrote REPORT.md section 2 from those exact words."*
+Say: *"I added formal summaries beside the quotes, but I did not rewrite the viewers' words or invent names and timestamps."*
+Say: *"The pronunciation and visual criticisms are recorded as open issues; nothing was regenerated and the three-per-test gap is still stated."*
+
+
 ### The merged walkthrough script — three lines to memorise
 Say: *"The five-minute script lives in INTERVIEW_PREP.md lines 69 to 106; it shows preflight, storyboard, one live rebuild, the log row and both exports."*
 Say: *"Deleting shot_02's clip moves plan from 38/0 to 35/3, all local FFmpeg; one 1.4-second rebuild returns it to 38/0 with zero quota."*
