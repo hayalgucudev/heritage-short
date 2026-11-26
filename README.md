@@ -29,6 +29,8 @@ It validates the storyboard, then runs narration, keyframes, music, clips and as
 
 Both have burned-in English subtitles, the ACE-Step score ducked under Amharic narration, and a 3 s AI disclosure end card.
 
+**Motion is not AI video:** every shot is an FFmpeg Ken Burns pan/zoom over an approved AI-generated still (keyframe). **No Wan 2.2 video clip was produced and the film contains no AI-generated video.** The Wan notebook exists but was never successfully run; the floor is deterministic local motion (see `FAILURES.md` 024–025 and `EXPERIMENTS.md` EXP-018).
+
 ### Verified final state (2026-11-26)
 All ten shots now use `gemini-3.8-flash-tts` (`Kore`). Both exports are **73.0 s**, H.264 + AAC 48 kHz stereo, 24 fps CFR, measured **−14.02 LUFS / −0.98 dBTP**, with all ten 7-second slots carrying voice (−21.3 to −16.2 dB). `py run.py plan` reports **38 cache hits / 0 regenerations**; no `--allow-stale-narration` flag is needed. Evidence: `EXPERIMENTS.md` EXP-022 and `runs.jsonl`.
 
@@ -46,7 +48,7 @@ All ten shots now use `gemini-3.8-flash-tts` (`Kore`). Both exports are **73.0 s
 | `radio-cut` | Rebuild the provisional narration-only cut. |
 | `assemble` | Rebuild the two final exports from cached inputs. |
 | `report-costs` | Rebuild `COSTS.md` tables from real `runs.jsonl` rows. |
-| `second-language` | Ceiling: Afaan Oromo narration in one TTS call, split locally, outputs `film_*_om.mp4`. |
+| `second-language` | Ceiling experiment: **closed as FAILED** on 2026-11-26 after four failed translation calls; no TTS call, no `_om` film, no publication. |
 | `showcase` | Copy film, storyboard and costs into `space/`; publishing to Hugging Face is manual. |
 
 `film` also accepts `--skip-narration`, `--skip-keyframes`, `--skip-music`, `--skip-shots`, `--import-dir`, `--steps` and `--delay-sec`. Both `assemble` and `film` accept `--allow-stale-narration` for a director-approved provisional cut; without it, stale narration fails loudly.
