@@ -105,7 +105,7 @@
 - **What I did:** after the four voices were fixed, I ran the approved `second-language` command. It reads the locked fictional story text from `translations/afaan_oromo.json` (no real family details) and was meant to write one translated JSON, one long TTS WAV and two `_om` MP4s.
 - **Why:** this is the director's chosen ceiling item — the same film for viewers who do not understand Amharic. It was worth two model calls to test, but only after the floor was finished.
 - **What happened:** the translation request timed out after 54.2 s. The retry helper's hard 60 s cap stopped further attempts. No translation was produced, so the pipeline correctly did **not** make the TTS call. No files were written and nothing was published.
-- **Alternative and risk:** I did not retry or switch models because the approval was for exactly two calls and the instruction was to stop on failure. I also did not claim a native-speaker result — that check is still yours. The honest failure is recorded in `FAILURES.md` 028; a retry needs your approval.
+- **Alternative and risk:** you approved one retry of the same two calls; it failed the same way (46.2 s timeout). I did not try a third call or switch models. I also do not claim a native-speaker result — that check is still yours. Both failures are recorded in `FAILURES.md` 028; further attempts need a new decision about the endpoint itself.
 
 
 ## Clean-clone one-command test (2026-11-26)
