@@ -11,20 +11,20 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **87**
-- Non-cache model/FFmpeg calls: **81**
+- Real logged records: **94**
+- Non-cache model/FFmpeg calls: **88**
 - Failed calls: **7**
-- Total logged latency: **760,621 ms** (12.7 min)
+- Total logged latency: **786,841 ms** (13.1 min)
 
 ### By stage
 
 | Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
 | --- | --- | --- | --- | --- | --- |
-| assemble | 12 | 0 | 0 | 67,183 | 0_local_ffmpeg x12 |
+| assemble | 14 | 0 | 0 | 77,087 | 0_local_ffmpeg x14 |
 | keyframes | 15 | 0 | 0 | 148,599 | 1_cloudflare_flux_call x15 |
 | music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
-| narration | 18 | 5 | 2 | 68,368 | 0_cache_hit x5, 1_gemini_tts_call x16, 1_gemini_tts_call_failed x2 |
-| radio_cut | 1 | 0 | 0 | 2,967 | 0_local_ffmpeg x1 |
+| narration | 22 | 5 | 2 | 82,071 | 0_cache_hit x5, 1_gemini_tts_call x20, 1_gemini_tts_call_failed x2 |
+| radio_cut | 2 | 0 | 0 | 5,580 | 0_local_ffmpeg x2 |
 | reference_sheet | 9 | 0 | 0 | 98,266 | 1_cloudflare_flux_call x9 |
 | script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
 | shots | 11 | 0 | 0 | 15,870 | 0_local_ffmpeg x11 |
@@ -40,8 +40,8 @@
 | --- | --- | --- |
 | @cf/black-forest-labs/flux-2-klein-4b | 25 | 255,711 |
 | gemini-3.8-flash | 2 | 213,444 |
-| gemini-3.8-flash-tts | 18 | 73,788 |
-| ffmpeg-9.1 | 13 | 70,150 |
+| gemini-3.8-flash-tts | 22 | 87,491 |
+| ffmpeg-9.1 | 16 | 82,667 |
 | gemini-3.5-flash | 1 | 60,356 |
 | gemini-3.6-flash | 1 | 33,900 |
 | gemini-3.7-flash | 1 | 21,871 |
@@ -56,8 +56,8 @@
 
 | Stage | Shot | Calls | Latency (ms) |
 | --- | --- | --- | --- |
-| assemble | 16:9 | 6 | 33,937 |
-| assemble | 9:16 | 6 | 33,246 |
+| assemble | 16:9 | 7 | 39,237 |
+| assemble | 9:16 | 7 | 37,850 |
 | keyframes | shot_01 | 1 | 10,233 |
 | keyframes | shot_02 | 5 | 48,359 |
 | keyframes | shot_03 | 2 | 22,779 |
@@ -75,11 +75,11 @@
 | narration | shot_04 | 2 | 9,590 |
 | narration | shot_05 | 2 | 7,637 |
 | narration | shot_06 | 2 | 10,403 |
-| narration | shot_07 | 2 | 10,514 |
-| narration | shot_08 | 1 | 2,617 |
-| narration | shot_09 | 1 | 2,453 |
-| narration | shot_10 | 1 | 2,852 |
-| radio_cut | all | 1 | 2,967 |
+| narration | shot_07 | 3 | 13,728 |
+| narration | shot_08 | 2 | 5,992 |
+| narration | shot_09 | 2 | 5,258 |
+| narration | shot_10 | 2 | 7,161 |
+| radio_cut | all | 2 | 5,580 |
 | reference_sheet | ref_01 | 1 | 9,064 |
 | reference_sheet | ref_02 | 1 | 10,286 |
 | reference_sheet | ref_03 | 1 | 9,296 |

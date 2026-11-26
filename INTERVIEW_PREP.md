@@ -14,7 +14,7 @@
 1. **Why generate one WAV per shot instead of one long audio file?** Generating per shot lets us fingerprint each shot independently so a single line fix rebuilds only that shot, and lets us pad/align each clip to its exact visual slot.
 2. **Why make a Radio Cut before visuals?** If the story doesn't land emotionally with voice and pacing alone on a black screen, pictures won't save it — and measuring `ffprobe` durations early prevents rushed cuts.
 3. **Why did we strip the English style prefix from TTS calls?** Our controlled experiment (`EXP-003`) proved an English prefix bloated a 5.2s sentence to 14.32s, so pure Amharic text with short sentences and simple punctuation drives natural pacing.
-4. **Why mark narration PROVISIONAL and still build the Radio Cut?** Every shot sits cleanly inside its 7.0s slot (`3.52s`–`4.64s`), so building `radio_cut.mp4` locally lets us lock pacing today while waiting for tomorrow's 10/day quota reset to regenerate only `shot_07`–`shot_10` on the main TTS model.
+4. **Why mark narration PROVISIONAL and still build the Radio Cut?** Every shot sits cleanly inside its 7.0s slot (`3.52s`–`4.64s`), so building `radio_cut.mp4` locally let us lock pacing on 25 Nov while waiting for the 10/day quota reset. On 26 Nov shots 07-10 were regenerated on the main model and the marker was removed.
 
 ## Stage 4 & 5 Prep: Reference Sheet & Parallel Kaggle Music
 1. **Why generate a character reference sheet before shot keyframes?** Conditioning all character shots on one approved portrait (plus verbatim `character.description` and `style_block`) keeps Grandmother's face and clothing consistent across scenes; switching from painterly to 35mm realism (`EXP-007`) before generating any shot keyframes invalidated zero downstream assets.
@@ -32,7 +32,7 @@
 3. **What did the local assembly smoke test prove?** With temporary files only, both exports rendered 73.0 s at 24 fps, and measured audio was **-14.32 LUFS / -0.97 dBTP**, matching the target; no final deliverable was rendered before the director's gate.
 
 ## Provisional cut — be able to explain this
-1. **Why did the final film still have two voices?** The director confirmed the User Test 1 problem was voices. Shots 07-10 were made on flash-lite TTS because of a 10/day cap; the fix needs 4 calls after ~11:00 EAT on 26 Nov. The provisional cut exists only so visual feedback could happen early, and every log row names the four stale shots.
+1. **Why did the film once have two voices?** The director confirmed the User Test 1 problem was voices. Shots 07-10 were made on flash-lite TTS because of a 10/day cap; on 26 Nov they were regenerated on `gemini-3.8-flash-tts` with 4 calls (3,214 / 3,375 / 2,805 / 4,309 ms). The provisional cut existed only so visual feedback could happen early; old log rows still name the four stale shots.
 2. **Why does using stale audio not break caching?** The export hash is computed from the *expected* narration hashes, not the stale files' hashes. When the correct TTS is generated, its hash matches the expected one and the finals rebuild automatically; nothing else does.
 3. **What was measured on the delivered provisional files (before the audio fix)?** Both MP4s: 73.0 s, H.264/AAC 48 kHz stereo, 24 fps CFR, **-14.32 LUFS / -0.95 dBTP**. Ten local Ken Burns clips took 1,417-1,473 ms each, with zero model calls.
 
@@ -42,9 +42,9 @@
 3. **What did this change about my process?** FFmpeg returned success on a broken mix. From now on, a render is not "verified" until the delivered file's own audio is measured slot by slot, not just its length and codec.
 
 ## CLI packaging — be able to explain this
-1. **Why track 1.88 MB of narration WAVs?** A clean clone then has every cached input and can rebuild the film without API keys or model calls; this was the director's choice. Re-generated WAVs 07-10 will be force-added after the TTS fix.
+1. **Why track 1.88 MB of narration WAVs?** A clean clone then has every cached input and can rebuild the film without API keys or model calls; this was the director's choice. The regenerated WAVs 07-10 are force-added so this stays true.
 2. **What does `preflight` prove?** It checks tools and required files and reports booleans only — it never prints `.env` values. In a clone with no `.env`, it returned `ready: true` and `missing_files: []`.
-3. **What is still pending?** The clean clone needed `--skip-narration --allow-stale-narration` because four voices are provisional. After tomorrow's scheduled TTS fix, plain `py run.py film` must succeed with no flags; that is the final CLI measurement.
+3. **What is still pending?** The earlier clean clone needed `--skip-narration --allow-stale-narration` because four voices were provisional. Those voices are now fixed and `plan` is 38 hits / 0 regenerations, but the no-flag clean-clone run is still pending; that is the final CLI measurement.
 
 ## Second-language ceiling — be able to explain this
 1. **Why one TTS call instead of ten?** The 10/day cap and the 4-call voice fix leave only 6 calls before the deadline. One long narration call plus local splitting fits, at the cost of a timing-alignment risk that must be measured.
@@ -74,7 +74,7 @@
 .\.venv\Scripts\python.exe run.py preflight
 .\.venv\Scripts\python.exe run.py plan
 ```
-Say: *"Preflight checks FFmpeg and committed inputs without keys. The dry run makes no model calls; it currently reports 34 cache hits and 4 regenerations — the four provisional voices. Everything else is a cache hit after the reference portraits were refreshed."*
+Say: *"Preflight checks FFmpeg and committed inputs without keys. The dry run makes no model calls; it currently reports 38 cache hits and 0 regenerations — every input is cached after the four voices were fixed."*
 
 **1:15–2:00 — Show the source of truth.** Open `storyboard.json` shot_02 and say: *"Prompt, seed 102, motion prompt and duration live here, not in Python. Changing this one prompt would change only shot_02's keyframe, clip and the two finals."*
 
@@ -92,9 +92,9 @@ Get-Content runs.jsonl -Tail 1
 ```
 Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache flag and hash. The plan now calls shot_02 a cache hit, which proves the manifest agrees with the file."*
 
-**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz, measured -14.04 LUFS / -0.99 dBTP, with all ten voices audible after the mix fix and the room-tone polish."*
+**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz, measured -14.02 LUFS / -0.98 dBTP, with all ten voices audible after the model fix, the mix fix and the room-tone polish."*
 
-**4:30–5:00 — Close.** Say: *"Tomorrow's scheduled job replaces only four voice files and rebuilds the finals; the Afaan Oromo version then spends one translation call and one TTS call. Nothing is published until I approve it."*
+**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo version now spends one translation call and one TTS call. Nothing is published until I approve it."*
 
 ### Recording checklist (keep the video under five minutes)
 - Record at 1280×720 or higher with **PowerShell + the repo folder** visible; never show `.env` or any key value.

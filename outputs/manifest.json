@@ -108,41 +108,41 @@
       "file_name": "shot_07.wav",
       "stage": "narration",
       "shot_id": "shot_07",
-      "input_hash": "f828fa3075593177917de321ff2cb6fbda05e571d1e4a028ee30e3ad4edf076d",
+      "input_hash": "aaaac011453ea91c0e05c1863acf7b842cae4cae0450fcd8b696ddb86c528cb0",
       "status": "ok",
-      "updated_at": "2026-11-25T08:19:39.542008+00:00"
+      "updated_at": "2026-11-26T09:06:53.899500+00:00"
     },
     "outputs/narration/shot_08.wav": {
       "file_name": "shot_08.wav",
       "stage": "narration",
       "shot_id": "shot_08",
-      "input_hash": "07f5261b8b4c604daaf50fdc33253286b702f826b9a13ed0b33b0f9035589722",
+      "input_hash": "a49d7817a7954c416ec132828995accfad04ed336920a0e03f33be06d36fd2e5",
       "status": "ok",
-      "updated_at": "2026-11-25T08:36:15.014963+00:00"
+      "updated_at": "2026-11-26T09:07:02.415044+00:00"
     },
     "outputs/narration/shot_09.wav": {
       "file_name": "shot_09.wav",
       "stage": "narration",
       "shot_id": "shot_09",
-      "input_hash": "730d650794e7e78938c8498782956b01e8b8cd2df8b25a7302f14df486bfc991",
+      "input_hash": "97c2995efcc67913d267101b4b8217fd70cbe6b4f9b0349060bffbd49253e68a",
       "status": "ok",
-      "updated_at": "2026-11-25T08:36:37.550830+00:00"
+      "updated_at": "2026-11-26T09:07:10.107030+00:00"
     },
     "outputs/narration/shot_10.wav": {
       "file_name": "shot_10.wav",
       "stage": "narration",
       "shot_id": "shot_10",
-      "input_hash": "9b657e214881f1331d969a624957b2f3779b4a45af6811c4d7b7e85e880abc02",
+      "input_hash": "a19a381db89a4b419ee991e80a732251d43148f4f84b67997ae8dc02d3ad73af",
       "status": "ok",
-      "updated_at": "2026-11-25T08:36:40.682146+00:00"
+      "updated_at": "2026-11-26T09:07:19.524911+00:00"
     },
     "outputs/final/radio_cut.mp4": {
       "file_name": "radio_cut.mp4",
       "stage": "radio_cut",
       "shot_id": "all",
-      "input_hash": "779029612911d6817d90a303a6d79e28a03c52ffc69ca8ed486e1b0f55b8b974",
+      "input_hash": "11ebe8b59fc743d508d371607acf1ecdcbaa8846d8cf348fe25d9a6165cef126",
       "status": "ok",
-      "updated_at": "2026-11-25T09:11:06.468115+00:00"
+      "updated_at": "2026-11-26T09:08:17.001478+00:00"
     },
     "outputs/keyframes/ref_seed1024.png": {
       "file_name": "ref_seed1024.png",
@@ -404,17 +404,17 @@
       "file_name": "film_9x16.mp4",
       "stage": "assemble",
       "shot_id": "9:16",
-      "input_hash": "02c0a0712a3e8e1088f0509d02ffdcf66fd7437bd64a42d6dcc902baa6ae6fd3",
+      "input_hash": "79596c8216ed0aa4594dd212208bcec1ea5ad01bf17fc2c4704991c6b91cb60c",
       "status": "ok",
-      "updated_at": "2026-11-25T13:36:08.460461+00:00"
+      "updated_at": "2026-11-26T09:07:37.500484+00:00"
     },
     "outputs/final/film_16x9.mp4": {
       "file_name": "film_16x9.mp4",
       "stage": "assemble",
       "shot_id": "16:9",
-      "input_hash": "5a01a36c6c521354135971c630d6f16eee6b6bf33050fae6d3d160af6e679804",
+      "input_hash": "4841f5e42c2006c930427cb650eace2be71b7b279d3fa7b7871c56b4a6cb272d",
       "status": "ok",
-      "updated_at": "2026-11-25T13:36:13.901646+00:00"
+      "updated_at": "2026-11-26T09:07:42.841888+00:00"
     }
   }
 }

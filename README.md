@@ -29,6 +29,9 @@ It validates the storyboard, then runs narration, keyframes, music, clips and as
 
 Both have burned-in English subtitles, the ACE-Step score ducked under Amharic narration, and a 3 s AI disclosure end card.
 
+### Verified final state (2026-11-26)
+All ten shots now use `gemini-3.8-flash-tts` (`Kore`). Both exports are **73.0 s**, H.264 + AAC 48 kHz stereo, 24 fps CFR, measured **−14.02 LUFS / −0.98 dBTP**, with all ten 7-second slots carrying voice (−21.3 to −16.2 dB). `py run.py plan` reports **38 cache hits / 0 regenerations**; no `--allow-stale-narration` flag is needed. Evidence: `EXPERIMENTS.md` EXP-022 and `runs.jsonl`.
+
 ## Other commands
 | Command | What it does |
 | :--- | :--- |
