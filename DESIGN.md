@@ -26,6 +26,78 @@
 - For the near-final picture also ask: "Can you read every subtitle line on a phone?" and "What do you think the last three seconds say?"
 - Send the exact words to the coding agent. They will be appended below with timestamps, plus any storyboard or edit change that resulted. **Do not record a real person's face or voice into the repository.**
 
+### Ready-to-paste response slots — ADDITIONAL VIEWERS, NOT YET COLLECTED
+**Every bracket below is an empty placeholder. Nothing in this section is a real response until you replace it with the viewer's exact words.** The brief needs at least three viewers per test; Test 1 currently has one and Test 2 has the director, so two more each are the minimum. Three slots per test give margin.
+
+#### Test 1 — radio cut (show `outputs/final/radio_cut.mp4`)
+- **Additional viewer 1 — NOT YET COLLECTED**
+  - Role or first name only: `[NOT YET COLLECTED]`
+  - Timestamp/date: `[NOT YET COLLECTED]`
+  - Q1 "What did you understand the story to be?" — verbatim: `[NOT YET COLLECTED]`
+  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `[NOT YET COLLECTED]`
+  - Q3 "What did you feel at the end?" — verbatim: `[NOT YET COLLECTED]`
+  - Q4 "What is one thing you would change?" — verbatim: `[NOT YET COLLECTED]`
+  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `[NOT YET COLLECTED]`
+  - Q6 "What do you think the last three seconds say?" — verbatim: `[NOT YET COLLECTED]`
+  - What changed because of this response: `[NOT YET COLLECTED]`
+
+- **Additional viewer 2 — NOT YET COLLECTED**
+  - Role or first name only: `[NOT YET COLLECTED]`
+  - Timestamp/date: `[NOT YET COLLECTED]`
+  - Q1 "What did you understand the story to be?" — verbatim: `[NOT YET COLLECTED]`
+  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `[NOT YET COLLECTED]`
+  - Q3 "What did you feel at the end?" — verbatim: `[NOT YET COLLECTED]`
+  - Q4 "What is one thing you would change?" — verbatim: `[NOT YET COLLECTED]`
+  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `[NOT YET COLLECTED]`
+  - Q6 "What do you think the last three seconds say?" — verbatim: `[NOT YET COLLECTED]`
+  - What changed because of this response: `[NOT YET COLLECTED]`
+
+- **Additional viewer 3 — NOT YET COLLECTED**
+  - Role or first name only: `[NOT YET COLLECTED]`
+  - Timestamp/date: `[NOT YET COLLECTED]`
+  - Q1 "What did you understand the story to be?" — verbatim: `[NOT YET COLLECTED]`
+  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `[NOT YET COLLECTED]`
+  - Q3 "What did you feel at the end?" — verbatim: `[NOT YET COLLECTED]`
+  - Q4 "What is one thing you would change?" — verbatim: `[NOT YET COLLECTED]`
+  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `[NOT YET COLLECTED]`
+  - Q6 "What do you think the last three seconds say?" — verbatim: `[NOT YET COLLECTED]`
+  - What changed because of this response: `[NOT YET COLLECTED]`
+
+#### Test 2 — visual cut (show `outputs/final/film_9x16.mp4`)
+- **Additional viewer 1 — NOT YET COLLECTED**
+  - Role or first name only: `[NOT YET COLLECTED]`
+  - Timestamp/date: `[NOT YET COLLECTED]`
+  - Q1 "What did you understand the story to be?" — verbatim: `[NOT YET COLLECTED]`
+  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `[NOT YET COLLECTED]`
+  - Q3 "What did you feel at the end?" — verbatim: `[NOT YET COLLECTED]`
+  - Q4 "What is one thing you would change?" — verbatim: `[NOT YET COLLECTED]`
+  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `[NOT YET COLLECTED]`
+  - Q6 "What do you think the last three seconds say?" — verbatim: `[NOT YET COLLECTED]`
+  - What changed because of this response: `[NOT YET COLLECTED]`
+
+- **Additional viewer 2 — NOT YET COLLECTED**
+  - Role or first name only: `[NOT YET COLLECTED]`
+  - Timestamp/date: `[NOT YET COLLECTED]`
+  - Q1 "What did you understand the story to be?" — verbatim: `[NOT YET COLLECTED]`
+  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `[NOT YET COLLECTED]`
+  - Q3 "What did you feel at the end?" — verbatim: `[NOT YET COLLECTED]`
+  - Q4 "What is one thing you would change?" — verbatim: `[NOT YET COLLECTED]`
+  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `[NOT YET COLLECTED]`
+  - Q6 "What do you think the last three seconds say?" — verbatim: `[NOT YET COLLECTED]`
+  - What changed because of this response: `[NOT YET COLLECTED]`
+
+- **Additional viewer 3 — NOT YET COLLECTED**
+  - Role or first name only: `[NOT YET COLLECTED]`
+  - Timestamp/date: `[NOT YET COLLECTED]`
+  - Q1 "What did you understand the story to be?" — verbatim: `[NOT YET COLLECTED]`
+  - Q2 "Where, if anywhere, did you stop listening or lose the thread?" — verbatim: `[NOT YET COLLECTED]`
+  - Q3 "What did you feel at the end?" — verbatim: `[NOT YET COLLECTED]`
+  - Q4 "What is one thing you would change?" — verbatim: `[NOT YET COLLECTED]`
+  - Q5 "Can you read every subtitle line on a phone?" — verbatim: `[NOT YET COLLECTED]`
+  - Q6 "What do you think the last three seconds say?" — verbatim: `[NOT YET COLLECTED]`
+  - What changed because of this response: `[NOT YET COLLECTED]`
+
+---
 ### User Test 1 (Floor Draft — Provisional Radio Cut)
 - **Viewer feedback (verbatim):** `"it is good, but the shots after 7 are not good"`
 - **Context at time of test:**
@@ -36,12 +108,12 @@
   2. Stale `shot_09` text misaligned with the intended scene.
   3. Weaker second half of the story arc.
   4. Empty silence gaps (~`2.4 s`–`3.5 s` of padding inside each `7.0 s` slot).
-- **Status / Follow-up (answered 2026-11-25):** The viewer's answer to *"What exactly was wrong after shot 7 — the voices, the story, the text, or the gaps?"* was: **`"Voices"`**. This **confirms hypothesis 1** (mixed TTS models) and rules out the story, subtitle text and silence gaps as the viewer's stated problem. **No story or storyboard text was changed.** The planned correction is to regenerate shots `07`–`10` on `gemini-3.8-flash-tts` after the 10/day quota resets at ~`11:00 EAT` on 2026-11-26, then rebuild both exports. The other items remain untested hypotheses, not findings.
+- **Status / Follow-up (answered 2026-11-25):** The viewer's answer to *"What exactly was wrong after shot 7 — the voices, the story, the text, or the gaps?"* was: **`"Voices"`**. This **confirms hypothesis 1** (mixed TTS models) and rules out the story, subtitle text and silence gaps as the viewer's stated problem. **No story or storyboard text was changed.** The correction was carried out on 2026-11-26: shots `07`–`10` were regenerated on `gemini-3.8-flash-tts` with four approved calls and both exports were rebuilt with `stale_narration: []` (EXP-022). The other items remain untested hypotheses, not findings.
 
 ### User Test 2 (Provisional Visual Cut, 2026-11-25)
 - **Director's instruction:** render a provisional cut **now** with the still-stale voices, so the visual and subtitle work can be judged early. Flag recorded as `--allow-stale-narration`; the export hash still uses the expected narration hashes, so fixing the TTS later forces a rebuild.
-- **Status (2026-11-25 ~15:50 EAT):** The director had not watched it when first asked, so exact paths were given. After opening `film_9x16.mp4`, the director reported verbatim: **"the voice is not available after the first shot"**. This was a real technical defect, not a taste judgement: measured slot levels showed shots 09 and 10 at **-50.7 dB / -91.0 dB** in the delivered MP4 although all ten narration WAVs were healthy. Root cause was an FFmpeg filter-graph bug (voice label reused without `asplit=2`); fixed and re-rendered. All ten slots now measure **-20.3 to -16.2 dB** in the delivered MP4. No story or narration text changed. See `FAILURES.md` 022 and `EXPERIMENTS.md` EXP-016.
-- **Result of the fix (director, 2026-11-25 ~15:54 EAT):** asked *"Is the voice now present all the way to the end?"*, the director answered **"Yes, all through"**. User Test 2 is therefore a **pass on the audio defect**; no subtitle, end-card or framing complaint was reported. What changed because of the test: the FFmpeg graph, `code_version: 2`, both rebuilt exports and the evidence in `FAILURES.md` 022 / `EXPERIMENTS.md` EXP-016. The separate mixed-voice issue (shots 07-10) remains and has its own scheduled fix.
+- **Status (2026-11-25 ~15:50 EAT):** The director had not watched it when first asked, so exact paths were given. After opening `film_9x16.mp4`, the director reported verbatim: **"the voice is not available after the first shot"**. This was a real technical defect, not a taste judgement: measured slot levels showed shots 09 and 10 at **-50.7 dB / -91.0 dB** in the delivered MP4 although all ten narration WAVs were healthy. Root cause was an FFmpeg filter-graph bug (voice label reused without `asplit=2`); fixed and re-rendered. All ten slots now measure **-21.3 to -16.2 dB** in the delivered MP4. No story or narration text changed. See `FAILURES.md` 022 and `EXPERIMENTS.md` EXP-016.
+- **Result of the fix (director, 2026-11-25 ~15:54 EAT):** asked *"Is the voice now present all the way to the end?"*, the director answered **"Yes, all through"**. User Test 2 is therefore a **pass on the audio defect**; no subtitle, end-card or framing complaint was reported. What changed because of the test: the FFmpeg graph, `code_version: 2`, both rebuilt exports and the evidence in `FAILURES.md` 022 / `EXPERIMENTS.md` EXP-016. The separate mixed-voice issue (shots 07-10) was fixed on 2026-11-26 (EXP-022) and both finals rebuilt; no stale-flag export remains.
 
 ## Ceiling projects chosen by the director (2026-11-25)
 - The director picked exactly **two**, to be planned now and **built only after the floor is finished**: **(a) the same film in a second language** and **(e) packaging the pipeline as a CLI others can use**.

@@ -160,3 +160,12 @@
 - **What changes what:** the film, cache and `runs.jsonl` are unchanged. `PUBLISH_DRAFT.md` is inert until you act on it. I re-rendered `REPORT.pdf` because `REPORT.md` gained the closure sentence, so the Markdown and PDF still say the same thing.
 - **Alternative and risk:** I did not publish or switch the Space placeholder to a real handle because that is your account decision. The risk of a draft is that it could be mistaken for a live post, so the file starts and ends with NOT PUBLISHED gates, and it keeps the AI label in the title, description and page.
 - **Be able to explain this:** "Four translation calls failed, so I closed the ceiling as a negative result instead of leaving it vague. The post text is ready but nothing is live until I approve it."
+
+
+## Final read-only audit (2026-11-26)
+- **What I did:** ran `preflight`, `plan`, ffprobe and a loudnorm measurement on both delivered MP4s, hashed them with SHA-256, and compared every count in `COSTS.md` and `REPORT.md` against `runs.jsonl`.
+- **Why:** before calling the repo finished, the claims in the docs must match the artifacts; this is the measurement habit that caught the silent-tail bug.
+- **What it read and wrote:** read-only except these notes. Result: `preflight` ready, `plan` 38 hits / 0 regenerations, both films 73.000000 s H.264/AAC 48 kHz stereo at 24 fps CFR with **-14.02 LUFS / -0.98 dBTP / 7.90 LRA**, SHA-256 `73c5205d…922381` and `8f34da3c…30756`. Logs: 95 rows, 89 non-cache, 7 failures, 788,261 ms — matching `COSTS.md` and `REPORT.md` exactly. Experiment and failure counts also match (25 and 31) after I closed two stale "in progress" labels.
+- **What changes what:** nothing in the film or cache. The audit found a genuine wording bug, not a data error: EXP-017 and EXP-018 still said "in progress" although both were finished. I corrected the labels rather than changing any measured number.
+- **Alternative and risk:** I rejected trusting an earlier measurement because the walkthrough rehearsal had added a new log row. The risk was reporting stale totals; re-reading the real files removed it.
+- **Be able to explain this:** "I checked the delivered files and the documents against the log. All counts matched, and the only thing I changed was two stale labels."

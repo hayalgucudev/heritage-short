@@ -134,3 +134,9 @@ Say: *"One FFmpeg call in 1.4 seconds restores it, a new runs.jsonl row appears,
 Say: *"The Afaan Oromo ceiling was closed as failed after four translation calls; no Oromo film exists and no quality claim was made."*
 Say: *"PUBLISH_DRAFT.md contains the YouTube and Space text with the AI-generated film label, but nothing has been uploaded."*
 Say: *"I publish only after you approve the account and the remaining three viewer responses are recorded."*
+
+
+### Final audit — three lines to memorise
+Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC, measured -14.02 LUFS and -0.98 dBTP."*
+Say: *"The 95 log rows, 89 calls, 7 failures and 788,261 ms in COSTS.md match runs.jsonl exactly."*
+Say: *"plan reports 38 cache hits and zero regenerations; nothing upstream would be rebuilt."*
