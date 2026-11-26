@@ -138,10 +138,15 @@ Say: *"I publish only after you approve the account and the remaining three view
 
 ### Final audit — three lines to memorise
 Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC, measured -14.02 LUFS and -0.98 dBTP."*
-Say: *"The 95 log rows, 89 calls, 7 failures and 788,261 ms in COSTS.md match runs.jsonl exactly."*
+Say: *"The 119 log rows, 104 non-cache calls, 7 failures and 967,733 ms in COSTS.md match runs.jsonl exactly."*
 Say: *"plan reports 38 cache hits and zero regenerations; nothing upstream would be rebuilt."*
 
 ### Documentation cleanup — three lines to memorise
 Say: *"The Oromo ceiling is closed as failed after four translation calls; the native-speaker check is moot and no Oromo film exists."*
 Say: *"Older -14.01, -14.04 and -14.32 readings are labelled historical; the delivered film measures -14.02 LUFS / -0.98 dBTP."*
 Say: *"REPORT.pdf is intentionally stale and will be re-rendered only after the real viewer words are added from DESIGN.md."*
+
+### Final visual gate — three lines to memorise
+Say: *"shot_07 stayed original after eight candidates failed; I logged the pouring defect as unresolved instead of claiming fixed."*
+Say: *"shot_10 uses seed 1113, a head-and-shoulders crop with no hands, after the image-edit fallback failed on credentials."*
+Say: *"Only one clip and both exports rebuilt; the exports are 73 s at -14.02 LUFS / -0.98 dBTP and plan is back to 38 cache hits."*

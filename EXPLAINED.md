@@ -177,3 +177,11 @@
 - **What changes what:** nothing in the pipeline. `REPORT.pdf` is deliberately left stale; it will be re-rendered only after you paste the real viewer words into `DESIGN.md` and tell me to update `REPORT.md` from those exact words.
 - **Alternative and risk:** I did not invent viewer responses or mark any user test complete. The risk is a stale PDF being mistaken for current evidence, so the report and interview notes now say it must not be submitted until re-rendered.
 - **Be able to explain this:** "I fixed only the writing: four failed calls, 25 experiments, the ceiling closed, and no AI-video claim. The viewer slots are still empty and the PDF is intentionally not re-rendered."
+
+## Final visual fixes on the demo branch (2026-11-26)
+- **What you approved:** after twelve FLUX candidates and two failed image-edit calls, you chose to keep the original shot_07, use shot_10 seed 1113, and abandon image editing.
+- **Why:** a further prompt would have been guesswork, and the only image-edit model had a credential error. Logging an honest unresolved defect is better than claiming a fix I cannot see.
+- **What it read and wrote:** read `storyboard.json` from `fed5aca` (original shot_07) and `793003d` (1113 wording), plus the already-generated PNG. Wrote the storyboard, the canonical shot_10 keyframe, its cache hash, one rebuilt clip, two rebuilt MP4s, `runs.jsonl` and `COSTS.md`. No TTS and no model call.
+- **What changes what:** shot_10's new keyframe invalidated only its clip; the prepared subtitle/end-card settings already invalidated both exports. Restoring shot_07's original hash made its clip a cache hit again. After the rebuild `plan` reports **38 cache hits / 0 regenerations**; all ten shots are cached.
+- **Alternative and risk:** image editing was the agreed fallback but failed on credentials, so I did not retry or guess another model. The risk is that the shot_07 inconsistency stays visible; it is recorded in `FAILURES.md` 032/035 rather than hidden. The 9:16 margin move is confirmed in the ASS style line, but only your eye confirms it clears the cups.
+- **Be able to explain this:** "I kept the original shot_07 because no replacement fixed the pour, used the hands-out-of-frame shot_10, and rebuilt only that clip and both exports. The remaining defect is written down, not denied."

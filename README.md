@@ -34,6 +34,9 @@ Both have burned-in English subtitles, the ACE-Step score ducked under Amharic n
 ### Verified final state (2026-11-26)
 All ten shots now use `gemini-3.8-flash-tts` (`Kore`). Both exports are **73.0 s**, H.264 + AAC 48 kHz stereo, 24 fps CFR, measured **−14.02 LUFS / −0.98 dBTP**, with all ten 7-second slots carrying voice (−21.3 to −16.2 dB). `py run.py plan` reports **38 cache hits / 0 regenerations**; no `--allow-stale-narration` flag is needed. Evidence: `EXPERIMENTS.md` EXP-022 and `runs.jsonl`.
 
+### Final visual gate (2026-11-26)
+The director reviewed the exported frames and made two final choices: **shot_07 stays as the original** (eight replacement candidates did not fix the pouring hand and the stream; the defect is logged as unresolved in `FAILURES.md` 032/035), and **shot_10 uses seed 1113**, a head-and-shoulders crop with no visible hands. The approved image-edit fallback failed twice with `Invalid credential` and was abandoned (`FAILURES.md` 034). The 9:16 subtitle margin moved `180 -> 340` and the end-card tribute was enlarged. Only shot_10's clip and both exports rebuilt (1,485 / 4,500 / 5,633 ms); `plan` is back to **38 cache hits / 0 regenerations**. See `EXPERIMENTS.md` EXP-029.
+
 ## Other commands
 | Command | What it does |
 | :--- | :--- |

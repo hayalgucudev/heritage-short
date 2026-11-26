@@ -207,3 +207,9 @@ Honest log of retired/changed models, API errors, pronunciation issues, Python c
 - **Why it matters:** image editing was the agreed fallback, so both visual defects remain unresolved. Nothing downstream was rebuilt: the canonical keyframes and both MP4s are still the original versions. No TTS and no publication occurred.
 - **Alternative considered:** retry the same tool or guess another image model ID. Rejected — this is a credential/configuration fault outside the repo, and I must not read or print any `.env` value or guess an unlisted model. I did not spend another call.
 - **Status:** blocked pending the director's decision: repair the image-edit credential, use a deterministic local crop, or export with the best existing frames and log both defects as unresolved.
+
+## 035 — Final visual gate closes with one unresolved defect (2026-11-26)
+- **What happened:** after seeds 1070-1075 (including the consented reference-conditioned 1074/1075) still had the wrong pouring hand and stream, the director chose **to keep the original shot_07**; the terracotta jug and the stream that misses the cups remain in the delivered film. This is not claimed as fixed.
+- **What changed:** shot_10 uses seed **1113**, the head-and-shoulders crop with no visible hands, because the five-finger retry still had four fingers and the image-edit fallback was blocked (034). The 9:16 subtitle margin moved `180 -> 340`; the end-card tribute text was enlarged.
+- **Verification:** only shot_10's clip and both exports rebuilt; 73.000000 s, -14.02 LUFS / -0.98 dBTP; ASS style line confirms `MarginV 340`; `plan` reports 38 cache hits / 0 regenerations; `runs.jsonl` has 119 rows.
+- **Status:** shot_07 is an **accepted, documented unresolved visual defect**; shot_10's hand defect is avoided by framing. Nothing published.
