@@ -17,6 +17,7 @@ DEPENDENCY_MAP = [
     "shot N video_motion_prompt / video_seed -> clip N -> both final exports",
     "end_card.text / duration_sec -> end card -> both final exports",
     "ASSEMBLE_SETTINGS (subtitle_margin_v, endcard_* sizes/colour, code_version) -> subtitles + end card -> both final exports",
+    "shot N image_reference (image bytes are hashed) -> keyframe N -> clip N -> both final exports",
 ]
 
 

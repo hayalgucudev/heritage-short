@@ -487,6 +487,14 @@
       "input_hash": "d829c218c517ac38f14ff84534ab0cbeb6bb5f84af0115f5f39188e6b6cab0a5",
       "status": "ok",
       "updated_at": "2026-11-26T10:40:18.760757+00:00"
+    },
+    "outputs/keyframes/shot_07_seed1074.png": {
+      "file_name": "shot_07_seed1074.png",
+      "stage": "keyframes",
+      "shot_id": "shot_07",
+      "input_hash": "aad2adfef6744015b6d5d6990f269432ed5401ee567e12f3dae10dbd0a1cfbc3",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:46:25.308187+00:00"
     }
   }
 }
