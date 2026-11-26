@@ -11,10 +11,10 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **94**
-- Non-cache model/FFmpeg calls: **88**
+- Real logged records: **95**
+- Non-cache model/FFmpeg calls: **89**
 - Failed calls: **7**
-- Total logged latency: **786,841 ms** (13.1 min)
+- Total logged latency: **788,261 ms** (13.1 min)
 
 ### By stage
 
@@ -27,7 +27,7 @@
 | radio_cut | 2 | 0 | 0 | 5,580 | 0_local_ffmpeg x2 |
 | reference_sheet | 9 | 0 | 0 | 98,266 | 1_cloudflare_flux_call x9 |
 | script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
-| shots | 11 | 0 | 0 | 15,870 | 0_local_ffmpeg x11 |
+| shots | 12 | 0 | 0 | 17,290 | 0_local_ffmpeg x12 |
 | smoke_flux | 1 | 0 | 0 | 8,846 | 1_cloudflare_flux_call x1 |
 | smoke_text | 1 | 0 | 1 | 13,533 | 1_gemini_text_call_failed x1 |
 | smoke_tts | 1 | 0 | 0 | 5,093 | 1_gemini_tts_call x1 |
@@ -45,7 +45,7 @@
 | gemini-3.5-flash | 1 | 60,356 |
 | gemini-3.6-flash | 1 | 33,900 |
 | gemini-3.7-flash | 1 | 21,871 |
-| Wan-AI/Wan2.2-TI2V-5B | 11 | 15,870 |
+| Wan-AI/Wan2.2-TI2V-5B | 12 | 17,290 |
 | gemini-3.8-flash-lite-tts | 5 | 14,179 |
 | cloudflare-models-search | 1 | 558 |
 | gemini-models-list | 1 | 408 |
@@ -88,7 +88,7 @@
 | reference_sheet | ref_real_seed_03 | 2 | 24,930 |
 | script | all | 5 | 316,424 |
 | shots | shot_01 | 1 | 1,417 |
-| shots | shot_02 | 2 | 2,901 |
+| shots | shot_02 | 3 | 4,321 |
 | shots | shot_03 | 1 | 1,428 |
 | shots | shot_04 | 1 | 1,456 |
 | shots | shot_05 | 1 | 1,434 |
