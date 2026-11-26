@@ -210,6 +210,14 @@
 - **Alternative and risk:** I could have invented three names and six quotations per cut, but that would be fabricated evidence. I recorded the count as confirmed and the quote limit as a written-evidence limit.
 - **Be able to explain this:** "The count threshold is met by the director's confirmation; I kept the verbatim record limited to words actually supplied and re-rendered the report from one source of truth."
 
+## Strict walkthrough rehearsal in a throwaway clone (2026-11-26)
+- **What I did:** I cloned the submitted commit into a temporary folder, warmed its derived files with local FFmpeg, changed one `shot_02` narration line in that clone's `storyboard.json`, ran `plan`, reran the full `film` pipeline with one approved free Gemini TTS call, rebuilt the radio cut locally, and confirmed the plan returned to 38 hits / 0 regenerations. The clone was then deleted.
+- **Why:** the brief gives full walkthrough marks only when a storyboard field is changed and the pipeline rerun shows only that dependent part regenerating. Deleting a clip was cheaper, but it did not meet the wording.
+- **What it read and wrote:** read the clone's `storyboard.json`, `run.py` and narration cache; wrote only inside the throwaway clone. The submitted film, cache, `runs.jsonl` and `COSTS.md` were not changed.
+- **What changes what:** in the clone, the narration change invalidated `shot_02`'s WAV, both final exports and the radio cut; keyframes, clips, music and all other voices stayed cached. In the submitted repo, nothing changed.
+- **Alternative and risk:** I could have kept the old zero-quota clip-deletion demo, but a reviewer could say the storyboard was never changed. The one-call risk was contained by the disposable clone; the real film could not be damaged.
+- **Be able to explain this:** "I changed one narration line in a throwaway clone, spent one approved TTS call, saw exactly one model row, rebuilt only the dependent outputs locally, and left the submitted film byte-identical."
+
 ## Final clean-clone proof (2026-11-26)
 - **What I did:** cloned the final `main` from GitHub into a fresh folder, made a new venv, installed the three requirements, and ran plain `run.py film` with no `.env`.
 - **Why:** an earlier clone test used an older commit; the one-command promise had to be proved on the exact code being submitted.

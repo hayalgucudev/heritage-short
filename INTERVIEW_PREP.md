@@ -66,44 +66,79 @@
 2. **What did the measurement teach me?** My first ambience gain measured -54.1 dB mean — technically present but inaudible. I raised it to -40.2 dB and re-measured the exports: **-14.04 LUFS / -0.99 dBTP (HISTORICAL polish-stage value; final delivery measured -14.02 LUFS / -0.98 dBTP)**, all ten slots audible. EXP-019 records both numbers.
 3. **What is still unverified?** I cannot view frames in this session, so I have not judged the subtitle placement or the end-card design by eye. The director must check both before the final-edit gate is approved.
 
-## 5-minute walkthrough script (rehearsed 2026-11-25, final wording merged 2026-11-26, shot_02)
-**0:00–0:30 — Intro.** Open the repo and say: *"This is The Heritage Short. The story is locked in `storyboard.json`. One command, `py run.py film`, rebuilds both films. Every stage checks a hash of its inputs, so only changed things regenerate."*
+## 5-minute walkthrough script (strict narration-line demo; rehearsed 2026-11-26)
+**Recording rule:** the whole live section runs in a **throwaway clone** of commit `1a5989a`. The submitted repo, film, cache and `runs.jsonl` are never edited. The rehearsal spent **one approved free Gemini TTS call** in the clone; live timestamp and latency will differ, but the pattern must be one model call and only dependent stages regenerated.
 
-**0:30–1:15 — Prove the environment is safe.**
+**Before recording, not on camera — prepare the clone and warm local derived outputs:**
 ```powershell
-.\.venv\Scripts\python.exe run.py preflight
-.\.venv\Scripts\python.exe run.py plan
+$demo = "$env:TEMP\opencode\heritage-walkthrough-demo"
+if (Test-Path $demo) { Remove-Item $demo -Recurse -Force }
+git clone --quiet https://github.com/hayalgucudev/heritage-short.git $demo
+Copy-Item 'C:\Users\Rahmetulaha\heritage-short\.env' "$demo\.env"
+Push-Location $demo
+$py = 'C:\Users\Rahmetulaha\heritage-short\.venv\Scripts\python.exe'
+& $py run.py film | Out-Null
+& $py run.py radio-cut | Out-Null
+& $py run.py plan | Select-String 'Checked'
 ```
-Say: *"Preflight checks FFmpeg and committed inputs without keys. The dry run makes no model calls; it currently reports 38 cache hits and 0 regenerations — every input is cached after the four voices were fixed."*
+Say before starting: *"This clone is disposable. Copying `.env` only lets the live TTS call authenticate; no key value is shown and the clone is deleted after recording."*
 
-**1:15–2:00 — Show the source of truth.** Open `storyboard.json` shot_02 and say: *"Prompt, seed 102, motion prompt and duration live here, not in Python. Changing this one prompt would change only shot_02's keyframe, clip and the two finals."*
+**0:00–0:25 — Intro.** Open the clone folder and say: *"This is The Heritage Short. The story is locked in `storyboard.json`. One command, `py run.py film`, rebuilds both films. Every stage checks a hash of its inputs, so only changed things regenerate."*
 
-**2:00–3:00 — Live regeneration (zero quota).**
+**0:25–1:10 — Architecture and one hard decision.** Open `ARCHITECTURE.md` and point to the dependency map. Say: *"A storyboard field flows to a stage, then an output, then downstream stages. Changing one narration line invalidates that WAV, the radio cut and both exports — not the keyframes or clips."* Then say: *"The hardest decision was measurement: FFmpeg reported success while the last two voices were silent. I now measure every seven-second slot, so a successful exit code is never treated as proof."*
+
+**1:10–1:45 — Safe baseline.**
 ```powershell
-Remove-Item outputs\clips\shot_02.mp4 -Force
-.\.venv\Scripts\python.exe run.py shots --shot shot_02
+& $py run.py preflight
+& $py run.py plan | Select-String 'Checked'
 ```
-Expected real output from rehearsal: `cache_hit: false`, `source: ken_burns`, `duration_sec: 7.0`, `latency_ms: 1420`, `input_hash: d017039b9cbbe22513dea62644e52b48d82909df5dc754aacd9fc3e6a73c5a9d`. Say: *"I deleted one derived clip. The stage rebuilt only that clip from the approved still, with local FFmpeg — no model call, no quota."*
+Say: *"Preflight checks tools and committed inputs without keys. The dry run makes no model calls and reports 38 cache hits and 0 regenerations after the clone was warmed."*
 
-**3:00–3:45 — Show the evidence and restore the cache.**
+**1:45–2:20 — Show the source of truth and change one narration line.** Open `storyboard.json` shot_02, then run:
 ```powershell
-Get-Content runs.jsonl -Tail 1
-.\.venv\Scripts\python.exe run.py plan | Select-String 'shots/shot_02'
-.\.venv\Scripts\python.exe run.py plan | Select-String 'Checked'
+& $py -c "from pathlib import Path; p=Path('storyboard.json'); s=p.read_text(encoding='utf-8'); old='አያቴ በማለዳ ተነስታ፣ እሳቱን ታነዳለች።'; new='አያቴ በማለዳ ተነስታ፣ እሳቱን በጥንቃቄ ታነዳለች።'; assert s.count(old)==1; p.write_text(s.replace(old,new),encoding='utf-8')"
 ```
-Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache flag and hash. The plan now calls shot_02 a cache hit, which proves the manifest agrees with the file. The full plan is back to **38 hits / 0 regenerations** — one local FFmpeg call restored the cache with zero quota."*
+Say: *"I changed only one narration field. I added 'carefully', a word already used in shot_03, so this tests caching, not a new story fact. The prompt, seed, keyframe and clip are untouched."*
 
-**3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card, then open `film_16x9.mp4`. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz stereo, measured -14.02 LUFS / -0.98 dBTP, with all ten voices audible, burned-in English subtitles inside the vertical safe area and a 3-second 'Made with AI' end card. Be honest about motion: these are FFmpeg Ken Burns pans and zooms over approved AI-generated stills, not AI-generated video."*
+**2:20–2:50 — Dry run before spending quota.**
+```powershell
+& $py run.py plan | Select-String -Pattern 'Checked|REGENERATE|  [0-9]+ x'
+```
+Rehearsal result: *"Checked 38 stage items: 35 cache hits, 3 would regenerate"* — `narration/shot_02`, `assemble/9:16` and `assemble/16:9`; quota estimate *"1 x 1_gemini_tts_call, 2 x 0_local_ffmpeg"*. Say: *"The dry run proves one model call is needed; no keyframes, clips or music are touched."*
 
-**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. The viewer words supplied on 26 Nov are recorded verbatim in DESIGN.md and REPORT.pdf has been re-rendered; the director confirms at least three viewers per cut. Nothing is published until I approve the account and give an explicit publish instruction."*
+**2:50–3:35 — Rerun the pipeline and show the single model call.**
+```powershell
+$before = (Get-Content runs.jsonl).Count
+& $py run.py film | Out-Null
+& $py run.py radio-cut | Out-Null
+Get-Content runs.jsonl | Select-Object -Skip $before | ForEach-Object { $_ | ConvertFrom-Json } | Where-Object { $_.cost_or_quota -eq '1_gemini_tts_call' } | Select-Object timestamp,shot_id,model,latency_ms,cache_hit,status,input_hash | Format-List
+```
+Rehearsal produced one row: `shot_02`, `gemini-3.8-flash-tts`, `latency_ms 3937`, `cache_hit false`, `status ok`, `input_hash 39bb1814a11f8453759c656033bfdbcc922695f514808d3ed285daf3dcf6374e`, measured voice `4.77 s` and `fits true`. Say: *"One new model call. The two export rebuilds and the radio cut are local FFmpeg, not model quota."*
+
+**3:35–4:10 — Show the restored cache.**
+```powershell
+& $py run.py plan | Select-String 'Checked'
+```
+Say: *"The plan is back to 38 cache hits and 0 regenerations. Only shot_02's narration and its dependent exports changed in this clone. The keyframes, clips, score and all other voices were cache hits."*
+
+**4:10–4:40 — Show the submitted film is untouched.** Switch to the real repo and run:
+```powershell
+Push-Location C:\Users\Rahmetulaha\heritage-short
+Get-FileHash outputs\final\film_9x16.mp4 -Algorithm SHA256 | Select-Object -ExpandProperty Hash
+Get-FileHash outputs\final\film_16x9.mp4 -Algorithm SHA256 | Select-Object -ExpandProperty Hash
+Pop-Location
+```
+Say: *"The demo exports live in the throwaway clone. The submitted vertical hash starts 375467a8 and the horizontal hash starts 03697d27; neither changed. Both are 73 seconds, 24 fps, H.264/AAC, measured -14.02 LUFS / -0.98 dBTP, with burned-in subtitles and a 3-second 'Made with AI' end card. The motion is FFmpeg Ken Burns over AI stills, not AI-generated video."*
+
+**4:40–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. The viewer words supplied on 26 Nov are in DESIGN.md and REPORT.pdf has been re-rendered; the director confirmed at least three viewers per cut. Nothing is published until I approve the account and give an explicit publish instruction."*
 
 ### Recording checklist (keep the video under five minutes)
-- Record at 1280×720 or higher with **PowerShell + the repo folder** visible; never show `.env` or any key value.
-- Before recording: `git log -1 --oneline` (note the commit), `py run.py preflight`, `py run.py plan`. Both commands print no secrets.
-- Have these files open in tabs so switching is quick: `storyboard.json` (shot_02), `runs.jsonl`, `DESIGN.md`, `ARCHITECTURE.md`.
-- The live step deletes **only** `outputs\clips\shot_02.mp4`, a derived file. If anything goes wrong, `py run.py shots --shot shot_02` restores it; no model quota is used.
-- Pause the recording while the ~1.5 s render runs if you want, then show the single new `runs.jsonl` row and the `plan` cache hit.
-- If you speak the hard decision, use this one line: *"FFmpeg reported success while the last two shots were silent; I only caught it by measuring each slot, so slot-level measurement is now mandatory."*
+- Record at 1280×720 or higher with **PowerShell + the throwaway clone folder** visible; never show `.env` or any key value.
+- The clone must be warmed with `film` and `radio-cut` before recording so the baseline plan is 38/0. This warm-up is local FFmpeg only.
+- Have these files open in tabs so switching is quick: `storyboard.json` (shot_02), `runs.jsonl`, `ARCHITECTURE.md`, `DESIGN.md`.
+- The live step changes **one line in `storyboard.json`**; it does not delete a clip. If it fails, the clone is deleted and the submitted film is unaffected.
+- Show the one new `runs.jsonl` row after filtering; do not claim a latency that appears only in the rehearsal.
+- Delete the throwaway clone after recording and confirm the real repo is still clean with `git status -sb`.
 - Stop at 5:00. The walkthrough is graded on the architecture, one hard decision and one live regeneration — not on extra polish.
 
 
@@ -125,16 +160,22 @@ Say: *"Every figure traces back to `runs.jsonl`, `COSTS.md`, `DESIGN.md`, `EXPER
 Say: *"REPORT.md is the source of truth; REPORT.pdf was stale before 26 Nov and was re-rendered from it after the supplied viewer words were added."*
 
 
-### Rehearsed live step — three lines to memorise
-Say: *"Before recording I show plan: 38 cache hits, zero regenerations."*
-Say: *"I delete only the derived clip for shot_02; plan then shows three local rebuilds — that clip and both exports — with zero quota."*
-Say: *"One FFmpeg call in 1.4 seconds restores it, a new runs.jsonl row appears, and plan returns to 38 cache hits."*
+### Strict live step — three lines to memorise
+Say: *"Before recording I show plan: 38 cache hits, zero regenerations in a warmed throwaway clone."*
+Say: *"I change one shot_02 narration line in storyboard.json; plan becomes 35 hits and 3 regenerations: one TTS call and two local exports."*
+Say: *"One new Gemini TTS row appears, local FFmpeg rebuilds the exports and radio cut, and plan returns to 38 hits with the submitted film untouched."*
+
+
+### Strict walkthrough rehearsal — three lines to memorise
+Say: *"I rehearsed the strict demo in a throwaway clone and spent one approved free Gemini TTS call."*
+Say: *"The dry run showed 35 hits and 3 regenerations: one TTS call plus two local exports; the log showed exactly one new model row."*
+Say: *"The submitted hashes stayed 375467a8... and 03697d27..., and the clone was deleted after the evidence was captured."*
 
 
 ### Publication status — three lines to memorise
 Say: *"The Afaan Oromo ceiling was closed as failed after four translation calls; no Oromo film exists and no quality claim was made."*
 Say: *"PUBLISH_DRAFT.md contains the YouTube and Space text with the AI-generated film label, but nothing has been uploaded."*
-Say: *"I publish only after you approve the account and the remaining three viewer responses are recorded."*
+Say: *"I publish only after you approve the account and the AI label; the director confirmed at least three viewers per cut."*
 
 
 ### Final audit — three lines to memorise
@@ -150,7 +191,7 @@ Say: *"That stale-PDF note was written before the viewer words arrived; REPORT.p
 ### Final visual gate — three lines to memorise
 Say: *"shot_07 stayed original after eight candidates failed; I logged the pouring defect as unresolved instead of claiming fixed."*
 Say: *"shot_10 uses seed 1113, a head-and-shoulders crop with no hands, after the image-edit fallback failed on credentials."*
-Say: *"Only one clip and both exports rebuilt; the exports are 73 s at -14.02 LUFS / -0.98 dBTP and plan is back to 38 cache hits."*
+Say: *"The strict demo changes shot_02 narration in a throwaway clone; the submitted exports are 73 s at -14.02 LUFS / -0.98 dBTP and remain untouched."*
 
 ### One-command reproducibility — three lines to memorise
 Say: *"The final `py run.py film` logged 33 rows — 10 narration, 10 keyframes, 1 music, 10 shots, 2 exports — every one a cache hit."*
@@ -181,7 +222,7 @@ Say: *"The written record still contains only the exact words supplied; I did no
 Say: *"I changed only DESIGN.md, REPORT.md, the PDF and the supporting notes; the film, cache and logs were untouched."*
 
 
-### The merged walkthrough script — three lines to memorise
-Say: *"The five-minute script lives in INTERVIEW_PREP.md lines 69 to 106; it shows preflight, storyboard, one live rebuild, the log row and both exports."*
-Say: *"Deleting shot_02's clip moves plan from 38/0 to 35/3, all local FFmpeg; one 1.4-second rebuild returns it to 38/0 with zero quota."*
+### The strict walkthrough script — three lines to memorise
+Say: *"The strict five-minute script is near the top of INTERVIEW_PREP.md; it shows preflight, the storyboard line change, the dry run, one model log row and both submitted hashes."*
+Say: *"Changing shot_02 narration moves plan from 38/0 to 35/3: one Gemini TTS call and two local exports; local radio cut then returns it to 38/0."*
 Say: *"I state the true specs and admit the film is Ken Burns over AI stills; the supplied viewer words are logged and re-rendered, publication is still pending."*
