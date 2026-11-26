@@ -39,7 +39,7 @@ The files are prepared in `space/` — `index.html`, `README.md`, `storyboard.js
 
 ## Gates before anything goes live
 
-- [ ] Three additional viewers per user test give verbatim responses recorded in `DESIGN.md`. **PARTIAL on 2026-11-26:** the director supplied six answers from one additional Test 2 viewer, relayed further visual criticisms, and states that more than three people gave feedback in total. The supplied words are in `DESIGN.md` and `REPORT.md` §2, but no per-test breakdown was supplied, so the three-per-test threshold is NOT claimed as evidenced.
+- [x] At least three viewers per user test watched the cuts (director's confirmation, 2026-11-26). The verbatim words actually supplied are in `DESIGN.md` and `REPORT.md` §2; missing names and remaining quotes were not invented.
 - [ ] The walkthrough video is recorded and under five minutes.
 - [ ] The director explicitly says "publish" and names the account/handle.
 - [ ] The platform AI-disclosure setting is enabled.

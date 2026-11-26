@@ -95,7 +95,7 @@ Say: *"The log row has a timestamp, stage, model `ffmpeg-9.1`, latency, cache fl
 
 **3:45–4:30 — Show the result.** Open `outputs\final\film_9x16.mp4` at shot 2 and the end card, then open `film_16x9.mp4`. Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC 48 kHz stereo, measured -14.02 LUFS / -0.98 dBTP, with all ten voices audible, burned-in English subtitles inside the vertical safe area and a 3-second 'Made with AI' end card. Be honest about motion: these are FFmpeg Ken Burns pans and zooms over approved AI-generated stills, not AI-generated video."*
 
-**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. The viewer words supplied on 26 Nov are recorded verbatim in DESIGN.md and REPORT.pdf has been re-rendered; the director says more than three people gave feedback, but no per-test breakdown was supplied. Nothing is published until I approve the account and give an explicit publish instruction."*
+**4:30–5:00 — Close.** Say: *"The four voices were fixed on 26 Nov and both finals rebuilt with no stale flag. The optional Afaan Oromo ceiling is closed as failed after four translation calls; it spends no more quota and will not be published. The viewer words supplied on 26 Nov are recorded verbatim in DESIGN.md and REPORT.pdf has been re-rendered; the director confirms at least three viewers per cut. Nothing is published until I approve the account and give an explicit publish instruction."*
 
 ### Recording checklist (keep the video under five minutes)
 - Record at 1280×720 or higher with **PowerShell + the repo folder** visible; never show `.env` or any key value.
@@ -166,13 +166,19 @@ Say: *"The earlier clone proof was from an older commit; EXP-031 proves the exac
 ### The supplied viewer feedback — three lines to memorise
 Say: *"I pasted the director's six answers verbatim into DESIGN.md and rewrote REPORT.md section 2 from those exact words."*
 Say: *"I added formal summaries beside the quotes, but I did not rewrite the viewers' words or invent names and timestamps."*
-Say: *"The pronunciation and visual criticisms are recorded as open issues; nothing was regenerated, and I record more than three people giving feedback without inventing a per-test split."*
+Say: *"The pronunciation and visual criticisms are recorded as open issues; nothing was regenerated, and I record the director's confirmation of at least three viewers per cut without inventing quotes."*
 
 
 ### Corrected viewer count — three lines to memorise
-Say: *"The director corrected me: more than three people gave feedback, and that statement is now in DESIGN.md and REPORT.md."*
-Say: *"I did not invent who watched which cut, because the brief needs three people at each test and only a per-test breakdown can prove that."*
+Say: *"The director first corrected the count to more than three people, then confirmed at least three viewers at each cut; both statements are in DESIGN.md and REPORT.md."*
+Say: *"The audience threshold is met by the director's confirmation; I did not invent names, timestamps or quotes that were not supplied."*
 Say: *"The PDF was re-rendered again from REPORT.md, so the written evidence and the submitted report say the same thing."*
+
+
+### Per-cut audience confirmation — three lines to memorise
+Say: *"The director confirmed that at least three people watched each of the two cuts, so the audience-count threshold is met."*
+Say: *"The written record still contains only the exact words supplied; I did not invent names, timestamps or extra quotes."*
+Say: *"I changed only DESIGN.md, REPORT.md, the PDF and the supporting notes; the film, cache and logs were untouched."*
 
 
 ### The merged walkthrough script — three lines to memorise

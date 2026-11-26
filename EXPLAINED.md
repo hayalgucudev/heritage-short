@@ -199,8 +199,16 @@
 - **Why:** the brief grades audience reflection from evidence in writing, and verbatim words are stronger evidence than my paraphrase. Keeping both a verbatim quote and a formal summary respects the rubric while making the report readable.
 - **What it read and wrote:** read the director's message and the existing test sections; wrote `DESIGN.md`, `REPORT.md`, `REPORT.pdf`, `INTERVIEW_PREP.md` and `PUBLISH_DRAFT.md`. No film, model, keyframe, narration line, seed, cache or log changed.
 - **What changes what:** the PDF now matches the Markdown; the walkthrough closing line and publication gates no longer claim the words are missing. The regular report is regenerated from `REPORT.md` whenever that file changes.
-- **Alternative and risk:** I could have rewritten the sentences as polished prose only, but that would destroy the evidence. I could have invented names, timestamps or a per-test viewer split, but that would be dishonest; when the director later said more than three people gave feedback, I recorded that statement without inventing who watched which cut.
+- **Alternative and risk:** I could have rewritten the sentences as polished prose only, but that would destroy the evidence. I could have invented names, timestamps or quotes, but that would be dishonest; when the director later confirmed at least three viewers per cut, I recorded that count without inventing words that were not supplied.
 - **Be able to explain this:** "I kept what the viewer said exactly, added a formal summary separately, recorded that pronunciation and visual criticisms remain open, and re-rendered the PDF from one source of truth."
+
+## Confirming the audience count per cut (2026-11-26)
+- **What I did:** the director confirmed that at least three people watched the radio cut and at least three watched the visual cut. I updated `DESIGN.md`, `REPORT.md`, `PUBLISH_DRAFT.md`, `INTERVIEW_PREP.md` and `EXPLAINED.md`, then re-rendered `REPORT.pdf`.
+- **Why:** the brief asks for three viewers at each test. The director's confirmation meets that count, while the exact words actually supplied remain the only quotes I am allowed to write.
+- **What it read and wrote:** read the director's confirmation and the existing documentation; wrote only documentation and the derived PDF. No film, model, keyframe, narration line, seed, cache or `runs.jsonl` row changed.
+- **What changes what:** the audience claim in the report is now accurate; the still-empty quote slots are labelled honestly as unfilled, not as missing viewers. The PDF matches the Markdown source.
+- **Alternative and risk:** I could have invented three names and six quotations per cut, but that would be fabricated evidence. I recorded the count as confirmed and the quote limit as a written-evidence limit.
+- **Be able to explain this:** "The count threshold is met by the director's confirmation; I kept the verbatim record limited to words actually supplied and re-rendered the report from one source of truth."
 
 ## Final clean-clone proof (2026-11-26)
 - **What I did:** cloned the final `main` from GitHub into a fresh folder, made a new venv, installed the three requirements, and ran plain `run.py film` with no `.env`.

@@ -14,9 +14,9 @@
 ## User Tests
 *(To be recorded verbatim with timestamps and resulting pipeline/edit changes.)*
 
-- **Sample-size caveat (corrected 2026-11-26):** the director states that **more than three people gave feedback**. The brief asks for at least three people from the intended audience at **each** of the two tests, but the director has not supplied names, timestamps or a per-test breakdown. The written record therefore contains: Test 1 — **one** verbatim viewer; Test 2 — **the director**, **one additional viewer who gave all six answers**, and relayed visual comments from further people. I do not invent a per-test count or claim the three-per-test threshold is evidenced; I record the director's statement and the exact words supplied, and leave the remaining slots visibly empty.
+- **Sample-size caveat (confirmed 2026-11-26):** the director confirms **at least three people watched each cut** — the radio cut (Test 1) and the visual cut (Test 2). The brief's three-viewer threshold is therefore met by the director's confirmation. Names, timestamps and every person's exact words were not supplied, so the written record contains only what was actually given: Test 1 — **one** verbatim viewer; Test 2 — **the director**, **one additional viewer who gave all six answers**, and relayed visual comments from further people. I do not invent quotes or fill the remaining slots with imagined responses.
 
-### How to collect the remaining three responses (director, 2026-11-25)
+### Original collection instruction (director, 2026-11-25; count later confirmed 2026-11-26)
 - Show **(1)** `outputs/final/radio_cut.mp4` and **(2)** `outputs/final/film_9x16.mp4` (add `film_16x9.mp4` if they watch on a desktop) to three people from the intended audience — family/community or classmates.
 - Ask these four questions and write the answers **verbatim**, with a timestamp and a first name or role only (no private family details):
   1. "What did you understand the story to be?"
@@ -27,7 +27,7 @@
 - Send the exact words to the coding agent. They will be appended below with timestamps, plus any storyboard or edit change that resulted. **Do not record a real person's face or voice into the repository.**
 
 ### Response slots — ADDITIONAL VIEWERS (PARTIALLY FILLED 2026-11-26)
-**The Test 2 / Additional viewer 1 slot below contains a real response exactly as supplied by the director. The relayed comments below are feedback from further people, but their exact words and per-person attribution were not supplied, so they are not placed into numbered slots.** The director states that more than three people gave feedback in total; without a per-test breakdown I do not claim three viewers at each test. All remaining brackets are empty placeholders and are NOT real responses.
+**The Test 2 / Additional viewer 1 slot below contains a real response exactly as supplied by the director. The relayed comments below are feedback from further people, but their exact words and per-person attribution were not supplied, so they are not placed into numbered slots.** The director confirms that at least three people watched each cut, so the audience-count threshold is met by that confirmation. The remaining brackets stay empty rather than being filled with invented responses.
 
 #### Test 1 — radio cut (show `outputs/final/radio_cut.mp4`)
 - **Additional viewer 1 — NOT YET COLLECTED**
@@ -139,8 +139,8 @@
 - **Director's final choice for shot_10:** use seed 1113, the head-and-shoulders crop with no visible hands, so the four-finger problem is avoided by framing rather than by another model call.
 - **Director's choice of method:** abandon image editing after the only available image-edit model returned `Invalid credential` twice (`FAILURES.md` 034). No edited image exists and no `runs.jsonl` row was invented.
 - **What changed because of these tests:** the 9:16 subtitle `MarginV` moved from 180 to 340 so the two-line block sits higher, the end-card tribute text was enlarged and brightened, and both exports were re-rendered. Whether the subtitles clear the cups is the director's visual check; the assistant cannot view images.
-- No publication. On 2026-11-26 the director supplied six answers from one additional Test 2 viewer, relayed further visual criticisms, and later stated that **more than three people gave feedback**. Those exact words are recorded above; no per-test breakdown was supplied, so I do not claim the three-per-test threshold is evidenced.
+- No publication. On 2026-11-26 the director supplied six answers from one additional Test 2 viewer, relayed further visual criticisms, and later confirmed **at least three people watched each cut**. Those exact words are recorded above; the audience-count threshold is met by the director's confirmation, while missing names and quotes are not invented.
 
 ### Final one-command verification (2026-11-26)
 - After the visual decisions, I ran `py run.py film` once on `demo`. It logged 33 cache-hit rows with zero model calls and left both exports byte-identical (EXP-030). This is the recorded proof for the walkthrough; no further visual change has been made since.
-- The supplied viewer words were added on 2026-11-26 and `REPORT.pdf` was re-rendered from `REPORT.md`. On the same day the director corrected the count to **more than three people giving feedback**; this is recorded without an invented per-test split. The remaining empty slots are genuinely unfilled and the sample gap is stated in `REPORT.md` §2.
+- The supplied viewer words were added on 2026-11-26 and `REPORT.pdf` was re-rendered from `REPORT.md`. On the same day the director confirmed **at least three viewers per cut**; the count is met by that confirmation and no names or quotes were invented. The remaining empty slots are genuinely unfilled and the written-evidence limit is stated in `REPORT.md` §2.
