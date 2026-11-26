@@ -44,7 +44,7 @@
 ## CLI packaging — be able to explain this
 1. **Why track 1.88 MB of narration WAVs?** A clean clone then has every cached input and can rebuild the film without API keys or model calls; this was the director's choice. The regenerated WAVs 07-10 are force-added so this stays true.
 2. **What does `preflight` prove?** It checks tools and required files and reports booleans only — it never prints `.env` values. In a clone with no `.env`, it returned `ready: true` and `missing_files: []`.
-3. **What is still pending?** The earlier clean clone needed `--skip-narration --allow-stale-narration` because four voices were provisional. Those voices are now fixed and `plan` is 38 hits / 0 regenerations, but the no-flag clean-clone run is still pending; that is the final CLI measurement.
+3. **What happened with the clean clone?** The earlier clone needed `--skip-narration --allow-stale-narration`. After the voices were fixed, a fresh clone of `5bd6adf` with no `.env` ran plain `py run.py film` with no flags: 21 cache-hit rows and 13 local FFmpeg rows, zero paid calls, and both MP4s byte-identical to the delivered ones. EXP-018 is complete.
 
 ## Second-language ceiling — be able to explain this
 1. **Why one TTS call instead of ten?** The 10/day cap and the 4-call voice fix leave only 6 calls before the deadline. One long narration call plus local splitting fits, at the cost of a timing-alignment risk that must be measured.

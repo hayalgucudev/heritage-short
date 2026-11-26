@@ -40,7 +40,7 @@ The second-hardest problem was quota, not engineering. Gemini TTS allows ten req
 Two ceiling items were chosen by the director, and a small polish item was added after the floor was stable.
 
 - **Second language (Afaan Oromo).** `pipeline/second_language.py` translates the ten locked fictional lines with one Gemini text call, makes **one** long Gemini TTS call, splits the result locally at detected silences (with a word-count fallback), and reuses the same clips and English subtitles for both aspect ratios. A local smoke test with a synthetic WAV and **zero model calls** produced both `_om` exports at 73.0 s with all ten slots audible, and exposed two real FFmpeg seek/timestamp bugs that were fixed. The approved run was attempted on 2026-11-26 but the translation call timed out after 54.2 s and the pipeline stopped before the TTS call (`FAILURES.md` 028). **No translation-quality or native-speaker result exists yet**; a family/community member will check names and places, and the variant will not be published unless that check is recorded in `ETHICS.md`.
-- **Reusable CLI.** `run.py` exposes `validate`, `preflight`, `plan`, `film` and each stage separately, with documented PowerShell commands in `README.md`. A clean clone with no `.env` passed `preflight` and rebuilt both MP4s with zero model calls. The stale voices are now fixed and `plan` is clean, but the true no-flag `py run.py film` test on a fresh clone has not been run; I will not call it passed early.
+- **Reusable CLI.** `run.py` exposes `validate`, `preflight`, `plan`, `film` and each stage separately, with documented PowerShell commands in `README.md`. A clean clone with no `.env` passed `preflight` and rebuilt both MP4s with zero model calls. On 2026-11-26 a fresh clone of `5bd6adf` with **no `.env`** passed `preflight` and ran plain `py run.py film` with **no flags**: 21 cache-hit rows and 13 local FFmpeg rows, zero paid calls, both MP4s byte-identical to the delivered files (EXP-018 complete).
 - **Sound and legibility polish.** A measured, deterministic room tone at about −40 dB mean, subtitles 10 % larger in Arial Bold with margins widened so the longest 33-character line still fits (587 px in a 608 px frame), and a restyled 3-second end card. My first ambience gain measured −54.1 dB mean — inaudible — so it was raised and re-measured (`EXP-019`). This cost zero quota.
 
 ## 6. Failures, experiments and measurement
@@ -49,7 +49,7 @@ Two ceiling items were chosen by the director, and a small polish item was added
 
 ## 7. What I would build next
 
-1. Run the no-flag one-command test from a fresh clean clone now that all voices are cached, and only then mark the CLI experiment complete.
+1. Keep the clean-clone evidence current after any future change, and run the recorded walkthrough for Assignment 2.
 2. Complete the native-speaker check and, if it passes, publish the Afaan Oromo variant as a second public cut; if it fails, keep it private and document exactly which words failed.
 3. Run the Wan 2.2 notebook from a fresh Kaggle session and compare one clip against the Ken Burns fallback in a blind preference test with at least five people. That would turn the fallback from a workaround into a measured choice.
 4. For a longer project, build the small family-facing web app so a relative who does not code can supply their own storyboard and get a film back — with the same consent gate in front of any real likeness or voice.

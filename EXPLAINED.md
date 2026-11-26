@@ -106,3 +106,11 @@
 - **Why:** this is the director's chosen ceiling item — the same film for viewers who do not understand Amharic. It was worth two model calls to test, but only after the floor was finished.
 - **What happened:** the translation request timed out after 54.2 s. The retry helper's hard 60 s cap stopped further attempts. No translation was produced, so the pipeline correctly did **not** make the TTS call. No files were written and nothing was published.
 - **Alternative and risk:** I did not retry or switch models because the approval was for exactly two calls and the instruction was to stop on failure. I also did not claim a native-speaker result — that check is still yours. The honest failure is recorded in `FAILURES.md` 028; a retry needs your approval.
+
+
+## Clean-clone one-command test (2026-11-26)
+- **What I did:** cloned commit `5bd6adf` into a temp folder, confirmed there was no `.env`, and ran plain `py run.py film` with no flags at all.
+- **Why:** the assignment says a stranger must be able to clone the repo and regenerate the film with one command. This is the measurement that turns that claim from a promise into evidence.
+- **What it read and wrote:** it read only committed files and wrote derived clips and MP4s into the clone. `preflight` found no missing inputs. All 10 voices, 10 keyframes and the score were cache hits; 10 Ken Burns clips and 2 exports were rebuilt locally (4,781 / 5,680 ms). The clone's log gained 34 rows — 21 cache hits and 13 local FFmpeg calls, **zero paid model calls**.
+- **What changed what:** nothing in the main repo changed. The clone's MP4s have the **same SHA-256 hashes** as the delivered ones, so the film is byte-for-byte reproducible. One limitation: cache hashes include absolute file paths, so a clone at a different path rebuilds local FFmpeg stages even though the output is identical; I recorded this rather than invalidating every cached clip without asking you.
+- **Be able to explain this:** "I cloned the repo without keys and ran one command. It made both films locally with zero model calls, and the files matched the delivered ones byte for byte."
