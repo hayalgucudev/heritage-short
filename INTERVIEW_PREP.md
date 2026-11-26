@@ -169,6 +169,12 @@ Say: *"I added formal summaries beside the quotes, but I did not rewrite the vie
 Say: *"The pronunciation and visual criticisms are recorded as open issues; nothing was regenerated, and I record more than three people giving feedback without inventing a per-test split."*
 
 
+### Corrected viewer count — three lines to memorise
+Say: *"The director corrected me: more than three people gave feedback, and that statement is now in DESIGN.md and REPORT.md."*
+Say: *"I did not invent who watched which cut, because the brief needs three people at each test and only a per-test breakdown can prove that."*
+Say: *"The PDF was re-rendered again from REPORT.md, so the written evidence and the submitted report say the same thing."*
+
+
 ### The merged walkthrough script — three lines to memorise
 Say: *"The five-minute script lives in INTERVIEW_PREP.md lines 69 to 106; it shows preflight, storyboard, one live rebuild, the log row and both exports."*
 Say: *"Deleting shot_02's clip moves plan from 38/0 to 35/3, all local FFmpeg; one 1.4-second rebuild returns it to 38/0 with zero quota."*
