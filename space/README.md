@@ -9,4 +9,4 @@ pinned: false
 
 # The Heritage Short
 
-Static showcase files for the reproducible AI short film. **Not published (optional).** No Hugging Face Space was created, no handle was chosen, and nothing is uploaded automatically. The film uses FFmpeg Ken Burns motion over AI-generated stills; no AI-generated video is used.
+Static showcase files for the reproducible AI short film. **Prepared but not published:** a publication attempt to `hayalgucudev/heritage-short` was refused with 403 because the available token does not have rights under that namespace (`FAILURES.md` 036). The vertical and horizontal MP4s are staged in `assets/` but no Space exists yet. The film uses FFmpeg Ken Burns motion over AI-generated stills; no AI-generated video is used.
