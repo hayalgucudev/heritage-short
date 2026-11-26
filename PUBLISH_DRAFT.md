@@ -1,6 +1,6 @@
-# Publication draft — DRAFT, NOT PUBLISHED
+# Publication record — Space LIVE, YouTube still a draft
 
-**Status: nothing has been uploaded, posted or made public.** This file contains ready-to-use text for the director to approve. Publishing requires an explicit "publish" instruction and the account/handle decision. Do not paste this into a live platform before the three additional viewer responses per test are recorded in `DESIGN.md`.
+**Status (2026-11-26): the static Hugging Face Space is published and both MP4 links open without login, confirmed by the director.** The YouTube text below remains a **draft, not posted**. The Space carries the "AI-generated film" label and the film ends with a "Made with AI" card. Assignment 2's public-link evidence is the Space, not the unposted YouTube draft.
 
 ## YouTube public post (Assignment 2, 20 marks)
 
@@ -33,15 +33,22 @@ Suggested platform setting: turn on YouTube's "Altered or synthetic content" dis
 
 The timed script, recording checklist and three-line memory notes are in `INTERVIEW_PREP.md`. Do not show `.env` or any key value on camera.
 
-## Hugging Face Space (static showcase)
+## Hugging Face Space (static showcase) — LIVE
 
-The files are prepared in `space/` — `index.html`, `README.md`, `storyboard.json`, `costs.md`, `keyframes.html` and both MP4s. **Nothing has been uploaded.** The Space is **optional and NOT published**; the `YOUR_USERNAME` placeholder was replaced by a "not published (optional)" marker in `space/README.md` and `DESIGN.md`. Publishing is not planned before the deadline. The page already carries the "AI-generated film" tag and an AI disclosure paragraph.
+Published by the director at **https://huggingface.co/spaces/rahmetullah/heritage-film** on 2026-11-26. Verified working without login:
+
+- Main film 9:16: https://huggingface.co/spaces/rahmetullah/heritage-film/resolve/main/film_9x16.mp4
+- Widescreen 16:9: https://huggingface.co/spaces/rahmetullah/heritage-film/resolve/main/film_16x9.mp4
+- Showcase page: https://huggingface.co/spaces/rahmetullah/heritage-film — **NOT working for the director**; do not use as evidence (`FAILURES.md` 037).
+
+The local `space/index.html` carries the "AI-generated film" tag and an AI disclosure paragraph, but the live Space currently serves the old README and wrapper instead; both exports end with the approved "Made with AI" card. The earlier 403 under `hayalgucudev` (`FAILURES.md` 036) was resolved by using the director-approved `rahmetullah` namespace; the original failure record is kept unchanged as evidence. Publishing involved no model call, quota spend or change to the film.
 
 ## Gates before anything goes live
 
 - [x] At least three viewers per user test watched the cuts (director's confirmation, 2026-11-26). The verbatim words actually supplied are in `DESIGN.md` and `REPORT.md` §2; missing names and remaining quotes were not invented.
 - [ ] The walkthrough video is recorded and under five minutes.
-- [ ] The director explicitly says "publish" and names the account/handle.
+- [x] The director chose the handle and published the Hugging Face Space at `rahmetullah/heritage-film` (2026-11-26).
+- [ ] YouTube upload: still a draft; no video has been posted and no YouTube URL is claimed.
 - [ ] The platform AI-disclosure setting is enabled.
 - [x] `REPORT.pdf` re-rendered from `REPORT.md` after the supplied viewer words were added (2026-11-26).
 - [x] Oromo ceiling CLOSED AS FAILED, native-speaker check MOOT: no variant exists and none will be published.

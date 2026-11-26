@@ -2,6 +2,12 @@
 
 A 60–90 second AI-made short film plus a reproducible pipeline. A stranger with Python, FFmpeg and `.env` keys can clone this repo and rebuild both film formats from `storyboard.json` with one command.
 
+## Public links (director-verified 2026-11-26, no login required)
+- Main film 9:16: https://huggingface.co/spaces/rahmetullah/heritage-film/resolve/main/film_9x16.mp4
+- Widescreen 16:9: https://huggingface.co/spaces/rahmetullah/heritage-film/resolve/main/film_16x9.mp4
+
+Both MP4 links returned HTTP 200 `video/mp4` on 2026-11-26. The **showcase page** at `https://huggingface.co/spaces/rahmetullah/heritage-film` is published but **does not work for the director** (it serves the Hugging Face wrapper and a stale README, not the film UI) — see `FAILURES.md` 037. Do not present it as working evidence. The exports themselves end with a "Made with AI" card. The YouTube post is still a draft (`PUBLISH_DRAFT.md`); no YouTube URL is claimed.
+
 ## Requirements
 - Windows PowerShell; Python 3.14 (`py`) or a Python 3.12 `.venv` if a package fails.
 - FFmpeg 9.1 full build (`ffmpeg` and `ffprobe` on `PATH`).
@@ -63,4 +69,4 @@ The director reviewed the exported frames and made two final choices: **shot_07 
 The director must explicitly approve the story, storyboard, radio cut, reference sheet, keyframes, clips, score and final edit. The Wan 2.2 Kaggle notebook (`notebooks/wan_clips_kaggle.ipynb`) is prepared but is **not run automatically**; the floor works with local Ken Burns clips. No real person's face or voice is used — see `ETHICS.md`.
 
 ## Evidence
-`DESIGN.md`, `ARCHITECTURE.md`, `EXPERIMENTS.md`, `FAILURES.md`, `COSTS.md`, `EXPLAINED.md` and `INTERVIEW_PREP.md` contain the real decisions, measurements and failure records. `runs.jsonl` is the source of truth for every model call.
+`DESIGN.md`, `ARCHITECTURE.md`, `EXPERIMENTS.md`, `FAILURES.md`, `COSTS.md`, `EXPLAINED.md`, `INTERVIEW_PREP.md` and `WALKTHROUGH.md` contain the real decisions, measurements, failure records and the timed recording script. `runs.jsonl` is the source of truth for every model call.

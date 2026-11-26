@@ -200,6 +200,7 @@ def cmd_assemble(args: argparse.Namespace) -> int:
 
 def cmd_film(args: argparse.Namespace) -> int:
     """One-command reproducible build. Every stage checks its own cache first."""
+    validate_storyboard(STORYBOARD_PATH, SCHEMA_PATH)
     summary: dict[str, Any] = {}
     if not args.skip_narration:
         summary["narration"] = generate_narration(

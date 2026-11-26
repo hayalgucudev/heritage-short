@@ -66,7 +66,7 @@
 ## Showcase and publication plan (2026-11-25)
 - **What you chose:** a Hugging Face Space with a placeholder handle, a public YouTube post, and the AI label **"AI-generated film"**. No account token was read and nothing was uploaded.
 - **What I built:** `space/index.html`, `space/README.md` and `py run.py showcase`, which copies the two MP4s, storyboard, cost report and keyframe sheet into the Space folder. The copies are gitignored because they change with the final film; the command refreshes them in seconds.
-- **Alternative and risk:** I did not write an uploader that reads `HF_TOKEN`, because publishing is a consent decision. The Space is **optional and NOT published**; the `YOUR_USERNAME` placeholder was replaced by a "not published (optional)" marker in `space/README.md` and `DESIGN.md`. Nothing was uploaded.
+- **Alternative and risk:** I did not write an uploader that reads `HF_TOKEN`, because publishing is a consent decision. The Space was **optional and NOT published at that moment**; the `YOUR_USERNAME` placeholder was replaced by a "not published (optional)" marker in `space/README.md` and `DESIGN.md`. Nothing was uploaded then. The director published it later on 2026-11-26 under `rahmetullah/heritage-film`; see the final section of this file.
 
 ## Three notebooks repaired from real Kaggle/Colab errors (2026-11-25)
 - **What you showed me:** you ran the three notebooks and pasted the actual red errors. ACE-Step downloaded its models but could not load them because `vector_quantize_pytorch` was missing; later cells then failed with `NameError`s. Wan stopped at the placeholder dataset slug, and an unpinned `-U` install brought a transformers version whose image code no longer matched, so the Wan pipeline could not even be imported.
@@ -158,7 +158,7 @@
 - **Why:** a negative result is worth more than an open "pending" claim, and the post is worth 20 marks in Assignment 2. Both need evidence in writing rather than an assumption.
 - **What it read and wrote:** it read `EXPERIMENTS.md`, `DESIGN.md`, `REPORT.md` and the prepared `space/` page. It wrote `PUBLISH_DRAFT.md` and small closure notes in those documents. Zero quota; no key, no model call and no upload.
 - **What changes what:** the film, cache and `runs.jsonl` are unchanged. `PUBLISH_DRAFT.md` is inert until you act on it. I re-rendered `REPORT.pdf` because `REPORT.md` gained the closure sentence, so the Markdown and PDF still say the same thing.
-- **Alternative and risk:** I did not publish or switch the Space placeholder to a real handle because that is your account decision. The risk of a draft is that it could be mistaken for a live post, so the file starts and ends with NOT PUBLISHED gates, and it keeps the AI label in the title, description and page.
+- **Alternative and risk:** I did not publish or switch the Space placeholder to a real handle then, because that is your account decision. The risk of a draft is that it could be mistaken for a live post, so the file started and ended with NOT PUBLISHED gates, and it kept the AI label in the title, description and page. The director later published under `rahmetullah/heritage-film`; `PUBLISH_DRAFT.md` now records the live links.
 - **Be able to explain this:** "Four translation calls failed, so I closed the ceiling as a negative result instead of leaving it vague. The post text is ready but nothing is live until I approve it."
 
 
@@ -233,3 +233,19 @@
 - **What changes what:** nothing upstream. All 10 narration WAVs, 10 keyframes and the score were cache hits; only the gitignored local clips and exports were rebuilt, byte-for-byte identically.
 - **Alternative and risk:** I could have assumed the older clone proof still applied, but the final shot_10 keyframe and subtitle settings had changed since then. The risk was a false reproducibility claim; the real clone removed it.
 - **Be able to explain this:** "I cloned the final commit with no keys, ran one command, and got both films with the same hashes; only local FFmpeg work was needed."
+
+## Publication evidence recorded from the director's live links (2026-11-26)
+- **What I did:** put the director-supplied live Space URL and both verified MP4 URLs into `README.md`, `PUBLISH_DRAFT.md`, `space/README.md`, `DESIGN.md`, `REPORT.md`, `INTERVIEW_PREP.md`, `EXPLAINED.md`, `EXPERIMENTS.md` and the resolution note in `FAILURES.md` 036.
+- **Why:** Assignment 2 gives 20 marks for a public post with an AI label. The docs previously said "nothing published", which would have hidden real evidence and contradicted what the director now has.
+- **What it read and wrote:** read only the director's message and existing docs; wrote documentation only. No model call, no `.env` read, no cache, storyboard or MP4 change.
+- **What changes what:** nothing downstream. Output hashes, `runs.jsonl`, `COSTS.md` and both exports stay as they were; only what a reviewer can verify changes.
+- **Alternative and risk:** I did not claim a YouTube post because no YouTube URL was supplied. A stale `REPORT.pdf` is a risk: no Markdown-to-PDF renderer is installed here, so `REPORT.md` is named as the source of truth.
+- **Be able to explain this:** "My first upload failed 403; the director published under `rahmetullah` instead. The two direct MP4 links work, but the Space page does not render and shows a stale README — I logged that as FAILURES.md 037 and stopped claiming the page as evidence. No quota was spent and no film hash changed."
+
+## Final handover checks (2026-11-26)
+- **What I did:** added `WALKTHROUGH.md`, put an explicit `validate_storyboard` call at the top of `run.py film`, and logged the blocked live rehearsal in `FAILURES.md` 038.
+- **Why:** the walkthrough is graded, and the one-command promise must fail loudly before any quota call if the storyboard is invalid.
+- **What it read and wrote:** read the existing docs and code; wrote documentation plus one line of code. No model call, no `.env` read and no change to `runs.jsonl`, which still has 152 rows.
+- **What changes what:** `film` now validates once up front and each stage still validates its own inputs; cache keys, outputs and hashes are unchanged.
+- **Alternative and risk:** I did not repeat the live TTS demo without a key or FFmpeg on `PATH`; inventing a row would have broken the honesty rule. The risk is that the recording must use a prepared throwaway clone, as written in `WALKTHROUGH.md`.
+- **Be able to explain this:** "The five-minute script is written down, validation happens before work, and I logged the environment blockers instead of pretending the live call ran."

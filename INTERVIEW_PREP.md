@@ -53,7 +53,7 @@
 
 ## Showcase and post — be able to explain this
 1. **Why keep the Space folder but ignore its copies?** The HTML and metadata are stable; the MP4s and cost table change after the final voice fix. `py run.py showcase` refreshes them, so the Space cannot silently show an old film.
-2. **Did the pipeline publish anything?** No. The showcase command reads no keys and uploads nothing; YouTube and Hugging Face publication both wait for the director's explicit approval.
+2. **Did the pipeline publish anything?** No — `py run.py showcase` reads no keys and uploads nothing. The **director** published the Space manually at `rahmetullah/heritage-film` on 2026-11-26; both MP4 links open without login. No YouTube video was posted.
 3. **What is the agreed disclosure?** "AI-generated film" in the post and Space, plus the film's own "Made with AI" end card. No real person's face or voice appears.
 
 ## Reproduction notebooks — be able to explain this
@@ -172,16 +172,17 @@ Say: *"The dry run showed 35 hits and 3 regenerations: one TTS call plus two loc
 Say: *"The submitted hashes stayed 375467a8... and 03697d27..., and the clone was deleted after the evidence was captured."*
 
 
-### Space publication failure — three lines to memorise
-Say: *"I prepared the static Space and the director approved publishing to hayalgucudev/heritage-short, but Hugging Face returned 403 because the token cannot create under that namespace."*
-Say: *"No Space was created and no MP4 was uploaded; whoami showed the token belongs to an account without rights over that namespace, and I never printed the token."*
-Say: *"FAILURES.md 036 records the block; the staged package is ready for an approved handle, a different token, or a decision to skip the Space."*
+### Space publication — failure then success, three lines to memorise
+Say: *"My first attempt at hayalgucudev/heritage-short returned 403 because the token had no rights over that namespace; FAILURES.md 036 records the real block."*
+Say: *"The director then published under rahmetullah/heritage-film; the page and both MP4 links open without login, with an 'AI-generated film' label."*
+Say: *"The pipeline never published: showcase only copies files locally. Publication spent no quota and did not change any output hash."*
 
 
 ### Publication status — three lines to memorise
 Say: *"The Afaan Oromo ceiling was closed as failed after four translation calls; no Oromo film exists and no quality claim was made."*
-Say: *"PUBLISH_DRAFT.md contains the YouTube and Space text with the AI-generated film label, but nothing has been uploaded."*
-Say: *"I publish only after you approve the account and the AI label; the director confirmed at least three viewers per cut."*
+Say: *"Both direct MP4 links work; the Space page does not render the film UI and its README is stale — FAILURES.md 037 records it honestly."*
+Say: *"The YouTube text is still an unposted draft, so I claim only the two working MP4 links as public evidence."*
+Say: *"The director chose the handle and confirmed public links; at least three viewers watched each cut."*
 
 
 ### Final audit — three lines to memorise
@@ -231,4 +232,9 @@ Say: *"I changed only DESIGN.md, REPORT.md, the PDF and the supporting notes; th
 ### The strict walkthrough script — three lines to memorise
 Say: *"The strict five-minute script is near the top of INTERVIEW_PREP.md; it shows preflight, the storyboard line change, the dry run, one model log row and both submitted hashes."*
 Say: *"Changing shot_02 narration moves plan from 38/0 to 35/3: one Gemini TTS call and two local exports; local radio cut then returns it to 38/0."*
-Say: *"I state the true specs and admit the film is Ken Burns over AI stills; the supplied viewer words are logged and re-rendered, publication is still pending."*
+Say: *"I state the true specs and admit the film is Ken Burns over AI stills; the supplied viewer words are logged, the direct MP4 links are live, and the Space page defect is in FAILURES.md 037."*
+
+### The recorded walkthrough file — three lines to memorise
+Say: *"WALKTHROUGH.md is the timed five-minute script with exact PowerShell commands and timestamps."*
+Say: *"It uses a throwaway clone so one narration-line change cannot damage the submitted exports."*
+Say: *"A live repeat here was blocked by missing dependencies, no `ffmpeg` on `PATH` and no `.env`; I logged that in FAILURES.md 038 and did not invent a log row."*
