@@ -463,6 +463,22 @@
       "input_hash": "3c44d18a738df0b4e51a17f14c55c4bd8364ff616ecd95bf1f47af41f8d2a8f6",
       "status": "ok",
       "updated_at": "2026-11-26T10:29:34.653020+00:00"
+    },
+    "outputs/keyframes/shot_07_seed1073.png": {
+      "file_name": "shot_07_seed1073.png",
+      "stage": "keyframes",
+      "shot_id": "shot_07",
+      "input_hash": "79d993de51924c0b49f770282c009bdb805adde32431fce174f85fd799058688",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:35:37.602799+00:00"
+    },
+    "outputs/keyframes/shot_10_seed1113.png": {
+      "file_name": "shot_10_seed1113.png",
+      "stage": "keyframes",
+      "shot_id": "shot_10",
+      "input_hash": "c63db91ccfe57e5b77b0694bcd2ed4f270402a1f7a21cd1d4577c94312e735fb",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:35:48.028395+00:00"
     }
   }
 }
