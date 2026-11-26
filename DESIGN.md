@@ -134,3 +134,7 @@
 - **Director's choice of method:** abandon image editing after the only available image-edit model returned `Invalid credential` twice (`FAILURES.md` 034). No edited image exists and no `runs.jsonl` row was invented.
 - **What changed because of these tests:** the 9:16 subtitle `MarginV` moved from 180 to 340 so the two-line block sits higher, the end-card tribute text was enlarged and brightened, and both exports were re-rendered. Whether the subtitles clear the cups is the director's visual check; the assistant cannot view images.
 - No publication. The user-test viewer slots earlier in this file remain untouched and unfilled.
+
+### Final one-command verification (2026-11-26)
+- After the visual decisions, I ran `py run.py film` once on `demo`. It logged 33 cache-hit rows with zero model calls and left both exports byte-identical (EXP-030). This is the recorded proof for the walkthrough; no further visual change has been made since.
+- The six empty viewer slots earlier in this file remain untouched. `REPORT.pdf` is still intentionally stale and must not be submitted before the real viewer words are added and the report is re-rendered.

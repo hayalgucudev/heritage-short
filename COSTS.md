@@ -11,7 +11,7 @@
 
 ## Measured totals (from `runs.jsonl`)
 
-- Real logged records: **119**
+- Real logged records: **152**
 - Non-cache model/FFmpeg calls: **104**
 - Failed calls: **7**
 - Total logged latency: **967,733 ms** (16.1 min)
@@ -20,14 +20,14 @@
 
 | Stage | Calls | Cache hits | Failures | Latency (ms) | Cost / quota tags |
 | --- | --- | --- | --- | --- | --- |
-| assemble | 16 | 0 | 0 | 87,220 | 0_local_ffmpeg x16 |
-| keyframes | 27 | 0 | 0 | 316,453 | 1_cloudflare_flux_call x27 |
-| music | 1 | 1 | 0 | 0 | 0_cache_hit x1, 1_kaggle_acestep_call x1 |
-| narration | 22 | 5 | 2 | 82,071 | 0_cache_hit x5, 1_gemini_tts_call x20, 1_gemini_tts_call_failed x2 |
+| assemble | 16 | 2 | 0 | 87,220 | 0_cache_hit x2, 0_local_ffmpeg x16 |
+| keyframes | 27 | 10 | 0 | 316,453 | 0_cache_hit x10, 1_cloudflare_flux_call x27 |
+| music | 1 | 2 | 0 | 0 | 0_cache_hit x2, 1_kaggle_acestep_call x1 |
+| narration | 22 | 15 | 2 | 82,071 | 0_cache_hit x15, 1_gemini_tts_call x20, 1_gemini_tts_call_failed x2 |
 | radio_cut | 2 | 0 | 0 | 5,580 | 0_local_ffmpeg x2 |
 | reference_sheet | 9 | 0 | 0 | 98,266 | 1_cloudflare_flux_call x9 |
 | script | 5 | 0 | 4 | 316,424 | 1_gemini_script_call x1, 1_gemini_script_call_failed x4 |
-| shots | 13 | 9 | 0 | 18,775 | 0_cache_hit x9, 0_local_ffmpeg x13 |
+| shots | 13 | 19 | 0 | 18,775 | 0_cache_hit x19, 0_local_ffmpeg x13 |
 | smoke_flux | 1 | 0 | 0 | 8,846 | 1_cloudflare_flux_call x1 |
 | smoke_text | 1 | 0 | 1 | 13,533 | 1_gemini_text_call_failed x1 |
 | smoke_tts | 1 | 0 | 0 | 5,093 | 1_gemini_tts_call x1 |

@@ -138,7 +138,7 @@ Say: *"I publish only after you approve the account and the remaining three view
 
 ### Final audit — three lines to memorise
 Say: *"Both exports are 73 seconds, 24 fps, H.264/AAC, measured -14.02 LUFS and -0.98 dBTP."*
-Say: *"The 119 log rows, 104 non-cache calls, 7 failures and 967,733 ms in COSTS.md match runs.jsonl exactly."*
+Say: *"The 152 log rows, 104 non-cache calls, 7 failures and 967,733 ms in COSTS.md match runs.jsonl exactly."*
 Say: *"plan reports 38 cache hits and zero regenerations; nothing upstream would be rebuilt."*
 
 ### Documentation cleanup — three lines to memorise
@@ -150,3 +150,8 @@ Say: *"REPORT.pdf is intentionally stale and will be re-rendered only after the 
 Say: *"shot_07 stayed original after eight candidates failed; I logged the pouring defect as unresolved instead of claiming fixed."*
 Say: *"shot_10 uses seed 1113, a head-and-shoulders crop with no hands, after the image-edit fallback failed on credentials."*
 Say: *"Only one clip and both exports rebuilt; the exports are 73 s at -14.02 LUFS / -0.98 dBTP and plan is back to 38 cache hits."*
+
+### One-command reproducibility — three lines to memorise
+Say: *"The final `py run.py film` logged 33 rows — 10 narration, 10 keyframes, 1 music, 10 shots, 2 exports — every one a cache hit."*
+Say: *"No model or TTS call was made and both MP4 hashes were unchanged: that is the one-command regeneration proof."*
+Say: *"COSTS.md now reads 152 records, 104 non-cache calls, 7 failures and 967,733 ms, all computed from runs.jsonl."*

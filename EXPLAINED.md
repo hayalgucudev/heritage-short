@@ -185,3 +185,11 @@
 - **What changes what:** shot_10's new keyframe invalidated only its clip; the prepared subtitle/end-card settings already invalidated both exports. Restoring shot_07's original hash made its clip a cache hit again. After the rebuild `plan` reports **38 cache hits / 0 regenerations**; all ten shots are cached.
 - **Alternative and risk:** image editing was the agreed fallback but failed on credentials, so I did not retry or guess another model. The risk is that the shot_07 inconsistency stays visible; it is recorded in `FAILURES.md` 032/035 rather than hidden. The 9:16 margin move is confirmed in the ASS style line, but only your eye confirms it clears the cups.
 - **Be able to explain this:** "I kept the original shot_07 because no replacement fixed the pour, used the hands-out-of-frame shot_10, and rebuilt only that clip and both exports. The remaining defect is written down, not denied."
+
+## Final one-command build (2026-11-26)
+- **What I did:** ran the exact command a stranger would use — `py run.py film` — on the finished `demo` state.
+- **Why:** the assignment requires one command to regenerate the film; the earlier cached stages only proved that individual steps worked. This proves the whole chain works together.
+- **What it read and wrote:** read the locked storyboard and cache manifest; wrote 33 cache-hit rows to `runs.jsonl` and refreshed `COSTS.md`. No model or TTS call, no image generation, no publication.
+- **What changes what:** nothing in the film. Both MP4 hashes and their duration/loudness readings are identical to the previous rebuild, so no downstream stage was invalidated.
+- **Alternative and risk:** I could have shown the existing files instead, but that would not prove the command. The risk was a hidden hash mismatch triggering a paid call; `plan` had already reported 38 hits / 0 regenerations, and the log confirms zero misses.
+- **Be able to explain this:** "The final `py run.py film` was a complete cache hit: 33 log rows, no model calls, and the two MP4s have the same hashes as before."
