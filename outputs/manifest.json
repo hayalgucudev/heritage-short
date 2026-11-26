@@ -495,6 +495,22 @@
       "input_hash": "aad2adfef6744015b6d5d6990f269432ed5401ee567e12f3dae10dbd0a1cfbc3",
       "status": "ok",
       "updated_at": "2026-11-26T10:46:25.308187+00:00"
+    },
+    "outputs/keyframes/shot_07_seed1075.png": {
+      "file_name": "shot_07_seed1075.png",
+      "stage": "keyframes",
+      "shot_id": "shot_07",
+      "input_hash": "73a7f16a125a66fed1408a0e39071347dff00f7effa3349b678ed206595f505d",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:49:47.187196+00:00"
+    },
+    "outputs/keyframes/shot_10_seed1111_fingers.png": {
+      "file_name": "shot_10_seed1111_fingers.png",
+      "stage": "keyframes",
+      "shot_id": "shot_10",
+      "input_hash": "0534a0544a03ec252387c67f7fd7a026e80ed1df3d88b52c8d93aa0df1717e31",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:50:13.926694+00:00"
     }
   }
 }
