@@ -53,9 +53,14 @@ def keyframe_hash(
     use_reference=False to avoid falsely invalidating all ten stills.
     """
     shot_ref = None
-    if use_reference and "grandmother" in shot["image_prompt"].lower():
+    explicit_ref = shot.get("image_reference")
+    if explicit_ref:
+        shot_ref = Path(explicit_ref)
+        if not shot_ref.is_absolute():
+            shot_ref = project_root / shot_ref
+    elif use_reference and "grandmother" in shot["image_prompt"].lower():
         shot_ref = _selected_reference(sb, project_root)
-    refs = [shot_ref] if shot_ref is not None else []
+    refs = [shot_ref] if shot_ref is not None and shot_ref.exists() else []
     return compute_stage_hash(
         stage="keyframes",
         model=sb["models"]["keyframes"],

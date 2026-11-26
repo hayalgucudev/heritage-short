@@ -126,6 +126,7 @@
           "tts_style": { "type": "string", "minLength": 3 },
           "image_prompt": { "type": "string", "minLength": 10 },
           "image_seed": { "type": "integer", "minimum": 0 },
+          "image_reference": { "type": ["string", "null"] },
           "video_motion_prompt": { "type": "string", "minLength": 5 },
           "video_seed": { "type": "integer", "minimum": 0 },
           "sfx_ambience": { "type": "string" },

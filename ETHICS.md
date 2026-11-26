@@ -1,6 +1,8 @@
 # Ethics, Consent & Licences
 
 ## 1. Real-Person Consent & Privacy Record
+
+- **2026-11-26, director consent recorded:** the director uploaded a photograph of a **jebena** and explicitly approved sending that one image to the existing Cloudflare FLUX endpoint as an image-conditioning input for `shot_07`. No new service receives it; no `.env` value is printed. **I cannot view images**, so the director must confirm the photo contains no real person's face before it is used; if it does, the film scores zero under the consent gate and the photo will not be sent.
 - **Subject choice:** Fictionalized, stylized family elder (`"Grandmother"` in `"the village"`).
 - **Real likeness or voice:** **None.** No real person's face, photograph, or cloned voice is used anywhere in the pipeline. Voiceover is synthetic AI narration only.
 - **Approved character reference:** `outputs/keyframes/ref_real_seed1025.png` is an AI-generated fictional composite; no photo of any real person was used as input, and no real person's likeness appears anywhere in the film.

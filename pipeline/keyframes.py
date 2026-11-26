@@ -246,7 +246,13 @@ def generate_keyframes(
         rel_img = img_path.relative_to(project_root).as_posix()
 
         # Condition character shots on selected reference; shot_01 (village landscape) can omit ref if desired.
-        shot_ref = ref_path if (ref_path is not None and "grandmother" in prompt.lower()) else None
+        explicit_ref = shot.get("image_reference")
+        if explicit_ref:
+            shot_ref = project_root / explicit_ref
+            if not shot_ref.exists():
+                raise FileNotFoundError(f"Missing shot image_reference: {shot_ref}")
+        else:
+            shot_ref = ref_path if (ref_path is not None and "grandmother" in prompt.lower()) else None
         refs = [shot_ref] if shot_ref is not None else []
 
         input_hash = compute_stage_hash(
