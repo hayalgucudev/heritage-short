@@ -415,6 +415,54 @@
       "input_hash": "4841f5e42c2006c930427cb650eace2be71b7b279d3fa7b7871c56b4a6cb272d",
       "status": "ok",
       "updated_at": "2026-11-26T09:07:42.841888+00:00"
+    },
+    "outputs/keyframes/shot_07_seed1070.png": {
+      "file_name": "shot_07_seed1070.png",
+      "stage": "keyframes",
+      "shot_id": "shot_07",
+      "input_hash": "f335de9d2cba838590c8df6d894693ef91a4f801fe304efcd3cb35b64ee60939",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:28:37.091826+00:00"
+    },
+    "outputs/keyframes/shot_07_seed1071.png": {
+      "file_name": "shot_07_seed1071.png",
+      "stage": "keyframes",
+      "shot_id": "shot_07",
+      "input_hash": "02cccab8f1b24530dafb5bbe992467bab23267c1ff90e80f8fb950575719b208",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:28:47.710553+00:00"
+    },
+    "outputs/keyframes/shot_07_seed1072.png": {
+      "file_name": "shot_07_seed1072.png",
+      "stage": "keyframes",
+      "shot_id": "shot_07",
+      "input_hash": "32d4087c464e44bafc1420550c522c1c21d889ced7a5509009c669bd26eaf655",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:28:59.300876+00:00"
+    },
+    "outputs/keyframes/shot_10_seed1110.png": {
+      "file_name": "shot_10_seed1110.png",
+      "stage": "keyframes",
+      "shot_id": "shot_10",
+      "input_hash": "07f61b25e72df52b7921e5c7f059c4a216e7d6fabfd43746e1fc7b992dd3dfbf",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:29:13.095816+00:00"
+    },
+    "outputs/keyframes/shot_10_seed1111.png": {
+      "file_name": "shot_10_seed1111.png",
+      "stage": "keyframes",
+      "shot_id": "shot_10",
+      "input_hash": "ba984d0a1f8c937ee1bc0fdbc5814fc912330e631df3b05376718fd38e5cc87b",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:29:24.489632+00:00"
+    },
+    "outputs/keyframes/shot_10_seed1112.png": {
+      "file_name": "shot_10_seed1112.png",
+      "stage": "keyframes",
+      "shot_id": "shot_10",
+      "input_hash": "3c44d18a738df0b4e51a17f14c55c4bd8364ff616ecd95bf1f47af41f8d2a8f6",
+      "status": "ok",
+      "updated_at": "2026-11-26T10:29:34.653020+00:00"
     }
   }
 }
