@@ -113,7 +113,7 @@ Say: *"I stopped rather than spend a third blind call; changing the model or the
 
 
 ### The second-language ceiling, honestly
-Say: *"I tried the translation twice on 3.8-flash and once on 3.6-flash; all three failed, with read timeouts and a 503."*
+Say: *"I tried the translation four times — twice on 3.8-flash and twice on 3.6-flash, the last after a key change; all failed with timeouts or 503."*
 Say: *"The endpoint was reachable in about 200 ms, so I did not blame the network — I recorded the model failures instead of inventing a translation."*
 Say: *"No Oromo film exists and nothing was published; the native-speaker check is still pending and the floor film is unaffected."*
 

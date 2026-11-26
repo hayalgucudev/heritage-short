@@ -131,7 +131,8 @@
 - **What it read and wrote:** it read the same locked fictional lines and the config, and wrote **nothing** — no translation JSON, no WAV, no MP4, no new log row. The only repo change is the config field and its honest rationale.
 - **What would have changed what:** a successful translation would have invalidated the translation hash, then the long TTS, then the ten local splits and both `_om` exports. The English film would not have changed at all. Since the call failed, none of that happened.
 - **Alternative and risk:** I did not try a third model or raise the timeout; each is another quota decision. The risk was that a historically successful free-tier model is still unavailable today — which is exactly what happened (HTTP 503 high demand).
-- **Be able to explain this:** "I changed one model name because the logs supported it, and it still returned 503. I stopped after the approved attempt rather than shopping for a model that happens to be free at that second."
+- **Retry after the credential change:** you asked me to try again after changing the API, and I did, with the same config and budget. It returned the same HTTP 503. That is useful evidence: it makes a credential problem less likely and leaves free-tier model capacity as the leading explanation.
+- **Be able to explain this:** "I changed one model name because the logs supported it, and it still returned 503. Even after the key changed it returned 503, so I stopped rather than shopping for a model that happens to be free at that second."
 
 
 ## Rendering the report as a PDF (2026-11-26)
